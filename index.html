@@ -1,0 +1,1740 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>读博适性深度检测 | 6维量表 2026版</title>
+    <style>
+        :root {
+            --primary: #ff8e9e; 
+            --primary-dark: #ff6b81;
+            --primary-deep: #e84a65; 
+            --bg-gradient-start: #fff5f7;
+            --bg-gradient-end: #ffffff;
+            --text-main: #2d3436;
+            --text-sub: #636e72;
+            --card-bg: #ffffff;
+            --radius: 20px;
+        }
+
+        * { box-sizing: border-box; user-select: none; -webkit-tap-highlight-color: transparent; }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+            background: linear-gradient(180deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+            color: var(--text-main);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%; max-width: 500px; min-height: 100vh;
+            background: #fff; display: flex; flex-direction: column;
+            margin: 0 auto; box-shadow: 0 0 40px rgba(0,0,0,0.03);
+            position: relative;
+        }
+
+        /* 动画 */
+        .fade-in { animation: fadeIn 0.4s ease-in forwards; }
+        .slide-up { animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        /* 按钮与表单 */
+        .btn {
+            background: var(--primary-dark); color: white; border: none;
+            padding: 16px 28px; border-radius: 30px; font-size: 17px; font-weight: 700;
+            width: 100%; cursor: pointer; box-shadow: 0 8px 20px rgba(255, 107, 129, 0.25);
+            transition: transform 0.1s; letter-spacing: 1px; display: flex; justify-content: center; align-items: center; gap: 8px;
+        }
+        .btn:active { transform: scale(0.98); }
+        .btn-outline {
+            background: transparent; color: var(--primary-dark); border: 2px solid var(--primary-dark);
+            padding: 10px 24px; border-radius: 30px; font-size: 15px; font-weight: 700; cursor: pointer; margin-top: 15px; width: 100%;
+        }
+
+        /* 封面 */
+        #page-intro { padding: 40px 24px; text-align: center; display: flex; flex-direction: column; justify-content: center; min-height: 100vh; }
+        .cover-tag { display: inline-block; background: #fff0f3; color: var(--primary-deep); padding: 6px 14px; border-radius: 10px; font-size: 13px; font-weight: 700; margin-bottom: 24px; align-self: center; }
+        .cover-title { font-size: 34px; line-height: 1.3; margin-bottom: 12px; color: #222; font-weight: 900; letter-spacing: -1px; }
+        .cover-subtitle { font-size: 15px; color: var(--text-sub); line-height: 1.6; margin-bottom: 30px; }
+
+        /* 表单页 */
+        #page-demographics { padding: 40px 24px; display: none; background: #fff; min-height: 100vh; overflow-y: auto; }
+        .form-group { margin-bottom: 30px; }
+        .form-label { font-size: 17px; font-weight: 800; margin-bottom: 14px; display: block; color: #333; }
+        .select-box { width: 100%; padding: 18px; border: 2px solid #ffe4e8; border-radius: 16px; font-size: 16px; background: #fffcfd; outline: none; appearance: none; color: #444; font-weight: 500; }
+        .select-box:focus { border-color: var(--primary-dark); }
+
+        /* 测试页 */
+        #page-test { padding: 24px; display: none; flex-direction: column; min-height: 100vh; }
+        .test-top-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; font-size: 15px; font-weight: 700; }
+        .back-btn { color: #888; cursor: pointer; padding: 4px 8px; margin-left: -8px; border-radius: 6px; transition: background 0.2s; display: flex; align-items: center; gap: 4px; }
+        .back-btn:active { background: #f0f0f0; }
+        .back-btn.hidden { visibility: hidden; }
+        .progress-text { color: var(--primary-dark); }
+        .progress-bar-bg { width: 100%; height: 8px; background: #ffe4e8; border-radius: 4px; margin-bottom: 30px; }
+        .progress-fill { height: 100%; background: var(--primary-dark); width: 0%; border-radius: 4px; transition: width 0.3s ease; }
+        .question-text { font-size: 19px; font-weight: 800; line-height: 1.5; margin-bottom: 24px; color: #222; text-align: justify; }
+        .option-btn {
+            background: #fff9fa; padding: 18px 20px; border-radius: 16px; margin-bottom: 14px;
+            font-size: 16px; color: #444; cursor: pointer; border: 2px solid transparent; transition: all 0.2s;
+            font-weight: 500; text-align: left; line-height: 1.5;
+        }
+        .option-btn:active { transform: scale(0.98); background: #fff0f5; }
+        .option-btn.selected { background: #fff0f5; border-color: var(--primary-dark); color: var(--primary-dark); font-weight: 700; }
+
+        /* 结果页重构 */
+        #page-result { display: none; background: #fff5f7; padding-bottom: 60px; min-height: 100vh; }
+        .result-hero { background: #fff; padding: 40px 24px 30px; border-bottom-left-radius: 36px; border-bottom-right-radius: 36px; box-shadow: 0 10px 40px rgba(255, 107, 129, 0.08); text-align: center; margin-bottom: 20px; position: relative; }
+        .result-type-badge { background: #222; color: #fff; padding: 6px 16px; border-radius: 8px; font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; display: inline-block; }
+        .result-big-title { font-size: 34px; font-weight: 900; color: #222; margin: 6px 0 10px; letter-spacing: -1px; }
+        .result-sub-title { font-size: 15px; color: #777; font-weight: 600; margin-bottom: 24px; }
+        
+        /* 仪表盘与雷达图区块 */
+        .gauge-wrapper { display: flex; justify-content: center; margin-bottom: 10px; position: relative; height: 140px; }
+        .radar-wrapper { display: flex; justify-content: center; margin: 10px 0 20px; }
+
+        /* 关键词区块 */
+        .keywords-box { margin: 10px 0 20px; display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
+        .kw-tag { background: #fff0f3; color: var(--primary-deep); padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 700; }
+        
+        /* 计算过程框 */
+        .calc-box { font-family: monospace; background: #2d3436; color: #a29bfe; padding: 16px; border-radius: 12px; font-size: 13px; text-align: left; margin-bottom: 24px; line-height: 1.8; overflow-x: auto; box-shadow: inset 0 2px 10px rgba(0,0,0,0.2); }
+        .calc-box span.white { color: #fff; }
+
+        /* 短评建议框 */
+        .short-eval-box { background: #fdfdfd; border-left: 4px solid var(--primary-dark); padding: 16px; border-radius: 0 12px 12px 0; text-align: left; margin-bottom: 24px; font-size: 14px; color: #444; line-height: 1.6; box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
+        .short-eval-box strong { color: var(--primary-dark); display: block; margin-bottom: 6px; font-size: 15px; }
+
+        /* 隐藏的深度报告区块 */
+        #full-report-container { display: none; margin-top: 20px; text-align: left; }
+        .report-card { background: #fff; border-radius: 24px; padding: 28px 24px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04); margin-bottom: 20px; }
+        
+        .report-header { background: #222; color: #fff; padding: 16px 20px; border-radius: 16px; margin-bottom: 24px; font-size: 14px; line-height: 1.6; }
+        .report-header span { color: var(--primary); font-weight: bold; }
+        
+        .section-title { font-size: 18px; font-weight: 800; color: #222; margin: 24px 0 16px; display: flex; align-items: center; gap: 8px; border-bottom: 2px solid #f0f0f0; padding-bottom: 10px; }
+        
+        .report-p { font-size: 15px; color: #4a4a4a; line-height: 1.8; margin-bottom: 16px; text-align: justify; }
+        
+        .dim-list { padding-left: 0; list-style: none; margin-bottom: 20px; }
+        .dim-list li { margin-bottom: 14px; font-size: 14px; line-height: 1.7; color: #555; background: #fdfdfd; padding: 12px 16px; border-radius: 12px; border: 1px solid #f0f0f0; }
+        
+        .crisis-box { background: #fff5f5; border-left: 4px solid #ff4757; padding: 16px; border-radius: 0 12px 12px 0; margin-bottom: 20px; }
+        .crisis-box h5 { margin: 0 0 8px 0; color: #ff4757; font-size: 15px; font-weight: 800; }
+        
+        .rule-box { background: #f0fdf4; border-left: 4px solid #2ed573; padding: 16px; border-radius: 0 12px 12px 0; margin-bottom: 16px; }
+        .rule-box h5 { margin: 0 0 8px 0; color: #2ed573; font-size: 15px; font-weight: 800; }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- 1. 封面 -->
+    <div id="page-intro" class="fade-in">
+        <div class="cover-tag">2026版 · 剥离伪装的 6维量表</div>
+        <h1 class="cover-title">真实学术生存率<br>深度测评</h1>
+        <p class="cover-subtitle">放弃道德评判，只看底层本能。<br>你适合读博吗？</p>
+        <button class="btn" onclick="nextPage('page-intro', 'page-demographics')">建立专属学术档案</button>
+    </div>
+
+    <!-- 2. 前置调查 -->
+    <div id="page-demographics">
+        <h2 style="font-size: 24px; margin-bottom: 30px; font-weight:800; color:#222;">定制你的试卷维度 📂</h2>
+        
+        <div class="form-group">
+            <label class="form-label">你的目标学科/领域？</label>
+            <select id="input-major" class="select-box">
+                <option value="C">理工硬核 / 生化环材</option>
+                <option value="B">临床医学 / 规培体系</option>
+                <option value="A">人文社科 / 艺术设计</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">你目前的学历阶段？</label>
+            <select id="input-status" class="select-box">
+                <option value="undergrad">本科 / 硕士在读 (未入局者)</option>
+                <option value="working">已工作 / Gap (重返校园者)</option>
+                <option value="phd">博一 / 博二 (深水区挣扎者)</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">读博最底层的核心动机？</label>
+            <select id="input-motivation" class="select-box">
+                <option value="love">纯粹热爱 (知识边界的拓荒)</option>
+                <option value="title">学历光环 (教职/跨越阶层)</option>
+                <option value="escape">逃避内卷 (不想面对就业市场)</option>
+            </select>
+        </div>
+
+        <button class="btn" style="margin-top: 20px;" onclick="initTest()">生成定制试卷 (40题)</button>
+    </div>
+
+    <!-- 3. 测试页 -->
+    <div id="page-test">
+        <div class="test-top-nav">
+            <div class="back-btn" id="btn-prev" onclick="prevQuestion()">← 上一题</div>
+            <div class="progress-text" id="progress-text">1 / 40</div>
+        </div>
+        <div class="progress-bar-bg"><div class="progress-fill" id="progress-fill"></div></div>
+
+        <div id="question-wrapper" style="flex:1;">
+            <div class="question-text" id="question-text">题目加载中...</div>
+            <div id="options-box"></div>
+        </div>
+    </div>
+
+    <!-- 4. Loading -->
+    <div id="page-loading" style="display:none; height:100vh; flex-direction:column; justify-content:center; align-items:center; text-align:center;">
+        <div style="width:50px; height:50px; border:5px solid #fff0f5; border-top:5px solid var(--primary-dark); border-radius:50%; animation:spin 1s linear infinite;"></div>
+        <h3 style="margin-top:24px; font-weight:800; font-size: 18px;">正在通过算法白盒推演...</h3>
+        <p style="color:#888; font-size:14px; line-height:1.8; margin-top:10px;">计算抗挫折复原常数...<br>生成五年破局沙盘...</p>
+    </div>
+
+    <!-- 5. 结果页 (重构排版) -->
+    <div id="page-result">
+        <div class="result-hero fade-in">
+            <!-- 核心截图区 -->
+            <div class="result-type-badge" id="res-badge">...</div>
+            <h1 class="result-big-title" id="res-title">...</h1>
+            <p class="result-sub-title" id="res-subtitle">...</p>
+            
+            <!-- 适性指数压力表 -->
+            <div class="gauge-wrapper">
+                <canvas id="gaugeChart" width="240" height="140"></canvas>
+            </div>
+            
+            <!-- 六维雷达图 -->
+            <div class="radar-wrapper">
+                <canvas id="radarChart" width="280" height="280"></canvas>
+            </div>
+
+            <!-- 关键词区块 -->
+            <div id="res-keywords" class="keywords-box"></div>
+
+            <!-- 科学计算过程展示 -->
+            <div id="res-calc" class="calc-box"></div>
+
+            <!-- 简短评价与建议 -->
+            <div id="res-short-eval" class="short-eval-box"></div>
+            
+            <!-- 互动按钮区 -->
+            <button class="btn" id="btn-unlock" onclick="toggleReport()" style="margin-bottom: 10px;">
+                <span>🔓 解锁千字深度定制报告</span>
+            </button>
+            <button class="btn-outline" onclick="location.reload()">重新测试</button>
+
+            <!-- 动态千字报告容器 (默认隐藏) -->
+            <div id="full-report-container">
+                <div class="report-card" id="dynamic-report-content">
+                    <!-- JS动态注入内容 -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+/* ---------------- 全局状态保存 ---------------- */
+let userInfo = { major: '', status: '', motivation: '' };
+
+/* ---------------- 题库配置 ---------------- */
+const DIMS = { M: '动机纯度', R: '抗挫韧性', C: '规则顺应', Col: '社交效能', DG: '延迟满足', E: '自我解绑' };
+
+// 30道核心通用题
+const coreQuestions = [
+    // --- 维度1: 动机纯度 (M) ---
+    { d: 'M', t: "假设博士学位不再与教职、落户或高薪挂钩，仅代表一段科研经历，你还会读吗？", o: [{t:"毫不犹豫。",v:1}, {t:"会犹豫，但大概率还会读。",v:0.51}, {t:"极大概率放弃。",v:-0.49}, {t:"绝对不读。",v:-1}] },
+    { d: 'M', t: "偶然发现一个极度有趣、可能颠覆常识的现象，但与毕业课题无关。你会：", o: [{t:"哪怕延误毕业，也要把它挖清楚。",v:1}, {t:"深挖几天，若短期解不开就收心。",v:0.51}, {t:"评估能否快速产出小文章，不能就放弃。",v:-0.49}, {t:"视而不见。",v:-1}] },
+    { d: 'M', t: "面对目前突飞猛进的AI工具，它们能一分钟完成你过去半年的基础工作。你的态度：", o: [{t:"极度兴奋，全面拥抱新方法。",v:1}, {t:"积极学习，但仅作为辅助工具。",v:0.51}, {t:"迅速用来批量产出文章。",v:-0.49}, {t:"感到严重的本领恐慌。",v:-1}] },
+    { d: 'M', t: "如果毕业后发现自己穷尽一生也做不出颠覆性成果，注定是个平庸学者。你会：", o: [{t:"坦然接受。",v:1}, {t:"略感失落，但依然能找到意义。",v:0.51}, {t:"感到后悔。",v:-0.49}, {t:"彻底幻灭。",v:-1}] },
+    { d: 'M', t: "在你内心深处，觉得“写论文”这项活动本质上最像是在干什么？", o: [{t:"雕刻艺术品。编织具有美感的真理闭环。",v:1}, {t:"解高阶谜题。享受破局的智力愉悦。",v:0.51}, {t:"玩规则游戏。摸清套路为了通关拿奖励。",v:-0.49}, {t:"服刑。为了满足考核而忍受的机械劳作。",v:-1}] },
+
+    // --- 维度2: 抗挫韧性 (R) ---
+    { d: 'R', t: "深夜收到拒稿信，审稿人极其刻薄，全盘否定创新甚至带有一丝傲慢。第一反应：", o: [{t:"心如止水，直接提取有用的技术建议。",v:1}, {t:"发泄一下情绪，睡一觉后准备修改。",v:0.51}, {t:"陷入严重的自我怀疑。",v:-0.49}, {t:"产生强烈的生理不适与屈辱感。",v:-1}] },
+    { d: 'R', t: "耗时大半年收集的核心数据，在最后一步证实存在无法修复的系统误差。此刻你：", o: [{t:"几乎毫无波澜，迅速重拟方案。",v:1}, {t:"强压沮丧给自己放短假调整。",v:0.51}, {t:"情绪崩溃，对课题产生深度恐惧。",v:-0.49}, {t:"陷入漫长的虚无感，完全死机。",v:-1}] },
+    { d: 'R', t: "连续极度熬夜后疲惫至极。突然想起有一批关键样本必须立刻处理否则进度清零。你：", o: [{t:"靠着肌肉记忆，立刻去操作。",v:1}, {t:"叹口气，略作休整，咬牙干完。",v:0.51}, {t:"内心极度抗拒，但委屈地去干活。",v:-0.49}, {t:"彻底瘫在床上，宁可毁了也不去。",v:-1}] },
+    { d: 'R', t: "在长达几个月毫无正向反馈的科研“长草期”，你走向工位的心理状态：", o: [{t:"像机器一样，按部就班看文献做实验。",v:1}, {t:"努力在微小进度中找正反馈。",v:0.51}, {t:"与精神内耗作斗争，极易分心。",v:-0.49}, {t:"像去上坟，感到一阵窒息。",v:-1}] },
+    { d: 'R', t: "当身体因长期压力发出明确警告信号（如严重脱发、心悸）时，你的选择：", o: [{t:"只要没进ICU，吃药顶住。",v:1}, {t:"放慢节奏，但关键时刻依然会透支。",v:0.51}, {t:"陷入恐慌，频繁查症状。",v:-0.49}, {t:"立刻请长假，绝不用命换学位。",v:-1}] },
+
+    // --- 维度3: 规则顺应 (C) ---
+    { d: 'C', t: "导师指派了一个毫无新意、但蹭了热点极易发高分文章的流水线课题。你态度：", o: [{t:"欣然接受并高效完成。",v:1}, {t:"觉得无聊，但权衡后配合执行。",v:0.51}, {t:"感到拧巴，试图夹带私货。",v:-0.49}, {t:"严词拒绝或极度消极怠工。",v:-1}] },
+    { d: 'C', t: "核心数据 P 值卡在 0.055。要在好期刊发表必须小于 0.05。此刻真实倾向：", o: [{t:"毫无心理负担地排查“异常值”。",v:1}, {t:"在统计学灰色地带内换一种检验模型。",v:0.51}, {t:"不敢造假也舍不得放弃，陷入拖延。",v:-0.49}, {t:"绝对如实报告。",v:-1}] },
+    { d: 'C', t: "面对枯燥的排版，以及为迎合期刊口味必须添加的“毫无营养的引用文献”：", o: [{t:"当作狙击游戏，投其所好地堆砌引用。",v:1}, {t:"觉得繁琐，但当成体力活迅速搞定。",v:0.51}, {t:"极度厌恶，能拖多久拖多久。",v:-0.49}, {t:"坚决抵制，按自己的风格写作。",v:-1}] },
+    { d: 'C', t: "课题组要求你承担大量的行政杂活（贴发票、报账、接待外部专家）。应对策略：", o: [{t:"积极表现，视为表忠心和建立人脉的跳板。",v:1}, {t:"默默承担，当成缴纳的“保护费”。",v:0.51}, {t:"表面不敢拒绝，背地里疯狂吐槽。",v:-0.49}, {t:"生硬拒绝，或自己花钱找兼职代劳。",v:-1}] },
+    { d: 'C', t: "综观现行的学术评价体系（唯论文、唯影响因子、非升即走），你内心评价是：", o: [{t:"存在即合理。",v:1}, {t:"这只是一套游戏规则。",v:0.51}, {t:"让人感到窒息。",v:-0.49}, {t:"荒谬透顶。",v:-1}] },
+
+    // --- 维度4: 社交效能 (Col) ---
+    { d: 'Col', t: "参加顶级学术会议，晚宴现场大佬云集。你最典型的行动状态是：", o: [{t:"带着明确目的，精准寻找大牛推销自己。",v:1}, {t:"随缘社交，和同龄人交流心得。",v:0.51}, {t:"感到局促，大多时候只做安静旁听者。",v:-0.49}, {t:"极度耗能，汇报完立刻逃回房间独处。",v:-1}] },
+    { d: 'Col', t: "研究卡在一个不擅长的跨学科技术瓶颈上，自己硬啃需三个月。你会：", o: [{t:"迅速全网寻人，用合作署名权换技术支持。",v:1}, {t:"优先向同门求助，看内部能否解决。",v:0.51}, {t:"虽痛苦，但仍倾向自己找教程硬学。",v:-0.49}, {t:"极度排斥求人。宁可换路径也不社交。",v:-1}] },
+    { d: 'Col', t: "若有一笔无需审核花不完的经费，你理想的工作模式：", o: [{t:"组建庞大跨学科团队，指挥众人协同作战。",v:1}, {t:"维持精干课题组，保持高频内部交流。",v:0.51}, {t:"只带少量助手，维持绝对封闭安静的环境。",v:-0.49}, {t:"独自死磕，不被任何人际管理分心。",v:-1}] },
+    { d: 'Col', t: "如何看待学术圈内的饭局、非正式聚会等“人情往来”？", o: [{t:"视为获取内部信息、结交资源的交易场。",v:1}, {t:"建立学术共同体归属感的必要润滑剂。",v:0.51}, {t:"无聊且消耗精力，碍于情面偶尔凑合。",v:-0.49}, {t:"纯粹浪费生命，坚决抵制。",v:-1}] },
+    { d: 'Col', t: "师弟师妹犯严重错误导致你实验受阻，第一反应：", o: [{t:"迅速调动其他人手资源补救并重新分工。",v:1}, {t:"耐心指出问题，带对方共同修复。",v:0.51}, {t:"感到心累，觉得不如一开始就自己全包。",v:-0.49}, {t:"彻底剥夺对方参与权，以后只信自己。",v:-1}] },
+
+    // --- 维度5: 延迟满足 (DG) ---
+    { d: 'DG', t: "看着本科毕业的同学纷纷买房买车，你还在拿微薄补贴。真实感受：", o: [{t:"毫无波澜。智力资产壁垒远高于世俗财富。",v:1}, {t:"偶尔羡慕，但能用远期回报说服自己。",v:0.51}, {t:"经常感到同辈压力及贫穷的焦虑。",v:-0.49}, {t:"心态失衡。每天都在后悔错过变现期。",v:-1}] },
+    { d: 'DG', t: "导师给的硬核课题，预估至少需苦干3年才有第一批能发表的数据。接受度：", o: [{t:"极度兴奋。越难越久意味着护城河越高。",v:1}, {t:"愿意尝试，但私下做小课题对冲风险。",v:0.51}, {t:"内心抗拒。长期无产出每天都会恐慌。",v:-0.49}, {t:"绝不接手。必须有短期的变现进度。",v:-1}] },
+    { d: 'DG', t: "撰写一篇需要梳理几百篇文献的宏大综述（可能不会立刻发表）：", o: [{t:"视为战略投资，耐心织密知识网。",v:1}, {t:"当基础训练，按部就班完成。",v:0.51}, {t:"觉得枯燥，常因即时娱乐分心。",v:-0.49}, {t:"极其抗拒这种苦力活，能糊弄就糊弄。",v:-1}] },
+    { d: 'DG', t: "重磅论文被退回大修，编辑建议补大量实验预计耗时半年。反应：", o: [{t:"沉下心规划，视为打磨精品的必经之路。",v:1}, {t:"虽失落，但会严格按计划补充数据。",v:0.51}, {t:"极度烦躁不想等，试图找低分期刊快投。",v:-0.49}, {t:"失去耐心，直接把文章丢进吃灰。",v:-1}] },
+    { d: 'DG', t: "在工位上，你多久会去检查一次微信，或看自己文章引用量？", o: [{t:"几乎不查，享受数小时深度工作流。",v:1}, {t:"固定时间集中处理，其余专注。",v:0.51}, {t:"频繁刷新，哪怕没消息也忍不住看。",v:-0.49}, {t:"严重依赖即时反馈，几十分钟不看就焦躁。",v:-1}] },
+
+    // --- 维度6: 自我解绑 (E) ---
+    { d: 'E', t: "导师严厉批评你耗时一个月设计的实验底层逻辑不成立。心理防线：", o: [{t:"迅速客体化（逻辑确实有漏洞），毫无波澜。",v:1}, {t:"短暂挫败，但很快把“课题不行”和“我不行”分开。",v:0.51}, {t:"感到羞耻，将批评等同于能力否定。",v:-0.49}, {t:"防线崩溃，产生“我是个废物”的深渊感。",v:-1}] },
+    { d: 'E', t: "大型汇报上，知名学者当众尖锐质疑你的核心研究方法。反应：", o: [{t:"视为学术交锋，冷静理性地辩论。",v:1}, {t:"礼貌回应记录，承认是未来改进方向。",v:0.51}, {t:"感到丢脸，防卫激增急于证明自己没错。",v:-0.49}, {t:"觉得遭遇公开处刑，事后数周反复回味难堪。",v:-1}] },
+    { d: 'E', t: "用一句话总结“科研”在你人生中所占的重量：", o: [{t:"只是一份职业，我的价值不由论文定义。",v:1}, {t:"重要部分，但绝不是我全部的人格。",v:0.51}, {t:"自信高度绑定在产出上，没文章就抬不起头。",v:-0.49}, {t:"我就是课题。若科研失败就失去了意义。",v:-1}] },
+    { d: 'E', t: "得知同门在你细分领域发表了远超你水平的顶刊论文。心态：", o: [{t:"纯粹为领域突破高兴，欣赏对方工作。",v:1}, {t:"微小酸涩，但转化为竞争学习动力。",v:0.51}, {t:"强烈自我怀疑，开始在实验室回避对方。",v:-0.49}, {t:"极度自卑与敌意，觉得生存空间被剥夺。",v:-1}] },
+    { d: 'E', t: "回首耗时半年却无可挽回走向失败的实验经历，现在感觉：", o: [{t:"视为客观的阴性数据点，毫无精神内耗。",v:1}, {t:"总结教训后，已经能把这件事彻底翻篇。",v:0.51}, {t:"常在深夜反复懊悔当初犯下的决策失误。",v:-0.49}, {t:"形成心理创伤，提到类似实验就触发应激。",v:-1}] }
+];
+
+// 动态挂件题库 (补全至 40 题，泛化特定背景)
+const addonDB = {
+    major: {
+        A: [ // 人文社科/艺术设计 等泛文科
+            { d: 'M', t: "利用前沿数字工具（如AI辅助分析、参数化生成）介入传统的人文/艺术研究，你的态度：", o: [{t:"极度兴奋，作为核心方法论。",v:1}, {t:"积极学习，作为辅助工具。",v:0.51}, {t:"勉强跟风，套用概念凑数。",v:-0.49}, {t:"强烈抵触，认为破坏了纯粹性。",v:-1}] },
+            { d: 'DG', t: "构建耗时极长且短期极难产出论文的基础理论框架或数据库，你会：", o: [{t:"享受这种建立基础设施的长期主义。",v:1}, {t:"拆解目标，边建边发小文章。",v:0.51}, {t:"感到枯燥，频繁想换短平快题目。",v:-0.49}, {t:"彻底失去耐心半途而废。",v:-1}] },
+            { d: 'E', t: "结论极度依赖主观阐释，却遭评审尖锐质疑缺乏量化数据。你会：", o: [{t:"引入交叉证据客观反驳。",v:1}, {t:"妥协补充量化图表迎合。",v:0.51}, {t:"感到被冒犯，认为对方不懂内核。",v:-0.49}, {t:"陷入自我怀疑，觉得毫无价值。",v:-1}] },
+            { d: 'R', t: "发现关键历史文献或核心创作证据缺失，无法形成完整证据链。此刻你：", o: [{t:"将其转化为探讨证据为何缺失的新课题。",v:1}, {t:"运用旁证和逻辑推演填补。",v:0.51}, {t:"感到焦虑，试图强行拼凑结论。",v:-0.49}, {t:"彻底绝望，认为课题已死。",v:-1}] },
+            { d: 'C', t: "面对专业经费缩减及边缘化危机。职业规划：", o: [{t:"敏锐捕捉政策，向智库或交叉转型。",v:1}, {t:"接受现实，降低预期安贫乐道。",v:0.51}, {t:"陷入持续的悲观与抱怨。",v:-0.49}, {t:"极度后悔，准备彻底转行考公。",v:-1}] }
+        ],
+        B: [ // 临床医学
+            { d: 'C', t: "如何看待“临床医生必须做基础科研养动物才能评高级职称”？", o: [{t:"视为游戏规则，高效刷文章上岸。",v:1}, {t:"寻找临床样本库结合的捷径妥协完成。",v:0.51}, {t:"严重撕裂，认为浪费医疗资源。",v:-0.49}, {t:"坚决抵制，只想做纯粹临床医生。",v:-1}] },
+            { d: 'R', t: "刚下48小时连轴夜班，突发状况需立刻去实验室抢救细胞。应对：", o: [{t:"靠肌肉记忆亲自去处理。",v:1}, {t:"动用人情迅速找同门代劳。",v:0.51}, {t:"委屈地去干活，精神崩溃边缘。",v:-0.49}, {t:"瘫在床上彻底放弃任其死亡。",v:-1}] },
+            { d: 'E', t: "动物模型在关键实验期出现大批非预期死亡。第一反应：", o: [{t:"冷静解剖，排查死因调整方案。",v:1}, {t:"及时清理，重新申购下一批。",v:0.51}, {t:"产生强烈的科研挫败感和暴躁。",v:-0.49}, {t:"产生动物伦理内疚，拒绝活体实验。",v:-1}] },
+            { d: 'DG', t: "面对规培、繁重手术与发文进度的三重压榨，常态是：", o: [{t:"游刃有余地进行极端时间管理。",v:1}, {t:"战略性放弃部分睡眠时间。",v:0.51}, {t:"经常处于精神崩溃发火边缘。",v:-0.49}, {t:"身体发警告，考虑退培退学。",v:-1}] },
+            { d: 'Col', t: "留在顶尖三甲代价是终身卷科研申国自然。你会：", o: [{t:"欣然接受这种精英选拔机制。",v:1}, {t:"当作获取顶尖临床资源的门票。",v:0.51}, {t:"极度焦虑，寻找无需科研的二级医院。",v:-0.49}, {t:"宁可彻底离开临床去药企。",v:-1}] }
+        ],
+        C: [ // 理工生化环材
+            { d: 'R', t: "跑了几周的复杂代码或大型超算模型，在最后一步突然报错崩溃。此刻你：", o: [{t:"面无表情调出日志，开始逐行排查。",v:1}, {t:"砸一下鼠标，立刻修改参数重跑。",v:0.51}, {t:"陷入持续暴躁，一天不想碰电脑。",v:-0.49}, {t:"彻底崩溃，产生不可逆抵触。",v:-1}] },
+            { d: 'C', t: "花三个月复现顶刊大牛的完美方法，结果完全对不上。你会：", o: [{t:"客观记录偏差，发文质疑或修正。",v:1}, {t:"邮件联系大牛讨要原始数据。",v:0.51}, {t:"怀疑自己能力不行，陷入极度内耗。",v:-0.49}, {t:"为赶进度，偷偷篡改参数迎合大牛。",v:-1}] },
+            { d: 'Col', t: "课题极度依赖一台常排队且易坏的昂贵公用仪器，进度完全不可控。你会：", o: [{t:"迅速调整策略，排队间隙推进理论，与管理员搞好关系。",v:1}, {t:"熬夜或凌晨去抢机时，用体力弥补。",v:0.51}, {t:"陷入无尽抱怨，觉得别人快只是因为有仪器。",v:-0.49}, {t:"彻底摆烂，仪器坏了就名正言顺打游戏。",v:-1}] },
+            { d: 'E', t: "耗时两年的硬核实验完成，导师以“师兄急需毕业”为由要求你让出一作。反应：", o: [{t:"表面答应，以此为筹码换取下个课题绝对资源倾斜。",v:1}, {t:"虽极度憋屈，为了以后能在组里混只能咽下。",v:0.51}, {t:"极度愤怒，跟导师大吵一架捍卫一作。",v:-0.49}, {t:"失去信任，此后在实验室只做最低限度摸鱼。",v:-1}] },
+            { d: 'M', t: "你的材料配方极具商业量产价值，但发顶刊还需花一年探究底层机制。你会：", o: [{t:"毫不犹豫探究机制，我的使命是揭示真理。",v:1}, {t:"权衡一下，边申专利边简单发个二区文章。",v:0.51}, {t:"觉得探机制是脱裤子放屁，极度厌恶为发文章而发。",v:-0.49}, {t:"立刻瞒着导师联系风投创业，文章发不发无所谓。",v:-1}] }
+        ]
+    },
+    status: {
+        undergrad: [
+            { d: 'M', t: "你想象中真实的博士日常，占据最多时间的活动是：", o: [{t:"处理枯燥数据、调试报错代码、清洗烧杯。",v:1}, {t:"无休止阅读晦涩文献和写综述。",v:0.51}, {t:"和大牛导师喝咖啡探讨真理。",v:-0.49}, {t:"每天经历智力爆炸和实验奇迹。",v:-1}] },
+            { d: 'C', t: "若发现未来的博导是个只抓进度和报销的“包工头”，态度是：", o: [{t:"认为这是常态，利用资源实现独立科研。",v:1}, {t:"降低期待，能保证按时毕业就行。",v:0.51}, {t:"感到强烈的幻灭和愤怒。",v:-0.49}, {t:"绝不接受，宁可退学重申。",v:-1}] }
+        ],
+        working: [
+            { d: 'DG', t: "放弃薪水重回校园，面对消费断崖降级，真实感受：", o: [{t:"毫无波澜，精神富足远超物质。",v:1}, {t:"靠存款和兼职补贴理性适应。",v:0.51}, {t:"常产生强烈的沉没成本焦虑。",v:-0.49}, {t:"无法忍受拮据，严重干扰专注度。",v:-1}] },
+            { d: 'Col', t: "面对实验室里比你小好几岁、技术操作飞起的直博同门。你会：", o: [{t:"毫无年龄包袱，虚心请教技术。",v:1}, {t:"避开锋芒，用社会经验错位竞争。",v:0.51}, {t:"感到极大同辈压力和年龄焦虑。",v:-0.49}, {t:"严重自卑，觉得自己已被淘汰。",v:-1}] }
+        ],
+        phd: [
+            { d: 'E', t: "若导师突然建议彻底更换课题方向（过去一年半数据全部作废）。你会：", o: [{t:"迅速剥离沉没成本，两天完成新方向调研。",v:1}, {t:"权衡接受，并要求经费补偿。",v:0.51}, {t:"情绪剧烈反弹，陷入极度内耗。",v:-0.49}, {t:"坚决拒绝，宁可退学绝不妥协。",v:-1}] },
+            { d: 'R', t: "同届同学都发了核心，而你的文章还在被反复拒稿。状态：", o: [{t:"完全屏蔽干扰，专注修改手稿。",v:1}, {t:"感到焦虑，但能强行转化为动力。",v:0.51}, {t:"产生躯体化症状，害怕见人。",v:-0.49}, {t:"彻底破罐破摔，在实验室消失。",v:-1}] }
+        ]
+    },
+    motivation: {
+        love: [
+            { d: 'M', t: "如果最终证明，你热爱的细分领域五十年内都不可能有任何应用价值。你会：", o: [{t:"坦然接受，知识本身就是目的。",v:1}, {t:"稍感遗憾但依然会坚持做。",v:0.51}, {t:"产生意义危机，怀疑做这些为了什么。",v:-0.49}, {t:"觉得浪费生命，立刻转向热门应用。",v:-1}] },
+            { d: 'C', t: "发现学术圈顶点充斥着资源垄断和政治站位时：", o: [{t:"视为客观生态，在规则内保护研究。",v:1}, {t:"失望但独善其身守住底线。",v:0.51}, {t:"极度愤世嫉俗，每天抱怨不公。",v:-0.49}, {t:"信仰崩塌，丧失科研动力。",v:-1}] },
+            { d: 'R', t: "如果你耗费巨大心血的课题，最终只得出一个'该方向走不通'的阴性结果。感受是：", o: [{t:"非常有价值，排雷本身就是对科学共同体的贡献。",v:1}, {t:"有些失落，但能迅速整理成阴性数据发表。",v:0.51}, {t:"觉得这段时间白白浪费了，极度懊恼。",v:-0.49}, {t:"心态崩盘，觉得自己在学术圈是个彻底的失败者。",v:-1}] }
+        ],
+        title: [
+            { d: 'DG', t: "若未来博士学历大幅贬值，只能去普通二本任教收入平平。你会：", o: [{t:"迅速调整，读博期间疯狂积累业界人脉。",v:1}, {t:"接受现实，认为安稳工作也不错。",v:0.51}, {t:"感到极度亏本，每天后悔没直接工作。",v:-0.49}, {t:"彻底心态爆炸，放弃毕业。",v:-1}] },
+            { d: 'M', t: "当你意识到发文章需要的不是天才的灵感，而是长期的忍耐与套路：", o: [{t:"将其作为训练自身执行力的绝佳沙盒。",v:1}, {t:"顺应这种枯燥，为了拿到文凭硬抗。",v:0.51}, {t:"感到极度无聊，丧失最初的兴奋感。",v:-0.49}, {t:"完全无法忍受，觉得聪明才智被浪费。",v:-1}] },
+            { d: 'DG', t: "当你发现，即便拿到了博士学位，起薪也可能拼不过本科去大厂的同学时：", o: [{t:"早就认清了学历的长期变现逻辑，不急于一时。",v:1}, {t:"心理略不平衡，但安慰自己社会地位高。",v:0.51}, {t:"产生严重的相对剥夺感和后悔情绪。",v:-0.49}, {t:"觉得被体制骗了，失去后续所有科研动力。",v:-1}] }
+        ],
+        escape: [
+            { d: 'R', t: "当发现实验室的内卷程度甚至超过了业界（强制996且低薪）时：", o: [{t:"调整心态，视为另一份高强度工作。",v:1}, {t:"寻找摸鱼缝隙，用最低限度努力毕业。",v:0.51}, {t:"极度痛苦，发现掉进了另一个深渊。",v:-0.49}, {t:"承受不住压力，立刻退学面对社会。",v:-1}] },
+            { d: 'E', t: "面对导师无休止的打压和画大饼。你会：", o: [{t:"把导师当成无感情的NPC，不入戏。",v:1}, {t:"表面附和，背地里做自己的打算。",v:0.51}, {t:"陷入深深的自我怀疑。",v:-0.49}, {t:"精神崩溃，甚至产生极端想法。",v:-1}] },
+            { d: 'C', t: "进入实验室后，你发现导师采用了比企业还严苛的KPI打卡和周报制度。反应是：", o: [{t:"将其视为学术训练的纪律要求，高效适应。",v:1}, {t:"表面迎合打卡，实际偷偷按自己节奏摸鱼。",v:0.51}, {t:"极度反感，觉得从一个火坑跳进了另一个火坑。",v:-0.49}, {t:"产生强烈的应激反应，开始谋划退学。",v:-1}] }
+        ]
+    }
+};
+
+/* ---------------- 状态与主逻辑 ---------------- */
+let currentQList = [];
+let currentIdx = 0;
+let userAnswers = []; // 保存用户的选项路径：[{dim: 'M', val: 1}, ...]
+let rawScores = {};
+let isNavigating = false; // 防连击锁
+
+function initScores() {
+    userAnswers = [];
+    rawScores = {};
+    for(let key in DIMS) rawScores[key] = {s: 0, max: 0};
+}
+
+function nextPage(from, to) {
+    document.getElementById(from).style.display = 'none';
+    document.getElementById(to).style.display = 'block';
+}
+
+function initTest() {
+    const selMajor = document.getElementById('input-major');
+    const selStatus = document.getElementById('input-status');
+    const selMotiv = document.getElementById('input-motivation');
+    
+    userInfo.major = selMajor.options[selMajor.selectedIndex].text;
+    userInfo.status = selStatus.options[selStatus.selectedIndex].text;
+    userInfo.motivation = selMotiv.options[selMotiv.selectedIndex].text;
+
+    initScores();
+    currentQList = [...coreQuestions];
+    
+    if(addonDB.major[selMajor.value]) currentQList.push(...addonDB.major[selMajor.value]);
+    if(addonDB.status[selStatus.value]) currentQList.push(...addonDB.status[selStatus.value]);
+    if(addonDB.motivation[selMotiv.value]) currentQList.push(...addonDB.motivation[selMotiv.value]);
+
+    currentQList.forEach(q => { rawScores[q.d].max += 1; });
+
+    currentIdx = 0;
+    nextPage('page-demographics', 'page-test');
+    document.getElementById('page-test').style.display = 'flex';
+    renderQuestion();
+}
+
+function prevQuestion() {
+    if (currentIdx > 0 && !isNavigating) {
+        currentIdx--;
+        renderQuestion();
+    }
+}
+
+function renderQuestion() {
+    const q = currentQList[currentIdx];
+    document.getElementById('progress-text').innerText = `${currentIdx + 1} / ${currentQList.length}`;
+    document.getElementById('progress-fill').style.width = `${((currentIdx)/currentQList.length)*100}%`;
+
+    // 控制“上一题”按钮的显隐
+    const btnPrev = document.getElementById('btn-prev');
+    if (currentIdx === 0) btnPrev.classList.add('hidden');
+    else btnPrev.classList.remove('hidden');
+
+    const wrapper = document.getElementById('question-wrapper');
+    wrapper.classList.remove('slide-up');
+    void wrapper.offsetWidth; 
+    wrapper.classList.add('slide-up');
+
+    document.getElementById('question-text').innerText = q.t;
+    const optsBox = document.getElementById('options-box');
+    optsBox.innerHTML = '';
+    
+    // 固定选项顺序
+    const opts = [...q.o];
+    const prevSelectedVal = userAnswers[currentIdx] ? userAnswers[currentIdx].val : null;
+    
+    opts.forEach(opt => {
+        const btn = document.createElement('div');
+        btn.className = 'option-btn';
+        if (prevSelectedVal === opt.v) btn.classList.add('selected'); // 回溯时高亮已选项
+        btn.innerText = opt.t;
+        
+        btn.onclick = (e) => {
+            if (isNavigating) return;
+            isNavigating = true;
+            Array.from(optsBox.children).forEach(c => c.classList.remove('selected'));
+            e.target.classList.add('selected');
+            setTimeout(() => {
+                handleAnswer(q.d, opt.v);
+                isNavigating = false;
+            }, 180);
+        };
+        optsBox.appendChild(btn);
+    });
+}
+
+function handleAnswer(dim, val) {
+    userAnswers[currentIdx] = { dim, val }; // 记录当前题目的选项
+    if (currentIdx < currentQList.length - 1) {
+        currentIdx++;
+        renderQuestion();
+    } else {
+        finishTest();
+    }
+}
+
+function finishTest() {
+    document.getElementById('page-test').style.display = 'none';
+    document.getElementById('page-loading').style.display = 'flex';
+
+    // 汇总最终得分
+    for(let key in DIMS) rawScores[key].s = 0; // 清除可能残留的脏数据
+    userAnswers.forEach(ans => {
+        rawScores[ans.dim].s += ans.val;
+    });
+
+    let score100 = {};
+    for(let key in rawScores) {
+        let rs = rawScores[key].s;
+        let max = rawScores[key].max;
+        score100[key] = Math.max(0, Math.min(100, Math.round(((rs + max) / (2 * max)) * 100)));
+    }
+
+    let weights = { R: 0.25, C: 0.20, DG: 0.20, E: 0.15, Col: 0.10, M: 0.10 };
+    let survivalRate = 0;
+    for(let k in weights) { survivalRate += score100[k] * weights[k]; }
+    survivalRate = Math.round(survivalRate);
+
+    // 类型判定 (放宽触发阈值，平衡各类型概率，压缩 D 的蓄水池)
+    let M = score100.M, R = score100.R, C = score100.C, Col = score100.Col, DG = score100.DG, E = score100.E;
+    let typeData = {};
+
+    if (M >= 65 && R >= 60) {
+        typeData = { t: 'A', name: '天选学术圣体', sub: 'The Born Researcher' };
+    } else if (C >= 65 && Col >= 60 && M <= 60) {
+        typeData = { t: 'B', name: '变现天才/学术商人', sub: 'The Pragmatic Entrepreneur' };
+    } else if (C >= 60 && DG >= 60) {
+        typeData = { t: 'C', name: '靠谱专家/建制赢家', sub: 'The Steady Professional' };
+    } else if (E >= 65 && C <= 55) {
+        typeData = { t: 'E', name: '清醒的止损勇者', sub: 'The Brave Awakener' };
+    } else {
+        typeData = { t: 'D', name: '学术苦修者', sub: 'The Silent Grinder' };
+    }
+
+    setTimeout(() => {
+        document.getElementById('page-loading').style.display = 'none';
+        document.getElementById('page-result').style.display = 'block';
+        
+        // 渲染基本信息
+        document.getElementById('res-badge').innerText = ` Type ${typeData.t} `;
+        document.getElementById('res-title').innerText = typeData.name;
+        document.getElementById('res-subtitle').innerText = typeData.sub;
+        
+        // 渲染图表
+        drawGauge(survivalRate);
+        drawRadar(score100);
+
+        // 渲染关键词和短评
+        renderSummaryUI(typeData.t);
+
+        // 渲染计算过程
+        renderCalculation(score100, survivalRate);
+
+        // 生成千字动态报告
+        document.getElementById('dynamic-report-content').innerHTML = buildDynamicReport(typeData.t, score100);
+
+    }, 2500);
+}
+
+// 渲染短评与关键词
+function renderSummaryUI(typeStr) {
+    const kws = {
+        'A': ['知识极客', '精神防弹衣', '长线主义', '内驱力满格'],
+        'B': ['现实主义', '资源整合', 'ROI导向', '向下兼容'],
+        'C': ['定海神针', '建制执行者', '契约精神', '高度服从'],
+        'D': ['学术苦修', '钝感力', '意义危机', '坚韧拉扯'],
+        'E': ['破局者', '拒绝内耗', '止损狂人', '人间清醒']
+    };
+    
+    const evals = {
+        'A': '<strong>短评：你是为学术而生的稀有物种。</strong><br>建议：保护好你的深度工作时间，寻找能为你遮风挡雨的庇护型导师，警惕被繁杂的行政杂活吸血。',
+        'B': '<strong>短评：你把读博当成了一场极高ROI的商业游戏。</strong><br>建议：警惕虚荣心反噬，降维变现你的能力，但务必守住学术诚信的绝对底线。',
+        'C': '<strong>短评：你是导师最爱的、能支撑团队运转的靠谱基石。</strong><br>建议：学会战略性拒绝，不要沦为免费劳动力。保留一块属于自己的精神自留地。',
+        'D': '<strong>短评：你在内卷与理想间痛苦拉扯，全靠惯性硬抗。</strong><br>建议：接受平庸，完成大于完美！用客体化视角将科研“NPC化”，首要任务是保障身心健康。',
+        'E': '<strong>短评：你拥有极高的自我意识，绝不向荒谬将就。</strong><br>建议：把退学或转行当成敏捷开发，相信自己的感知力，别在有病的系统里耗死。'
+    };
+
+    let kwHtml = '';
+    kws[typeStr].forEach(k => { kwHtml += `<div class="kw-tag">${k}</div>`; });
+    document.getElementById('res-keywords').innerHTML = kwHtml;
+    
+    document.getElementById('res-short-eval').innerHTML = evals[typeStr];
+}
+
+// 渲染科学计算过程
+function renderCalculation(s100, finalScore) {
+    let calcStr = `<div style="margin-bottom:10px; color:#fff; font-size:14px;"><strong>⚙️ 适性指数计算引擎</strong></div>`;
+    calcStr += `∑ (核心维数得分 × 环境权重系数)<br><br>`;
+    calcStr += `<span class="white">抗挫(R)</span> \u00A0${s100.R.toString().padStart(3,' ')} × 25% = ${(s100.R*0.25).toFixed(1)}<br>`;
+    calcStr += `<span class="white">顺应(C)</span> \u00A0${s100.C.toString().padStart(3,' ')} × 20% = ${(s100.C*0.20).toFixed(1)}<br>`;
+    calcStr += `<span class="white">延滞(DG)</span> ${s100.DG.toString().padStart(3,' ')} × 20% = ${(s100.DG*0.20).toFixed(1)}<br>`;
+    calcStr += `<span class="white">解绑(E)</span> \u00A0${s100.E.toString().padStart(3,' ')} × 15% = ${(s100.E*0.15).toFixed(1)}<br>`;
+    calcStr += `<span class="white">社交(Col)</span> ${s100.Col.toString().padStart(3,' ')} × 10% = ${(s100.Col*0.10).toFixed(1)}<br>`;
+    calcStr += `<span class="white">动机(M)</span> \u00A0${s100.M.toString().padStart(3,' ')} × 10% = ${(s100.M*0.10).toFixed(1)}<br>`;
+    calcStr += `<div style="margin-top:12px; border-top:1px dashed #666; padding-top:12px; font-size:14px;">`;
+    calcStr += `<span class="white">预估生存率</span> = <span style="color:var(--primary-dark); font-size:18px; font-weight:bold;">${finalScore}%</span></div>`;
+    
+    document.getElementById('res-calc').innerHTML = calcStr;
+}
+
+function toggleReport() {
+    const container = document.getElementById('full-report-container');
+    const btn = document.getElementById('btn-unlock');
+    if(container.style.display === 'block') {
+        container.style.display = 'none';
+        btn.innerHTML = '<span>🔓 解锁千字深度定制报告</span>';
+    } else {
+        container.style.display = 'block';
+        btn.innerHTML = '<span>收起报告</span>';
+        setTimeout(()=> {
+            container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
+    }
+}
+
+/* ================= 动态千字报告生成引擎 ================= */
+function buildDynamicReport(typeStr, s100) {
+    let html = `
+        <div class="report-header">
+            <strong>【专属学术侧写档案】</strong><br>
+            📍 领域坐标：<span>${userInfo.major}</span><br>
+            ⏳ 生存阶段：<span>${userInfo.status}</span><br>
+            🎯 潜意识动机：<span>${userInfo.motivation}</span>
+        </div>
+    `;
+
+    let intro = '', dims = '', crisis = '', advice = '';
+    
+    // Helper for crisis and rules
+    const mkCrisis = (title, text) => `<div class="crisis-box"><h5>💥 ${title}</h5><p style="margin:0;font-size:14px;">${text}</p></div>`;
+    const mkRule = (title, text) => `<div class="rule-box"><h5>🛡️ ${title}</h5><p style="margin:0;font-size:14px;">${text}</p></div>`;
+
+ if(typeStr === 'A') {
+        // [动态拦截器] 扫描用户的历史轨迹，提取关键行为锚点进行深度学术侧写
+        let pureMotivHtml = "";
+        let aiEmbraceHtml = "";
+        let coldRejectHtml = "";
+        let wealthIgnoreHtml = "";
+
+        for (let i = 0; i < currentQList.length; i++) {
+            let qText = currentQList[i].t;
+            let ansVal = userAnswers[i] ? userAnswers[i].val : null;
+
+            if (qText.includes("不再与教职") && ansVal === 1) {
+                pureMotivHtml = `<div style="margin-top: 10px; padding: 10px 14px; background: #fafafa; border-left: 3px solid #6c757d; font-size: 13px; color: #495057;"><strong>[关键行为观测点]</strong> 在假设剥离“教职、薪酬”等溢价的极端压力下，您依然坚持深造。心理测量学表明，您的科研行为受“特质性内在动机”驱动，较少受制于外在功利诱导。</div>`;
+            }
+            if (qText.includes("AI工具") && ansVal === 1) {
+                aiEmbraceHtml = `<div style="margin-top: 10px; padding: 10px 14px; background: #f8f9fa; border-left: 3px solid #4a90e2; font-size: 13px; color: #343a40;"><strong>[关键行为观测点]</strong> 面对AI对基础劳作的替代风险，您表现出积极的拥抱。这反映出您对自身核心竞争力的锚定在于“范式创新”，展现了优异的认知弹性。</div>`;
+            }
+            if (qText.includes("深夜收到拒稿信") && ansVal === 1) {
+                coldRejectHtml = `<div style="margin-top: 10px; padding: 10px 14px; background: #fdfdfd; border-left: 3px solid #343a40; font-size: 13px; color: #495057;"><strong>[关键行为观测点]</strong> 在模拟遭受负面评价时，您的负性情绪唤起极低。这体现了成熟的“客体化”防御机制，能高效将“产物被否定”与“自我价值贬损”进行心理隔离。</div>`;
+            }
+            if (qText.includes("买房买车") && ansVal === 1) {
+                wealthIgnoreHtml = `<div style="margin-top: 10px; padding: 10px 14px; background: #f4fbf8; border-left: 3px solid #28a745; font-size: 13px; color: #343a40;"><strong>[关键行为观测点]</strong> 在同辈群体财富比较测试中，您的相对剥夺感极低。说明您的“延迟折扣率”显著低于常人，具备出色的远期目标专注力。</div>`;
+            }
+        }
+
+        intro = `
+        <div style="background: #ffffff; border: 1px solid #e9ecef; padding: 24px; border-radius: 12px; margin-bottom: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.02);">
+            <p style="font-size: 18px; margin-bottom: 12px; color: #212529; font-weight: 700; border-bottom: 1px solid #f1f3f5; padding-bottom: 10px;">综合适性评估报告：Type-A 高度内源驱动型研究者</p>
+            <p style="font-size: 15px; line-height: 1.8; margin-bottom: 12px; color: #495057; text-align: justify;">在本次结构化适性检测中，系统对您的决策偏好及行为反应模式进行了多维度量化分析。在当前高度依赖量化指标（如影响因子、项目数）的学术评价体系下，您的特征模型符合<strong>【高度内源驱动型研究者 / The Intrinsic Researcher】</strong>。</p>
+            <p style="font-size: 15px; line-height: 1.8; color: #495057; text-align: justify;">评估结果表明，相较于将博士学位作为职业跳板的常规样本，您的学术行为呈现出高度的内源性闭环特征：对未知领域的探索和逻辑自洽的追求是您的首要奖赏。这种独立于外部评价的动机结构，构成了您抵御职业倦怠与精神内耗的核心机制。</p>
+        </div>
+        `;
+        
+        dims += `<li style="margin-bottom: 20px;"><strong>动机纯度与抗挫韧性 (基石特质)</strong>：
+            <div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
+            您的探索欲表现出高度自发性，并在遭遇挫折时具备卓越的心理复原力。您倾向于采用“问题解决导向”应对失败，将失败视作排除无效假设的数据点。<br>
+            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
+                <strong></strong>说白了，你读博不是纯为了混文凭。当你看到一个离谱的实验数据，别人的第一反应是“完了，毕不了业了”，你的第一反应却是“这太有意思了，到底为什么”。并且你的“心智够稳”，就算耗费半年的数据全军覆没，你也不会陷入“我是个废物”的内耗，睡一觉起来又能面无表情地继续排查Bug。这种纯粹和钝感，是别人抢不走的天赋。
+            </div>
+            ${pureMotivHtml}
+            ${coldRejectHtml}
+            </div></li>`;
+        
+        // 规则顺应 (C) - 三档细分
+        dims += `<li style="margin-bottom: 20px;"><strong>规则顺应 (制度与环境适应性)</strong>：`;
+        if(s100.C >= 65) {
+            dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
+            <strong>[评估：成熟的高顺应态]</strong> 您清晰地认知到现行学术评价体系的运作逻辑，并能以较低的心理损耗完成量化考核指标。运用双轨制策略实现了学术理想与生存环境的平衡。<br>
+            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
+                <strong></strong>你非常“懂事且清醒”。你心里清楚学术圈有很多凑指标的无聊要求，但你不会像愤青一样天天抱怨。你会迅速摸清规则底线，用最少的时间炮制出一篇能交差的“水文”，然后心安理得地拿着这层护身符，去折腾自己真正感兴趣的硬核研究。你把体制玩明白了。
+            </div></div></li>`;
+        } else if(s100.C >= 40) {
+            dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
+            <strong>[评估：中度妥协与动态平衡]</strong> 您在实用主义与规范完美主义之间维持着一种动态平衡。对于形式主义考核存在一定抵触，但会在现实压力下做出妥协以保障课题推进。<br>
+            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
+                <strong></strong>你处于一种“虽然不爽，但能凑合”的状态。面对导师派发的流水线任务，你内心觉得这浪费了才华；但在毕业压力下，你还是会捏着鼻子做完。你经常在“坚守学术理想”和“向毕业指标低头”之间反复横跳，偶尔会觉得心里有些拧巴和疲惫。
+            </div></div></li>`;
+        } else {
+            dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
+            <strong>[评估：显著的制度抗拒]</strong> 您在学术规范上表现出强烈的精神洁癖。对缺乏实质创新的拼凑式研究持有明确的抵触态度。这种定力保全了质量，但也极大地增加了边缘化风险。<br>
+            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
+                <strong></strong>你是个眼里揉不得沙子的“学术刺头”。要你为了发文章去迎合热点、或者修改不太漂亮的数据，简直比杀了你还难受。你极度厌恶科研中的套路。这种精神洁癖能保住你文章的质量，但在唯论文数量的现实环境下，你极容易因为“不听话”而面临被孤立甚至延毕的风险。
+            </div></div></li>`;
+        }
+        
+        // 社交效能 (Col) - 三档细分
+        dims += `<li style="margin-bottom: 20px;"><strong>社交效能 (学术共同体互动模式)</strong>：`;
+        if(s100.Col >= 65) {
+            dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
+            <strong>[评估：高维网络构建者]</strong> 具备出色的学术网络构建能力与课题组长（PI）潜质。能精准识别跨学科的合作契机，以互惠为基础调动外部资源，打破单点技术壁垒。<br>
+            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
+                <strong></strong>你是个自带“社交牛逼症”的科研苗子。你不怕在开会时跟大牛搭话，也懂得拿自己的专长去换取别人的核心技术。如果实验卡在你不擅长的地方，你会马上组局拉外援，而不是自己一个人死磕。你未来绝对有当大老板、统筹庞大课题组的潜力。
+            </div></div></li>`;
+        } else if(s100.Col >= 40) {
+            dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
+            <strong>[评估：边界清晰的弱联系倾向]</strong> 您的社交效能刚好维持课题运转的最低限度。偏好内部或熟人网络求助，对扩大跨界学术社交圈缺乏主动意愿，但在必要时能够进行沟通。<br>
+            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
+                <strong></strong>你属于“人不犯我我不犯人”的类型。只要不涉及利益冲突，你愿意和同门和平共处。你不太喜欢去混学术圈的虚伪饭局，但如果课题真到了非求人不可的地步，你也能硬着头皮去沟通。你的社交精力刚好够维持基本生活，多一点你都嫌累。
+            </div></div></li>`;
+        } else {
+            dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
+            <strong>[评估：高度个体中心化]</strong> 您的工作模式呈现极端个体化特征。偏好独立解决复杂难题，在学术交流上的投入意愿极低。这保障了深度思考空间，但可能产生过高的试错成本。<br>
+            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
+                <strong></strong>你是个纯粹的“独行狼”。求人办事对你来说是一种巨大的精神折磨。遇到跨专业的难题，你宁可自己花三个月时间去硬啃晦涩的专业书，也不愿意花十分钟去请教隔壁组的师兄。这种独立固然让你本领过硬，但也经常会让你在死胡同里白白浪费大量青春。
+            </div></div></li>`;
+        }
+        
+        // 延迟满足 (DG) - 三档细分
+        dims += `<li style="margin-bottom: 20px;"><strong>延迟满足 (远期目标专注度)</strong>：`;
+        if(s100.DG >= 65) {
+            dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
+            <strong>[评估：低延迟折扣与长线专注]</strong> 您的延迟满足能力极高。能够承受长达数年的无产出期以构建底层理论，对即时正反馈的依赖度极低，为高难度课题提供了坚实的心理基础。<br>
+            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
+                <strong></strong>你就像个在深海里憋气的高手。看着当年不如你的同学现在一个个年薪百万、买房买车，你能做到内心真正毫无波澜。你深信自己正在做的事情（哪怕要五年后才能出结果）有着更高的智力壁垒。这种“耐得住寂寞”的定力，是你最大的王牌。
+            </div>
+            ${wealthIgnoreHtml}
+            </div></li>`;
+        } else if(s100.DG >= 40) {
+            dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
+            <strong>[评估：现实反馈交替依赖]</strong> 您具备长线研究的耐心，但尚未完全免疫世俗压力的干扰。在较长阶段缺乏核心产出时，需要通过阶段性的微小成果来缓解同辈压力与焦虑。<br>
+            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
+                <strong></strong>你大多数时候能稳住心态，但在某个深夜或是课题卡壳时，看着别人光鲜亮丽的生活，你心里也会泛起酸楚，甚至怀疑自己是不是选错了路。你需要每隔一段时间就发个小文章，或者得到导师的表扬，来给自己“回回血”，否则很容易感到力不从心。
+            </div></div></li>`;
+        } else {
+            dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
+            <strong>[评估：高阶段性反馈依赖]</strong> 您的大脑认知模式对阶段性成果的反馈频率有极高要求。长期缺乏产出易导致严重的认知负荷过载和沉没成本焦虑。<br>
+            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
+                <strong></strong>虽然你有天赋，但你极其缺乏耐心。课题如果大半年看不到明显的进展，你就会心慌意乱，觉得每天都在亏本。你迫切需要短平快的成果来证明自己的价值，一旦实验长期停滞，那种“同龄人都在赚钱，只有我在倒贴青春”的焦虑感会迅速将你吞噬。
+            </div></div></li>`;
+        }
+
+        // 结构化风险预测与干预策略 (针对低分区进行预警)
+        let crisisContent = '', adviceContent = '';
+        if(s100.C < 40) {
+            crisisContent = `
+                <p style="margin-bottom: 8px;"><strong>风险预测：评价体系内的深度冲突 (Systematic Conflict)</strong></p>
+                <p>模型推演显示，您在博士阶段中后期，极大概率会因“拒接流水线课题”或“拒绝修饰边缘数据”与导师或现行考核体系爆发严重冲突。被迫参与低原创性的研究将引发您强烈的认知失调（Cognitive Dissonance），严重时可能转化为对抗情绪或提早退出的冲动。</p>
+            `;
+            adviceContent = `
+                <p style="margin-bottom: 8px;"><strong>干预策略：建立双轨制范式 (Dual-Track Paradigm)</strong></p>
+                <p>1. <strong>量化指标的工具化：</strong> 请在心理上将完成基础考核的论文视为“维持科研生存权的必要房租”，而非个人学术名誉的终点。捏着鼻子快速交租，是对自己未来的保护。</p>
+                <p>2. <strong>核心课题的隔离保护：</strong> 建立“双轨制”，用最低的精力应付完指标后，将剩下精力加密投入到真正热爱的长线探索中。避免将学术规范的不合理转化为内耗式的自我折磨。</p>
+            `;
+            crisis = mkCrisis('风险预警 (Risk Assessment)', crisisContent);
+            advice = mkRule('干预策略 (Intervention Strategy)', adviceContent);
+            
+        } else if (s100.Col < 40) {
+            crisisContent = `
+                <p style="margin-bottom: 8px;"><strong>风险预测：跨界壁垒与合作孤立 (Collaboration Isolation)</strong></p>
+                <p>在多学科交叉的复杂课题中，过度依赖个体闭门攻坚将导致研发周期严重滞后。缺乏有效的共同体支持，不仅极大增加试错成本，还极易在遇到技术盲区时陷入大半年的停滞，最终在首发权竞争中遭受同行团队的降维打击。</p>
+            `;
+            adviceContent = `
+                <p style="margin-bottom: 8px;"><strong>干预策略：构建功能型契约网络 (Functional Networking)</strong></p>
+                <p>1. <strong>选择行政保护型导师：</strong> 在课题组选择上，优先寻找具备强资源整合与对外社交能力的导师，让他去充当外交官和掮客，弥补你对外沟通的短板。</p>
+                <p>2. <strong>建立纯契约型合作关系：</strong> 放弃对“学术社交=虚伪人情”的刻板印象。不需要交心，只需将合作简化为明确的要素互换（例如：我出算法换你的数据，共同一作）。以冷酷的契约形式，将社交损耗降到最低。</p>
+            `;
+            crisis = mkCrisis('风险预警 (Risk Assessment)', crisisContent);
+            advice = mkRule('干预策略 (Intervention Strategy)', adviceContent);
+            
+        } else {
+            // 没有明显短板的精英A类
+            crisisContent = `
+                <p style="margin-bottom: 8px;"><strong>风险预测：体系适应后的意义消解 (Meaning Crisis)</strong></p>
+                <p>鉴于您出色的综合能力，您将在短时间内掌握评价体系的玩法并成为高产出学者。但随之而来的是深度的“意义危机”。洞悉圈子内功利性的运作逻辑和包装套路后，您将难以在同侪中找到深度的智力共鸣，从而产生“高处不胜寒”的学术虚无感。</p>
+            `;
+            adviceContent = `
+                <p style="margin-bottom: 8px;"><strong>干预策略：锚定高维标杆与时间保护 (High-Dimensional Anchoring)</strong></p>
+                <p>1. <strong>重构本源评价标准：</strong> 随着地位提升，主动剥离对量化指标的依赖。将基准线转移至本源科学问题或历史层面的实质贡献，去和科学史上的先哲对话，避免被平庸的圈子同化。</p>
+                <p>2. <strong>警惕行政事务的注意力剥夺：</strong> 严格防范荣誉伴随而来的各种行政、无效评审对精力的挤占。捍卫一线深度科研（Deep Work）的绝对时间，永远不要脱离一线亲自处理数据的手感。</p>
+            `;
+            crisis = mkCrisis('风险预警 (Risk Assessment)', crisisContent);
+            advice = mkRule('干预策略 (Intervention Strategy)', adviceContent);
+        }
+    }
+    else if(typeStr === 'B') {
+        // [动态拦截器] 扫描用户的历史轨迹，提取高度工具理性与马基雅维利主义的观测点
+        let toolRationalityHtml = "";
+        let socialCapitalHtml = "";
+        let upwardMgmtHtml = "";
+        let grayAreaHtml = "";
+
+        for (let i = 0; i < currentQList.length; i++) {
+            let qText = currentQList[i].t;
+            let ansVal = userAnswers[i] ? userAnswers[i].val : null;
+
+            if (qText.includes("现行的学术评价体系") && ansVal >= 0.5) {
+                toolRationalityHtml = `<div style="margin-top: 10px; padding: 10px 14px; background: #fafafa; border-left: 3px solid #6c757d; font-size: 13px; color: #495057;"><strong>[关键行为观测点]</strong> 在面对常被诟病的“唯论文/唯帽子”评价体系时，您表现出了极强的“制度内化（Institutional Internalization）”。系统判定您已剥离了学术浪漫主义，具备极其冷峻的“工具理性”，将科研视为一场规则清晰的生存博弈。</div>`;
+            }
+            if (qText.includes("晚宴现场") && ansVal === 1) {
+                socialCapitalHtml = `<div style="margin-top: 10px; padding: 10px 14px; background: #f8f9fa; border-left: 3px solid #4a90e2; font-size: 13px; color: #343a40;"><strong>[关键行为观测点]</strong> 在模拟非正式学术社交场景中，您的行为呈现出极强的“目标导向”。这在组织行为学中体现为高阶的“社会资本运作（Social Capital Operation）”能力，您能够精准识别场域内的核心节点（大牛），并进行高效的利益置换。</div>`;
+            }
+            if (qText.includes("行政杂活") && ansVal === 1) {
+                upwardMgmtHtml = `<div style="margin-top: 10px; padding: 10px 14px; background: #fdfdfd; border-left: 3px solid #343a40; font-size: 13px; color: #495057;"><strong>[关键行为观测点]</strong> 面对挤占科研时间的无偿杂务，您的决策并非基于公平性抱怨，而是迅速计算其潜在的“资源杠杆率”。这种典型的“向上管理（Upward Management）”特质，是您获取稀缺科研资源、打通行政壁垒的核心手腕。</div>`;
+            }
+            if (qText.includes("0.055") && ansVal >= 0.5) {
+                grayAreaHtml = `<div style="margin-top: 10px; padding: 10px 14px; background: #fff5f5; border-left: 3px solid #fa5252; font-size: 13px; color: #c92a2a;"><strong>[关键行为观测点]</strong> 在面临学术规范与核心利益冲突的极限施压下，您的决策表现出较高的“马基雅维利主义（Machiavellianism）”倾向。您极度注重结果导向（ROI），倾向于在规则边缘进行风险套利。这赋予了您高生存率，但也预示着潜在的合规性危机。</div>`;
+            }
+        }
+
+        intro = `
+        <div style="background: #ffffff; border: 1px solid #e9ecef; padding: 24px; border-radius: 12px; margin-bottom: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.02);">
+            <p style="font-size: 18px; margin-bottom: 12px; color: #212529; font-weight: 700; border-bottom: 1px solid #f1f3f5; padding-bottom: 10px;">综合适性评估报告：Type-B 高度实用主义与资源整合者</p>
+            <p style="font-size: 15px; line-height: 1.8; margin-bottom: 12px; color: #495057; text-align: justify;">在本次结构化适性检测中，系统对您的决策博弈模式进行了量化分析。在当前高度内卷、资源集中度极高的学术修罗场中，您呈现出极具破坏力的竞争优势与生存智慧。系统判定您的特征模型符合<strong>【高度实用主义与资源整合者 / The Pragmatic Entrepreneur】</strong>。</p>
+            <p style="font-size: 15px; line-height: 1.8; color: #495057; text-align: justify;">评估结果表明，您已完全将博士生涯“项目管理化”。相较于深陷学术执念的传统学者，您摒弃了天真学者的道德洁癖。您的底层行为逻辑是极其冷酷的“投入产出比（ROI）”计算。体制内的规训、枯燥的实验、八股文式的论文，在您眼中并非折磨，而是获取顶级圈层入场券、实现阶层跨越与资源变现的标准化对价。这套被常人视为绞肉机的体制，反而是您进行制度套利的最佳演练场。</p>
+        </div>
+        `;
+        
+        // 规则顺应 (C) & 动机重构 - 三档细分
+        dims += `<li style="margin-bottom: 20px;"><strong>规则顺应与动机重构 (制度套利能力)</strong>：`;
+        if(s100.C >= 65) {
+            dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
+            <strong>[评估：极致的制度套利者]</strong> 您的内源性动机（为知识而知识）占比极低，取而代之的是纯粹的外部成就动机。您将学术评价体系视为一套可攻克的商业逻辑，能够毫无心理阻力地迎合期刊偏好、制造学术热点，以最高效的方式斩获考核指标。<br>
+            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
+                <strong></strong>你本质上就是一个披着科研外衣的“高级包工头”。你对“为科学献身”这种宏大叙事完全免疫。你极其清醒：导师需要数据交差，期刊需要热点引流，你需要文凭和Title变现。既然大家都是做生意，那就各取所需。你不仅不会因为做“水文”而感到屈辱，反而会因为自己高超的“学术包装技术”感到自豪。
+            </div>
+            ${toolRationalityHtml}
+            </div></li>`;
+        } else if(s100.C >= 40) {
+            dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
+            <strong>[评估：务实的合规执行人]</strong> 您接受了学术圈作为名利场的客观现实，愿意服从游戏规则。虽偶尔会对繁琐的形式主义感到疲惫，但利益权衡后，总能确保核心指标（发文、毕业）的按期交付。<br>
+            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
+                <strong></strong>你是个清醒的打工人。你心里知道很多课题毫无意义，甚至觉得导师的做法有些压榨，但你的算盘打得很精——“只要能让我按时拿到双证，让我干嘛我就干嘛”。你把读博当成了一场有期限的服役，目标是平平稳稳地熬到出狱，拿到那张通往更高薪水的门票。
+            </div></div></li>`;
+        } else {
+            dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
+            <strong>[评估：摩擦型功利主义者]</strong> 这是一个具有矛盾性的模型。您极度渴望学术带来的现实收益（头衔、教职），但在行为执行上又排斥或无法适应现行的套路与评价标准，导致严重的知行不一。<br>
+            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
+                <strong></strong>你处于一种“既要又要，但玩不转”的拧巴状态。你极度渴望发高分文章去变现，但你又拉不下脸去迎合热点、去讨好导师、去钻营人情。你看不上那些靠包装发顶刊的人，但自己又拿不出硬核成果。这种“功利心极强却又放不下身段”的摩擦，是你目前痛苦的根源。
+            </div></div></li>`;
+        }
+        
+        // 社交效能 (Col) - B类的核心武器
+        dims += `<li style="margin-bottom: 20px;"><strong>社交效能 (学术共同体利益整合)</strong>：`;
+        if(s100.Col >= 65) {
+            dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
+            <strong>[评估：卓越的跨界资源掮客]</strong> 您深谙学术圈本质是“资源与信息的互换场”。您具备顶尖的情绪劳动（Emotional Labor）能力与向上管理手腕。学术会议对别人是耗能，对您则是捕获内部信息、建立强弱联系的交易集市。<br>
+            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
+                <strong></strong>你是混圈子的绝对天才。光靠埋头苦干是没用的，你深知这一点。你会精准定位能决定你前途的大牛，用巧妙的赞美提供情绪价值；你会主动承担行政杂活来向导师表忠心，以换取下一次的一作挂名。别人觉得你“圆滑功利”，但在你看来，人情世故是你撬动顶级实验室资源的最高级杠杆。
+            </div>
+            ${socialCapitalHtml}
+            ${upwardMgmtHtml}
+            </div></li>`;
+        } else if(s100.Col >= 40) {
+            dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
+            <strong>[评估：圈层边界明确的交易者]</strong> 您的社交呈现出强烈的“目的导向”与“即用即弃”特征。您深知资源互换的重要性，但缺乏长期维护学缘网络的意愿，倾向于在关键节点进行冰冷的功能性交易。<br>
+            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
+                <strong></strong>你是一个极其冷酷的现实主义者。你不需要在实验室交朋友，师兄师姐对你来说只是借仪器的NPC。你的人际交往完全基于“他现在对我有没有用，我能拿什么跟他换”。这种没有废话的沟通效率极高，但也容易让人觉得你过河拆桥，难以建立长线的政治盟友。
+            </div></div></li>`;
+        } else {
+            dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
+            <strong>[评估：孤岛型资源掠夺者]</strong> 作为实用主义者，您却存在极高的社交阻抗。倾向于在不依赖他人的情况下榨取课题组现有资源。沟通手段生硬，容易因利益分配（如抢占仪器、署名权争夺）引发剧烈的人际冲突。<br>
+            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
+                <strong></strong>你想要利益，但你极其排斥付出“社交成本”。你总是想在实验室里占尽便宜（抢好做的课题、抢机器），却不愿意给别人提供任何便利。这种只进不出的“铁公鸡”做派，很容易让你在团队中遭到孤立，一旦你遇到技术盲区，将没有任何人愿意向你伸出援手。
+            </div></div></li>`;
+        }
+        
+        // 延迟满足 (DG) - 预测变现焦虑
+        dims += `<li style="margin-bottom: 20px;"><strong>延迟满足 (投资回报期耐受度)</strong>：`;
+        if(s100.DG >= 65) {
+            dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
+            <strong>[评估：宏观周期的战略投资人]</strong> 您具备企业家般的长远目光。虽以变现为最终目的，但能克制短期的物质诱惑，清晰地认知到博士学位（顶级IP）和学术光环在远期的巨大复利效应。<br>
+            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
+                <strong></strong>你是个极其沉得住气的猎手。看着本科同学去互联网大厂拿高薪，你一点也不急。你很清楚，他们卖的是短期劳动力，而你正在熬的是一个具备垄断性质的“高阶门票”。你愿意忍受眼前的清贫，因为你的目光早就锁定在了几年后以“某某学者/大厂高管”身份入局的降维变现上。
+            </div></div></li>`;
+        } else if(s100.DG >= 40) {
+            dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
+            <strong>[评估：阶段性对冲策略者]</strong> 您在长期投资与短期变现之间寻求平衡。在科研长线推进的同时，高度关注阶段性成果（如专利、小论文、奖学金）的落地，以此作为缓解财务与同辈压力的对冲机制。<br>
+            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
+                <strong></strong>你是个极其精算的操盘手。你不仅要最后的博士文凭，还要把过程中的羊毛薅干。只要是有奖金的竞赛、能拿国奖的加分项，你一个都不会放过。这种“苍蝇再小也是肉”的对冲策略，确保了你在读博期间不仅没有经济危机，甚至过得比同龄人还滋润。
+            </div></div></li>`;
+        } else {
+            dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
+            <strong>[评估：高频焦虑的短线投机客]</strong> 您对投入产出比的计算过于高频且短视。长期的科研冷板凳极易触发您的“沉没成本焦虑（Sunk Cost Anxiety）”，在面临同辈财富积累对比时，会产生严重的相对剥夺感。<br>
+            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
+                <strong></strong>你太想赢，也太着急了。长达几个月没有实质性油水进账，就会让你极度没有安全感。一看到别人买房买车，你觉得读博简直是血亏。这种急躁极易导致你捡了芝麻丢西瓜——为了赚兼职的几千块钱，荒废了主业课题，最终面临延期毕业的巨大风险。
+            </div></div></li>`;
+        }
+
+        // 自我解绑 (E) - 决定了其是否会被反噬
+        dims += `<li style="margin-bottom: 20px;"><strong>自我解绑 (虚荣剥离与风险控制)</strong>：`;
+        if(s100.E >= 65) {
+            dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
+            <strong>[评估：绝对的身份剥离与冷血风控]</strong> 您展现出了真正的操盘手素养。外界对您的任何学术批评、甚至是同行倾轧，都无法伤及自我价值内核。因为您从未将“学者”视为神圣身份，而仅仅是一件可脱卸的职业装束。<br>
+            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
+                <strong></strong>你是真的人间清醒，不仅对别人狠，对自己也狠。导师哪怕当众把你骂得狗血淋头，你心里也会毫无波澜，甚至还能顺手倒杯茶。因为在你眼里，挨骂不过是获取学位的沉没成本之一。只要最终利益不受损，你的自尊心可以被无限期折叠，百毒不侵。
+            </div></div></li>`;
+        } else if(s100.E >= 40) {
+            dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
+            <strong>[评估：间歇性虚荣补偿]</strong> 您的主体行为受理性支配，但潜意识仍需学术光环的包裹。在顺境时能保持精明，但在面临负面评价或同门对比处于下风时，会产生短期的虚荣心反噬与自我防御行为。<br>
+            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
+                <strong></strong>你表面上说着“一切为了变现”，但心里其实挺在乎面子的。你不仅想要毕业，还想毕业得漂漂亮亮，成为别人眼里的“学术大佬”。如果同门发了比你影响因子高得多的文章，你心里依然会冒出一股酸水，并试图在其他方面（比如找个更好的工作）狠狠压过对方。
+            </div></div></li>`;
+        } else {
+            dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
+            <strong>[评估：虚荣裹挟的脆弱防线]</strong> 这是一个危险的悖论组合。您表现得功利且游刃有余，但内心极度渴望学术光环带来的特权感。极度害怕在公开场合遭遇学术挫败，自我认同高度绑定于外在评价。<br>
+            <div style="margin-top: 8px; padding: 12px; background: #fff5f5; border-radius: 6px; color: #c92a2a; font-size: 14px;">
+                <strong></strong>你是个穿着防弹衣却把心脏漏在外面的矛盾体。你嘴上说着学术只是生意，但实际上极度迷恋“顶刊作者”带来的虚荣与优越感。一旦你的核心实验在组会上被大牛当众判定为毫无价值，你脆弱的伪装会瞬间坍塌，陷入深度的羞耻和疯狂的内耗。
+            </div>
+            ${grayAreaHtml}
+            </div></li>`;
+        }
+
+        // 结构化风险预测与干预策略 (极其冷血的商业化建议)
+        let crisisContent = '', adviceContent = '';
+        if(s100.E < 50 && s100.C >= 60) { // 高顺应+低解绑 = 极度看重面子且目标导向 -> 造假重灾区
+            crisisContent = `
+                <p style="margin-bottom: 8px;"><strong>系统性风险预测：虚荣包裹下的合规性危机 (Compliance Crisis)</strong></p>
+                <p>模型推演显示，您未来面临的最大毁灭性风险绝非“毕不了业”，而是<strong>学术声誉破产（翻车）</strong>。为了迎合导师期望、抢占顶刊首发权、或维持自身高光人设，当实验数据长期不理想时，极度结果导向的您存在极高概率跨越红线，在数据修饰、异常值排查等灰色地带进行危险的杠杆套利。</p>
+            `;
+            adviceContent = `
+                <p style="margin-bottom: 8px;"><strong>干预策略建议：建立冷酷的商业信誉风控底线 (Risk Management)</strong></p>
+                <p>1. <strong>剥离青年学者人设滤镜：</strong> 请停止毫无意义的自我感动！在您的商业模型里，一切都可以运作，唯独“学术造假”是无法挽回的信用死刑。一旦被戳穿，您前期投资的所有青春（博士IP）将瞬间清零。请将“不伪造”作为您商业运作中不可逾越的绝对风控红线。</p>
+                <p>2. <strong>容错率分摊管理：</strong> 学会坦然发布一定比例的平庸结果或阴性数据。不要试图在单一项目上追求完美的ROI。运用组合投资思维，用多线并行的小课题来分散核心课题失败的风险，而非通过篡改数据来掩饰亏损。</p>
+            `;
+            crisis = mkCrisis('风险预警 (Risk Assessment)', crisisContent);
+            advice = mkRule('干预策略 (Intervention Strategy)', adviceContent);
+            
+        } else if (s100.DG < 50) { // 极低延迟满足 = 短视，荒废主业去赚钱
+            crisisContent = `
+                <p style="margin-bottom: 8px;"><strong>系统性风险预测：同辈压力诱发的核心资产流失 (Core Asset Divestiture)</strong></p>
+                <p>在长达数年的课题停滞期内，您的心态极易因外界的财富信息（如本科同行的年终奖、房价）而崩溃。这种急于短线变现的焦虑，会驱使您疯狂接揽低端私活、横向外包或投入自媒体等副业。最终导致核心精力被严重挤占，主线任务停滞，面临因小失大甚至被清退的危机。</p>
+            `;
+            adviceContent = `
+                <p style="margin-bottom: 8px;"><strong>干预策略建议：锚定高维变现与战略性聚焦 (Strategic Focus)</strong></p>
+                <p>1. <strong>认知对齐：博士文凭是期权而非时薪：</strong> 请立刻停止用小时工的思维来衡量您当前的贫穷！您现在忍受的每一天，都在为未来进行“阶层降维打击”积累势能。在拿到双证之前，任何消耗精力的几万元副业收入，都是极其短视的抛售行为。</p>
+                <p>2. <strong>合法外包低附加值劳动：</strong> 极致发挥您的项目管理天赋。将排版、基础数据清洗、初级实验操作等无需重度思考的体力活，通过人情置换或合理经费外包出去。将您的精力死死钉在“核心逻辑设计”与“进度把控”上。</p>
+            `;
+            crisis = mkCrisis('风险预警 (Risk Assessment)', crisisContent);
+            advice = mkRule('干预策略 (Intervention Strategy)', adviceContent);
+            
+        } else {
+            // 没有明显短板的精英B类 (真正的学术界六边形商人)
+            crisisContent = `
+                <p style="margin-bottom: 8px;"><strong>系统性风险预测：路径依赖与学术天花板的封锁 (Ceiling Effect)</strong></p>
+                <p>凭借卓越的资源运作与规则迎合能力，您将毫不费力地拿到各种青年头衔。但当您试图跻身真正的战略决策层（如顶尖大牛、院士级别）时，您会绝望地发现：纯粹的套路拼凑和资源交换已经失效。缺乏底层的、震撼性的原创性理论成果，将成为锁死您向上跃迁的坚硬天花板。</p>
+            `;
+            adviceContent = `
+                <p style="margin-bottom: 8px;"><strong>干预策略建议：跨界资本转换与生态位跃迁 (Capital Conversion & Niche Shift)</strong></p>
+                <p>1. <strong>学术资本的政商化跨界：</strong> 既然您的核心天赋是管理与运作，请尽早放弃成为“诺奖级科学家”的执念。在拿到足够的学术头衔作为信用背书后，果断将主战场向科研管理（行政升迁）、科技创业孵化或硬科技风投转移，实现学术资本向商业/政治资本的跨界套现。</p>
+                <p>2. <strong>招募“A类”作为技术护城河：</strong> 当您成为独立PI（课题组长）后，请用优渥的条件和充足的行政保护，去定向招募那些“只懂技术不懂人情”的科研疯子（Type-A类）。让他们负责底层的硬核产出，您负责高维的资源获取与利益分配。这才是顶级的学术合伙人商业模式。</p>
+            `;
+            crisis = mkCrisis('风险预警 (Risk Assessment)', crisisContent);
+            advice = mkRule('干预策略 (Intervention Strategy)', adviceContent);
+        }
+    }
+    else if(typeStr === 'C') {
+        // [动态拦截器] 扫描用户的历史轨迹，提取高尽责性、规则顺应与权威依恋的观测点
+        let conscientiousnessHtml = "";
+        let ocbHtml = "";
+        let cognitiveEnduranceHtml = "";
+        let authorityDependenceHtml = "";
+
+        for (let i = 0; i < currentQList.length; i++) {
+            let qText = currentQList[i].t;
+            let ansVal = userAnswers[i] ? userAnswers[i].val : null;
+
+            // 拦截题目：毫无新意但极易发高分的流水线课题？(选了: 欣然接受并高效完成)
+            if (qText.includes("毫无新意") && ansVal === 1) {
+                conscientiousnessHtml = `<div style="margin-top: 10px; padding: 10px 14px; background: #fafafa; border-left: 3px solid #6c757d; font-size: 13px; color: #495057;"><strong>[关键行为观测点]</strong> 面对低原创性但高确定性的任务，您表现出了极强的执行意愿。在心理学上，这反映了您极高的“特质尽责性（Trait Conscientiousness）”。您能够将个人喜好后置，优先保障组织目标的达成，是学术工业化生产中最稀缺的稳定节点。</div>`;
+            }
+            // 拦截题目：师弟师妹犯严重错误？(选了: 耐心指出并带对方修复 / 调动资源补救)
+            if (qText.includes("师弟师妹犯严重错误") && ansVal >= 0.5) {
+                ocbHtml = `<div style="margin-top: 10px; padding: 10px 14px; background: #f8f9fa; border-left: 3px solid #4a90e2; font-size: 13px; color: #343a40;"><strong>[关键行为观测点]</strong> 在面对同级或下级造成的过失时，您优先采取了建设性的补救与指导行为。这在组织行为学中属于典型的“组织公民行为（Organizational Citizenship Behavior, OCB）”，表明您具备成为课题组“隐形管理者（团队粘合剂）”的核心素质。</div>`;
+            }
+            // 拦截题目：撰写几百篇文献的宏大综述？(选了: 视为战略投资/按部就班)
+            if (qText.includes("几百篇文献的宏大综述") && ansVal >= 0.5) {
+                cognitiveEnduranceHtml = `<div style="margin-top: 10px; padding: 10px 14px; background: #f4fbf8; border-left: 3px solid #28a745; font-size: 13px; color: #343a40;"><strong>[关键行为观测点]</strong> 面对极其枯燥且短期无直接收益的庞大基础工作，您依然能维持稳定的心理预期。系统判定您的“认知耐受力（Cognitive Endurance）”极强，能够以工程化的思维拆解长期任务，有效抵御学术长草期的精神内耗。</div>`;
+            }
+            // 拦截题目：权威当众质疑？(如果选了: 感到丢脸/公开处刑)
+            if (qText.includes("知名学者当众尖锐质疑") && ansVal <= -0.49) {
+                authorityDependenceHtml = `<div style="margin-top: 10px; padding: 10px 14px; background: #fff5f5; border-left: 3px solid #fa5252; font-size: 13px; color: #c92a2a;"><strong>[关键行为观测点]</strong> 在模拟遭遇权威负面评价时，您的防卫机制被强烈激活，产生了显著的羞耻感。这提示您的自我价值感存在较深的“权威依恋（Authority Dependence）”。将专业探讨等同于人格审判，是您未来在独立科研道路上的核心心理隐患。</div>`;
+            }
+        }
+
+        intro = `
+        <div style="background: #ffffff; border: 1px solid #e9ecef; padding: 24px; border-radius: 12px; margin-bottom: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.02);">
+            <p style="font-size: 18px; margin-bottom: 12px; color: #212529; font-weight: 700; border-bottom: 1px solid #f1f3f5; padding-bottom: 10px;">综合适性评估报告：Type-C 高度尽责的建制中坚</p>
+            <p style="font-size: 15px; line-height: 1.8; margin-bottom: 12px; color: #495057; text-align: justify;">在本次结构化适性检测中，系统对您的行为模式与抗压机制进行了深度扫描。在当前学术界这部精密咬合、高速运转的庞大机器中，您展现出了令人惊叹的稳定性与承载力。系统判定您的特征模型符合<strong>【高度尽责的建制中坚 / The Steady Professional】</strong>。</p>
+            <p style="font-size: 15px; line-height: 1.8; color: #495057; text-align: justify;">评估结果表明，您展现出的是一种稳如泰山的钝感与踏实。您不像A类（孤傲天才）那样眼高手低、缺乏妥协；也不像B类（学术商人）那样唯利是图、缺乏底线。您极高的规则顺应性、卓越的延迟满足能力以及强大的契约精神，完美契合了现行科研体制对“成熟工作者”的苛刻想象。您未必是金字塔尖最孤高刺眼的反光，但绝对是支撑整座塔身不致崩塌的承重墙。您是所有大牛导师做梦都想招收的“定海神针”。</p>
+        </div>
+        `;
+        
+        // 规则顺应与执行力 (C) - 三档细分
+        dims += `<li style="margin-bottom: 20px;"><strong>规则顺应与执行力 (组织纪律性)</strong>：`;
+        if(s100.C >= 65) {
+            dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
+            <strong>[评估：完美的建制执行者]</strong> 您将现行的学术评价体系完全内化为职场规范。面对毫无新意的课题或繁琐的指标，您能屏蔽负面情绪，以极高的颗粒度将其拆解并执行到位。您的执行力不依赖于灵感，而是建立在严密的职业素养之上。<br>
+            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
+                <strong></strong>你是真正的“靠谱成年人”。只要导师交代的任务，不管多无聊多繁琐，交到你手里就等于“已完成”。你不带情绪地干活，像一台精密的推土机一样推进进度。在别人还在抱怨体制不公、课题无聊的时候，你已经默默把数据跑完、把论文投出去了。
+            </div>
+            ${conscientiousnessHtml}
+            </div></li>`;
+        } else if(s100.C >= 40) {
+            dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
+            <strong>[评估：理性妥协的工作者]</strong> 您对学术圈的八股文和行政规训存在一定抵触，但具备强大的现实检验能力。在权衡毕业指标与个人好恶后，您总能选择压抑个性，确保底线任务的完成。<br>
+            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
+                <strong></strong>你虽然心里会吐槽“这玩意儿有什么意义”，但吐槽归吐槽，该干的活儿你一点没落下。你把科研当成一份签了合同的工作，哪怕不喜欢老板的朝令夕改，也会为了拿到最后的工资（毕业证）而捏着鼻子妥协。你是个合格的“科研打工人”。
+            </div></div></li>`;
+        } else {
+            dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
+            <strong>[评估：高内耗的顺应者]</strong> 您的潜意识试图顺应规则，但在执行过程中面临极高的心理摩擦力。每完成一项违背初心的流水线任务，都会剧烈消耗您的心理资源，容易陷入长期的疲惫与拖延。<br>
+            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
+                <strong></strong>你活得很累。你想做个听话的好学生，但每一次迎合导师去改那些水文章，你的良心都在隐隐作痛。这种“又想乖乖毕业，又觉得自己在制造学术垃圾”的矛盾，让你的精力全耗在了自我说服上，导致行动极其迟缓，每天去实验室都像去上坟。
+            </div></div></li>`;
+        }
+        
+        // 社交效能 (Col) - C类的宿命分水岭
+        dims += `<li style="margin-bottom: 20px;"><strong>社交效能 (团队生态占位)</strong>：`;
+        if(s100.Col >= 65) {
+            dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
+            <strong>[评估：卓越的团队生态枢纽]</strong> 高服从性与高情商的完美叠加。您不仅能管理好自己的课题，还能极其妥帖地处理上下级关系、跨组协调以及师门内的技术传承。您极大概率会成长为课题组不可或缺的“二把手”或“大管家”。<br>
+            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
+                <strong></strong>你是整个实验室的“知心大哥/大姐”和“技术大拿”。导师不在的时候，实验室全靠你撑着。师弟师妹做不出实验找你，同门要借试剂找你，导师要报账也找你。你人缘极好，大家都信任你，但你也是全组活得最累、被白嫖劳动力最多的人。
+            </div>
+            ${ocbHtml}
+            </div></li>`;
+        } else if(s100.Col >= 40) {
+            dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
+            <strong>[评估：温和的边界防守者]</strong> 您在团队中维持着一种温和但有距离感的存在。不主动揽权，也不刻意孤立。能维持实验室的表面和谐，但在涉及到深度的利益分配或资源争夺时，往往处于被动退让的状态。<br>
+            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
+                <strong></strong>你是个老好人。别人跟你借东西你不好意思拒绝，导师给你加塞杂活你也不敢反抗。你在实验室的存在感不强，永远在默默干活。虽然大家觉得你脾气好，但在分一作或者抢评优名额的时候，你总是那个被牺牲、被要求“发扬风格”的倒霉蛋。
+            </div></div></li>`;
+        } else {
+            dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
+            <strong>[评估：边缘化的沉默承压者]</strong> 您具备实干能力，但极度缺乏社交防御机制。在组织生态中，容易被判定为“高价值但无威胁”的目标，从而被系统性地分配大量无价值的底层劳作，沦为团队的隐形耗材。<br>
+            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
+                <strong></strong>你是实验室底层的“透明砖块”。你不善言辞，不会邀功。很多属于你的功劳被善于汇报的同门抢走，很多烂摊子却悄悄推到了你的桌面上。你以为只要闷头苦干总有一天会被看到，但现实是，会哭的孩子有奶吃，而你只会得到更多的活儿。
+            </div></div></li>`;
+        }
+        
+        // 延迟满足 (DG) - C类的底层动力
+        dims += `<li style="margin-bottom: 20px;"><strong>延迟满足与认知耐受力 (长周期抗压)</strong>：`;
+        if(s100.DG >= 65) {
+            dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
+            <strong>[评估：工程化的高阶耐受力]</strong> 面对发不了高分文章的基础数据收集或长达数月的综述整理，您的心态出奇平稳。您不因同龄人的暴富而失衡，坚信滴水穿石的长线投资，具备极佳的情绪稳定性。<br>
+            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
+                <strong></strong>你有一颗极其大心脏。课题再枯燥、周期再长，你都能像老黄牛一样一步一个脚印地犁过去。你不眼红别人去大厂赚快钱，你只相信种瓜得瓜种豆得豆。这种踏实到甚至有些笨拙的定力，在这个浮躁的时代简直是稀缺资产。
+            </div>
+            ${cognitiveEnduranceHtml}
+            </div></li>`;
+        } else {
+            dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
+            <strong>[评估：意志力损耗的疲劳态]</strong> 您的隐忍主要依靠道德感和责任心在强撑，而非真正的认知接纳。在长期的无反馈状态下，您的“自我控制资源（Self-Control Resources）”正在被严重透支，存在突然崩溃的风险。<br>
+            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
+                <strong></strong>你一直在用“坚持一下就好了”来给自己洗脑。但看着同龄人结婚生子买房，你内心的防线正在被一点点瓦解。你表面上还在老老实实做实验，但心里那根弦绷得太紧了。如果不给你一点阶段性的奖励，你随时可能会在某一个普通的早晨突然宣布退学。
+            </div></div></li>`;
+        }
+
+        // 自我解绑 (E) - C类普遍的弱点 (好学生综合症)
+        dims += `<li style="margin-bottom: 20px;"><strong>自我解绑 (权威评估独立性)</strong>：`;
+        if(s100.E >= 60) {
+            dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
+            <strong>[评估：健康的职业化边界]</strong> 难能可贵的是，您在保持高尽责性的同时，没有沦为权威的附庸。您将导师视为职场上级，工作尽心尽力，但绝不将个人尊严与导师的脸色挂钩，成功实现了情绪切割。<br>
+            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
+                <strong></strong>你是个清醒的“好员工”。你干活极其认真，对得起导师发的补贴；但只要出了实验室的门，导师的批评、课题的挫折就再也伤不到你分毫。你把生活和科研分得很开，绝不为了一份文凭去当牛做马出卖尊严。
+            </div></div></li>`;
+        } else {
+            dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
+            <strong>[评估：高风险的权威依恋与讨好倾向]</strong> 这是C类最致命的隐患。您高度认同体制，导致您将导师的评价等同于绝对真理。一旦遭遇不公指责或边缘化，您会产生极强的被遗弃感和自我怀疑，极易沦为PUA的受害者。<br>
+            <div style="margin-top: 8px; padding: 12px; background: #fff5f5; border-radius: 6px; color: #c92a2a; font-size: 14px;">
+                <strong></strong>你患有重度的“好学生综合症”。你极其害怕让导师失望，导师的一句重话能让你内耗失眠整整三天。你习惯从权威那里获取价值感，这种讨好型人格让你在遇到毒性导师时毫无还手之力，会被压榨到骨头渣都不剩，还在反思是不是自己不够努力。
+            </div>
+            ${authorityDependenceHtml}
+            </div></li>`;
+        }
+
+        // 结构化风险预测与干预策略 (针对C类的特有危机)
+        let crisisContent = '', adviceContent = '';
+        if(s100.E < 50 || s100.Col >= 65) { // 极易被吸血的“老实人”
+            crisisContent = `
+                <p style="margin-bottom: 8px;"><strong>系统性风险预测：无底线过度剥削 (Exploitative Overload)</strong></p>
+                <p>模型推演显示，您面临的最大毁灭性风险是“被系统性吸血”。因为您太靠谱、太懂事且不懂拒绝，所有的杂活（贴发票、带新生、写本子、帮大牛干私活）最终都会如潮水般堆到您桌面上。最讽刺的是，当刺头（A类）和滑头（B类）拿着闪亮的成果顺利毕业时，您这块最坚实的基石，却极可能因为被杂事耗干精力而惨遭延毕。</p>
+            `;
+            adviceContent = `
+                <p style="margin-bottom: 8px;"><strong>干预策略建议：建立冷酷的边界防御与“战略性装死” (Boundary Management)</strong></p>
+                <p>1. <strong>戒断“讨好型人格”：</strong> 停止用牺牲自己利益的方式去维系实验室表面的和谐！在职场（哪怕是学术圈），过度的善良就是原罪。必须深刻认识到：只有写在您名字一作位置的论文，才是您唯一的护身符；导师对您“干活踏实”的口头表扬，在毕业找工作时一文不值。</p>
+                <p>2. <strong>执行“战略性无能”：</strong> 学会隐瞒您的部分实力。对于非核心的杂务，勇敢地展现出“我尽力了但我真的不会”的姿态。把您的聪明才智和极高的执行力，像守财奴一样严格保留给能决定您前途的核心关键人与核心课题。</p>
+            `;
+            crisis = mkCrisis('风险预警 (Risk Assessment)', crisisContent);
+            advice = mkRule('干预策略 (Intervention Strategy)', adviceContent);
+            
+        } else if (s100.M >= 60 && s100.C >= 60) { // 有理想但又太顺从的C类
+            crisisContent = `
+                <p style="margin-bottom: 8px;"><strong>系统性风险预测：午夜梦回的深度虚无感 (Existential Void)</strong></p>
+                <p>在迎合规则的间隙，您的心底依然保留着一丝对纯粹科学的向往。当您为了交差，批量生产出成百上千张毫无营养的学术八股文图表时，在一个个深夜，您会突然质问自己：“我耗费一生中最黄金的岁月，就是为了给这台破机器当一颗拧螺丝的打工人吗？”这种意义危机会以钝痛的方式，长期折磨您的精神世界。</p>
+            `;
+            adviceContent = `
+                <p style="margin-bottom: 8px;"><strong>干预策略建议：开辟精神“自留地”与火种保护 (Sanctuary Cultivation)</strong></p>
+                <p>1. <strong>课题打工化：</strong> 彻底接受目前的流水线课题只是一份“正职交差”。不要试图在垃圾堆里雕花，用最标准、最工业化的流程把它做完投出去，不要投入多余的情感。</p>
+                <p>2. <strong>经营“学术自留地”：</strong> 务必在暗处保留一个极小的、完全属于您自己的“自留地”项目（可以是一个有趣的偏门理论验证，或者一门硬核代码技术）。不需要告诉导师，也不指望它短期能发文章。这块自留地是用来安放您最初热爱的锚点，防止您的灵魂在工业化科研中彻底干涸。</p>
+            `;
+            crisis = mkCrisis('风险预警 (Risk Assessment)', crisisContent);
+            advice = mkRule('干预策略 (Intervention Strategy)', adviceContent);
+            
+        } else {
+            // 最稳妥但平庸的C类
+            crisisContent = `
+                <p style="margin-bottom: 8px;"><strong>系统性风险预测：长期温水煮青蛙的平庸化 (Boiled Frog Syndrome)</strong></p>
+                <p>凭借踏实肯干，您大概率能平安落地拿到学位，甚至去到一个二本高校或研究所谋得稳定教职。但长期的服从与按部就班，会逐渐抹杀您提出尖锐科学问题的能力。当您真正独立带组时，您会发现自己除了“模仿”和“优化”，已经失去了开创全新研究领域的勇气和直觉，彻底沦为学术界的平庸中产。</p>
+            `;
+            adviceContent = `
+                <p style="margin-bottom: 8px;"><strong>干预策略建议：强制跨界激活与反脆弱训练 (Anti-fragility Activation)</strong></p>
+                <p>1. <strong>主动摄入混乱度：</strong> 您现在的生活太有秩序了。建议强制自己每月参加一次与本专业完全无关的跨界讲座，或者强迫自己去阅读非共识的边缘文献。通过外部刺激打破思维的过度收敛状态。</p>
+                <p>2. <strong>练习“微小反叛”：</strong> 尝试在下一次组会上，用坚实的数据去温和但坚定地反驳导师的一次错误判断。逐步通过这种微小的、可控的冲突，建立起“我不仅可以执行，我更可以挑战权威”的学术自信。</p>
+            `;
+            crisis = mkCrisis('风险预警 (Risk Assessment)', crisisContent);
+            advice = mkRule('干预策略 (Intervention Strategy)', adviceContent);
+        }
+    }
+   else if(typeStr === 'D') {
+        // [动态拦截器] 扫描用户的历史轨迹，提取自我耗损、躯体化预警与习得性无助的观测点
+        let somaticHtml = "";
+        let egoDepletionHtml = "";
+        let ruminationHtml = "";
+        let imposterHtml = "";
+
+        for (let i = 0; i < currentQList.length; i++) {
+            let qText = currentQList[i].t;
+            let ansVal = userAnswers[i] ? userAnswers[i].val : null;
+
+            // 拦截题目：身体发出明确警告信号？(选了: 只要没进ICU吃药顶住 / 关键时刻透支)
+            if (qText.includes("身体因长期压力发出") && ansVal >= 0.5) {
+                somaticHtml = `<div style="margin-top: 10px; padding: 10px 14px; background: #fff5f5; border-left: 3px solid #fa5252; font-size: 13px; color: #c92a2a;"><strong>[关键行为观测点]</strong> 在面对极端的生理性警告时，您依然选择药物压制与带病坚持。系统在此触发最高级别预警：这在临床心理学上属于危险的“病理性坚持（Pathological Persistence）”，您极易将精神层面的高度内耗转化为严重的“躯体化症状（Somatization）”。</div>`;
+            }
+            // 拦截题目：长草期走向工位的心态？(选了: 与精神内耗作斗争 / 像去上坟)
+            if (qText.includes("长草期") && ansVal <= -0.49) {
+                egoDepletionHtml = `<div style="margin-top: 10px; padding: 10px 14px; background: #fafafa; border-left: 3px solid #6c757d; font-size: 13px; color: #495057;"><strong>[关键行为观测点]</strong> 面对长期缺乏正反馈的科研日常，您感到强烈的窒息感与抗拒。这表明您处于严重的“自我控制资源耗竭（Ego Depletion）”状态。维持您继续前行的已非内驱力，而是高压规训下的行为惯性。</div>`;
+            }
+            // 拦截题目：回首半年失败实验？(选了: 反复懊悔 / 形成心理创伤)
+            if (qText.includes("半年却无可挽回走向失败") && ansVal <= -0.49) {
+                ruminationHtml = `<div style="margin-top: 10px; padding: 10px 14px; background: #fdfdfd; border-left: 3px solid #343a40; font-size: 13px; color: #495057;"><strong>[关键行为观测点]</strong> 在处理重大科研挫折时，您倾向于长期的事后反刍（Rumination）。您难以将“课题的失败”客体化，而是将其内化为“决策无能”的证据，这种无法及时止损的心理创伤将持续消耗您的认知带宽。</div>`;
+            }
+            // 拦截题目：同门发了顶刊？(选了: 强烈自我怀疑 / 极度自卑)
+            if (qText.includes("同门在你细分领域发表") && ansVal <= -0.49) {
+                imposterHtml = `<div style="margin-top: 10px; padding: 10px 14px; background: #f8f9fa; border-left: 3px solid #4a90e2; font-size: 13px; color: #343a40;"><strong>[关键行为观测点]</strong> 面对近距离的同辈高水平产出，您产生了强烈的自我怀疑甚至回避行为。这高度符合“冒名顶替综合征（Imposter Syndrome）”的临床特征，您潜意识里常觉得自己是个不合格的科研骗子，时刻面临被系统淘汰的恐惧。</div>`;
+            }
+        }
+
+        intro = `
+        <div style="background: #ffffff; border: 1px solid #e9ecef; padding: 24px; border-radius: 12px; margin-bottom: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.02);">
+            <p style="font-size: 18px; margin-bottom: 12px; color: #212529; font-weight: 700; border-bottom: 1px solid #f1f3f5; padding-bottom: 10px;">综合适性评估报告：Type-D 高度内耗的学术苦修者</p>
+            <p style="font-size: 15px; line-height: 1.8; margin-bottom: 12px; color: #495057; text-align: justify;">在本次结构化适性检测中，系统对您的抗压冗余度与心理防御机制进行了深层扫描。在这个反馈周期极长、评价标准单一且极度冷酷的学术机器中，您的运行参数呈现出极度危险的高阻尼特征。系统判定您的特征模型符合<strong>【高度内耗的学术苦修者 / The Silent Grinder】</strong>。</p>
+            <p style="font-size: 15px; line-height: 1.8; color: #495057; text-align: justify;">评估结果表明，科研对您而言不再是攀登真理的高峰，而更像是一场西西弗斯式的苦役。您既没有A类那种从底层逻辑中获得多巴胺的天赋，也不屑或无法掌握B类那种长袖善舞的变现套路，甚至缺乏C类那种游刃有余的钝感力。现行体系高强度的倾轧与遥遥无期的反馈周期，正以惊人的速度侵蚀您最初的科研信念。您是这套庞大机器里，齿轮咬合最吃力、磨损最严重，却最不忍心单方面斩仓离场的那颗螺丝钉。</p>
+        </div>
+        `;
+        
+        // 抗挫韧性与自我解绑 (R & E) - D类的核心痛点
+        dims += `<li style="margin-bottom: 20px;"><strong>抗挫韧性与心理复原 (核心承压面)</strong>：`;
+        if(s100.R >= 65 && s100.E >= 60) {
+            dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
+            <strong>[评估：悲壮的耐受堡垒]</strong> 尽管感受到巨大的痛苦，但您依然维持着惊人的心理韧性。您能够将课题的反复横跳和导师的打压视作“苦行僧式的修行”，强行在废墟中重建心理防线。这种韧性虽然有效，但伴随着极高的长期健康透支风险。<br>
+            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
+                <strong></strong>你是个极其“命硬”的人。不管论文被拒多少次、实验死机多少回，你虽然心里在滴血，但第二天依然能像丧尸一样爬起来继续干。你不觉得自己在做学术，你觉得自己在“渡劫”。只要没把你彻底打死，你总能靠着一口仙气硬扛到毕业。
+            </div>
+            ${somaticHtml}
+            </div></li>`;
+        } else if(s100.R >= 40) {
+            dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
+            <strong>[评估：临界态的意志力透支]</strong> 您的心理防御机制正在超负荷运转。面对科研失败，您难以做到快速剥离，而是陷入一定程度的自我怀疑。维持您每天走向实验室的动力，已非热爱，而是对沉没成本的极度恐惧与行为惯性。<br>
+            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
+                <strong></strong>你活在一个“想放弃又不甘心”的死循环里。每天睁开眼想到要去实验室，你都会做长达十分钟的心理建设。你不是在主动做研究，而是被无形的长鞭抽打着往前走。你全靠肌肉记忆在维持着学者的体面，实际上内里早已疲惫不堪。
+            </div>
+            ${egoDepletionHtml}
+            </div></li>`;
+        } else {
+            dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
+            <strong>[评估：深度防线崩溃与习得性无助]</strong> 算法发出严重警告：您在遭遇连串挫折后，已出现高度的“习得性无助（Learned Helplessness）”。您将科研的失败完全内化为对自我人格与智力的全盘否定，极易在批评面前陷入彻底的瘫痪与死机状态。<br>
+            <div style="margin-top: 8px; padding: 12px; background: #fff5f5; border-radius: 6px; color: #c92a2a; font-size: 14px;">
+                <strong></strong>你已经被这个系统彻底打碎了。哪怕是一个小小的代码报错，都能让你瞬间崩溃落泪，觉得“我真是一个彻头彻尾的废物”。你极其害怕跟导师汇报，害怕见同门。你像一只受惊的鸵鸟，只能把头埋在沙子里假装工作，但实际上课题进度已经完全停滞。
+            </div>
+            ${ruminationHtml}
+            ${imposterHtml}
+            </div></li>`;
+        }
+        
+        // 延迟满足 (DG) - D类的生死锚点
+        dims += `<li style="margin-bottom: 20px;"><strong>延迟满足与沉没成本控制 (决策陷阱)</strong>：`;
+        if(s100.DG >= 65) {
+            dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
+            <strong>[评估：极端的沉没成本耐受]</strong> 您展现出了一种绝不割肉的“赌徒式坚持”。无论前期投入的时间和精力沉没得多深，您都坚信只有拿到最终的学位才能回本。这种惊人的忍耐力是您唯一的护城河。<br>
+            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
+                <strong></strong>如果说别人靠脑子毕业，那你绝对是靠“命”毕业。你对自己的要求已经降到了极低，同龄人买大别墅你也不关心了。你脑子里只有一件事：“我就是熬，熬到导师退休、熬到审稿人瞎眼，我也必须要把这破证熬出来。”
+            </div></div></li>`;
+        } else if(s100.DG >= 40) {
+            dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
+            <strong>[评估：摇摆的价值感与戒断反应]</strong> 您在苦修的道路上经常发生价值动摇。在长达几个月毫无产出时，外界的同辈压力会犹如利刃般刺破您的防御，让您在“坚持下去的微弱希望”与“即刻退学的冲动”间剧烈撕扯。<br>
+            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
+                <strong></strong>你每个月都有至少三天想把电脑砸了直接退学拉倒。看着自己干瘪的银行卡和遥遥无期的实验，你会陷入极度的自我怀疑。但在向朋友大倒苦水、甚至查了一晚上大厂的招聘要求后，第二天早上你又会叹口气，乖乖背上书包滚去实验室。
+            </div></div></li>`;
+        } else {
+            dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
+            <strong>[评估：意义感丧失与即刻逃离倾向]</strong> 您对长远回报的信念已经彻底破产。您无法用“未来的博士光环”来欺骗自己忍受眼前的折磨。由于缺乏短期的情绪价值或物质回馈，您已处于随时准备切断一切关联的临界点。<br>
+            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
+                <strong></strong>这个大饼你是一口也吃不下去了。你现在看到“科研”、“论文”这几个字就生理性反胃。你清醒地意识到，即便拿到学位，也改变不了你对这种生活方式的极度厌恶。你已经在偷偷修改简历，甚至做好了随时跟导师翻桌子走人的准备。
+            </div></div></li>`;
+        }
+        
+        // 社交效能 (Col) - 孤独感加剧内耗
+        dims += `<li style="margin-bottom: 20px;"><strong>社交效能 (系统性支持的缺失)</strong>：`;
+        if(s100.Col >= 50) {
+            dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
+            <strong>[评估：隐忍的弱关联求助者]</strong> 在陷入泥沼时，您尚存一丝理智去寻求外界的帮助。尽管社交让您感到疲惫，但您愿意为了课题的推进，以极其谦卑甚至委曲求全的姿态去向同门或外援求助。<br>
+            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
+                <strong></strong>为了活下去，你放下了所有的自尊。当实验卡死时，哪怕对方脾气再差、平时再不待见你，你也能厚着脸皮去请教。你把这种卑微当成是科研的必修课，虽然心里苦涩，但好歹这能帮你从死胡同里爬出来一点点。
+            </div></div></li>`;
+        } else {
+            dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
+            <strong>[评估：绝望的闭环孤立]</strong> 极度的挫败感使您在社交层面全面退缩。您害怕被拒绝，更害怕在求助时暴露自己的无能。您切断了与学术共同体的信息交互，将自己锁死在一个毫无新鲜活水注入的信息茧房中。<br>
+            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
+                <strong></strong>你活成了一座孤岛。课题卡在了一个极其愚蠢的Bug上大半年，只要懂行的人看一眼就能解决，但你宁可自己一个人在黑夜里瞎撞，也绝不开口求人。你害怕别人看不起你，这种病态的自尊心和封闭，让你把大量的时间白白献祭给了毫无意义的死磕。
+            </div></div></li>`;
+        }
+
+        // 结构化风险预测与干预策略 (极其严肃的心理干预与止损建议)
+        let crisisContent = '', adviceContent = '';
+        if(s100.R < 40 && s100.E < 40) { // 最危险的全面崩溃期
+            crisisContent = `
+                <p style="margin-bottom: 8px;"><strong>最高级别危机预警：全防线崩塌与病理性创伤 (Psychological Collapse)</strong></p>
+                <p>这是整个量表中最危险的指标组合。当您赖以生存的核心论文遭遇惨烈退稿，或导师在公开场合对您进行严重的否定时，长期高压下的您极大概率会将其放大为您整个人生的全面溃败。您可能在极短时间内出现严重的躯体化症状（如重度失眠、心悸、脱发），陷入数周无法踏入实验室的“死机状态”，甚至引发重度抑郁倾向。</p>
+            `;
+            adviceContent = `
+                <p style="margin-bottom: 8px;"><strong>临床级干预策略：绝对的客体化剥离与“完成大于完美” (De-sacralization)</strong></p>
+                <p>1. <strong>强行实施科研“NPC化”：</strong> 您必须立刻、马上把科研彻底“去神圣化”！把导师当成发放任务的无感情NPC，把写论文当成流水线打螺丝。数据跑不出是系统的Bug，不是您的错。严禁将“课题不行”等同于“我不行”，您只是在打一份极其难玩的破游戏，游戏打输了拔电源就是了，绝不波及现实中的人格尊严。</p>
+                <p>2. <strong>放弃执念，接受极致的平庸：</strong> 立刻停止做“传世之作”的任何幻想！把所有的标准降到学校允许的最低基准线去凑指标。在您现在的状态下，Done is perfectly better than perfect（做完远比做好重要）。允许自己产出一篇平庸甚至垃圾的论文，是您活着走出泥潭的第一步。</p>
+            `;
+            crisis = mkCrisis('风险预警 (Risk Assessment)', crisisContent);
+            advice = mkRule('干预策略 (Intervention Strategy)', adviceContent);
+            
+        } else if (s100.Col < 40 && s100.DG >= 60) { // 又孤僻又能熬 = 淹没在死胡同
+            crisisContent = `
+                <p style="margin-bottom: 8px;"><strong>系统性风险预测：在死胡同里的慢性溺亡 (Chronic Drowning)</strong></p>
+                <p>您极强的忍耐力（高DG）与极度封闭的社交状态（低Col）构成了致命的毒药组合。当研究方向发生根本性错误时，缺乏外部交流导致您无法获得纠偏信息，而惊人的忍耐力又让您能够在错误的死胡同里狂奔大半年而不肯放弃。最终您将花费几年时间，极其努力地证明一条毫无价值的死路。</p>
+            `;
+            adviceContent = `
+                <p style="margin-bottom: 8px;"><strong>干预策略建议：强制性熔断与外包求助机制 (Forced Circuit Breaker)</strong></p>
+                <p>1. <strong>设立冷酷的“时间熔断机制”：</strong> 为所有遇到的卡脖子技术难题设定死线（例如：两周）。一旦两周内凭借一己之力无法突破，必须强制停止死磕。不要感动自己！这不叫坚持，这叫愚蠢的磨洋工。</p>
+                <p>2. <strong>克服社交耻辱，启动“付费/置换求援”：</strong> 把求助看作是科研项目管理中正常的“外包”环节。不需要交朋友，请直接运用利益交换、请教代劳、甚至合理运用经费寻求技术咨询。用外部视角强行砸碎您的信息茧房。</p>
+            `;
+            crisis = mkCrisis('风险预警 (Risk Assessment)', crisisContent);
+            advice = mkRule('干预策略 (Intervention Strategy)', adviceContent);
+            
+        } else {
+            // 被沉没成本死死拖住的常规D类
+            crisisContent = `
+                <p style="margin-bottom: 8px;"><strong>系统性风险预测：沉没成本绑架下的青春献祭 (Sunk Cost Fallacy)</strong></p>
+                <p>您清醒地知道这套体系病了，也知道自己并不适合学术，但您就是下不了桌。前两年耗费的心血、同侪的目光、家人的期许，化作“沉没成本”的巨大锁链死死勒住您的脖子。您将处于持续数年的低效内耗中，每天靠着负罪感工作，错失了转向业界或寻找其他可能性的最佳黄金期。</p>
+            `;
+            adviceContent = `
+                <p style="margin-bottom: 8px;"><strong>干预策略建议：敏捷止损理论与重塑感知力 (Agile Exit Strategy)</strong></p>
+                <p>1. <strong>把退学/转行视为“敏捷开发”的试错迭代：</strong> 必须从脑海中彻底根除“退学=人生污点”这种剧毒观念！在风投界，迅速斩断注定亏本的项目是最高级的金融智慧。去业界、去创业、去考公，任何一个能让您感受到生命脉动的选择，都比在一摊烂泥里耗死要有价值一万倍。</p>
+                <p>2. <strong>永远不要怀疑您的感知力：</strong> 当您每天去实验室都像上坟，当您的身体已经发出脱发、失眠的惨烈警告时，请相信您的直觉——您没有错，是这个有毒的环境病了。带着您这具尚未被彻底异化的灵魂，冷血斩仓，去寻找真正配得上您才华与心性的战场吧。</p>
+            `;
+            crisis = mkCrisis('风险预警 (Risk Assessment)', crisisContent);
+            advice = mkRule('干预策略 (Intervention Strategy)', adviceContent);
+        }
+    }
+    else if(typeStr === 'E') {
+        // [动态拦截器] 扫描用户的历史轨迹，提取认知去耦合、边界防御与沉没成本免疫的观测点
+        let decouplingHtml = "";
+        let boundaryHtml = "";
+        let zeroJealousyHtml = "";
+        let sunkCostHtml = "";
+
+        for (let i = 0; i < currentQList.length; i++) {
+            let qText = currentQList[i].t;
+            let ansVal = userAnswers[i] ? userAnswers[i].val : null;
+
+            // 拦截题目：导师严厉批评底层逻辑不成立？(选了: 迅速客体化/毫无波澜)
+            if (qText.includes("导师严厉批评") && ansVal === 1) {
+                decouplingHtml = `<div style="margin-top: 10px; padding: 10px 14px; background: #fafafa; border-left: 3px solid #6c757d; font-size: 13px; color: #495057;"><strong>[关键行为观测点]</strong> 在模拟遭遇上位者（导师）严重否定时，您瞬间启用了高阶的“认知去耦合（Cognitive Decoupling）”机制。您能够将“逻辑的漏洞”与“自我价值”完全剥离，阻止了情绪脑的代入。这种免于精神内耗的能力是极其罕见的防御天赋。</div>`;
+            }
+            // 拦截题目：承担行政杂活？(选了: 生硬拒绝/花钱找人)
+            if (qText.includes("行政杂活") && ansVal <= -0.49) {
+                boundaryHtml = `<div style="margin-top: 10px; padding: 10px 14px; background: #f8f9fa; border-left: 3px solid #4a90e2; font-size: 13px; color: #343a40;"><strong>[关键行为观测点]</strong> 面对挤占科研时间的越界杂务，您的“组织公民行为（OCB）”意愿呈现绝对负值。您展现出了极度强硬的“职场边界防御（Boundary Defense）”，拒绝被情感绑架或隐性剥削，表现出高度的自我保全意识。</div>`;
+            }
+            // 拦截题目：同门发了远超你的顶刊？(选了: 纯粹为领域突破高兴)
+            if (qText.includes("同门在你细分领域发表") && ansVal === 1) {
+                zeroJealousyHtml = `<div style="margin-top: 10px; padding: 10px 14px; background: #fdfdfd; border-left: 3px solid #343a40; font-size: 13px; color: #495057;"><strong>[关键行为观测点]</strong> 面对近距离的同辈压制性产出，您的“相对剥夺感（Relative Deprivation）”趋近于零。这表明您的学术评价坐标系是绝对内向锚定的，免于被学术圈内剧烈的“同侪竞争（Peer Competition）”引发焦虑反噬。</div>`;
+            }
+            // 拦截题目：回首半年失败实验？(选了: 客观阴性数据/毫无精神内耗)
+            if (qText.includes("半年却无可挽回走向失败") && ansVal === 1) {
+                sunkCostHtml = `<div style="margin-top: 10px; padding: 10px 14px; background: #f4fbf8; border-left: 3px solid #28a745; font-size: 13px; color: #343a40;"><strong>[关键行为观测点]</strong> 在处理重大时间损失时，您展现出临床级别的“沉没成本豁免（Sunk Cost Immunity）”。您不因过去投入的心血而产生非理性的执念，能够像冷血的交易员一样迅速清算亏损并翻篇。这是高级决策者才具备的止损特质。</div>`;
+            }
+        }
+
+        intro = `
+        <div style="background: #ffffff; border: 1px solid #e9ecef; padding: 24px; border-radius: 12px; margin-bottom: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.02);">
+            <p style="font-size: 18px; margin-bottom: 12px; color: #212529; font-weight: 700; border-bottom: 1px solid #f1f3f5; padding-bottom: 10px;">综合适性评估报告：Type-E 具备绝对边界的系统破局者</p>
+            <p style="font-size: 15px; line-height: 1.8; margin-bottom: 12px; color: #495057; text-align: justify;">在本次结构化适性检测中，系统对您的自我认知维度与组织规训抗压能力进行了逆向扫描。在当前高度依赖服从性测试和规训化的学术体制中，您呈现出了极度“反直觉”的高阶独立状态。系统判定您的特征模型符合<strong>【具备绝对边界的系统破局者 / The Brave Awakener】</strong>。</p>
+            <p style="font-size: 15px; line-height: 1.8; color: #495057; text-align: justify;">评估结果表明，您拥有整个量表中最坚硬的自我价值内核。传统的评价体系会将退学或转行视为“被淘汰的失败者”，但算法捕捉到了您行为底层的傲慢与清醒：<strong>您不是被系统淘汰了，而是您在对系统进行ROI（投入产出比）评估后，单方面解雇了这个荒谬的系统。</strong> 面临无意义的流水线实验和学术八股文，您表现出居高临下的冷眼旁观。这种基于高度自我觉醒的“止损能力”，是比盲目坚持更为稀缺的生存智慧。</p>
+        </div>
+        `;
+        
+        // 自我解绑 (E) - E类的绝对统治区
+        dims += `<li style="margin-bottom: 20px;"><strong>自我解绑与边界防御 (核心护城河)</strong>：`;
+        if(s100.E >= 80) {
+            dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
+            <strong>[评估：绝对的认知去耦合]</strong> 您穿戴着最高级别的精神防弹衣。无论外界（导师、审稿人、同门）给予何种尖锐的否定或倾轧，都无法穿透您的客体化防线。您将“科研受挫”等同于“游戏通关失败”，能够瞬间切断情绪联结，对PUA完全免疫。<br>
+            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
+                <strong></strong>你是真正意义上的“人间清醒”。导师如果试图对你发火或画大饼，在你眼里就像是一个低级NPC在念设定好的台词。你内心毫无波澜，甚至有点想笑。你极其清楚自己的斤两，也绝不允许任何人用几篇论文的拒稿信来定义你作为一个人的价值。
+            </div>
+            ${decouplingHtml}
+            ${zeroJealousyHtml}
+            </div></li>`;
+        } else {
+            dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
+            <strong>[评估：强效的自我保全机制]</strong> 虽然偶尔会受到外界负面评价的扰动，但您的自愈与切割速度极快。在经历短暂的挫败感后，您总能迅速意识到这套评价体系的局限性，并及时将自我认同感抽离出学术评价的泥潭。<br>
+            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
+                <strong></strong>你虽然也会因为被批或者实验失败而难过一小会儿，但你的“回血”速度惊人。睡一觉之后，你就会想通：“这破课题做不出就做不出呗，大不了我不干了，老子/老娘去干别的照样能活”。这种“大不了就掀桌子”的底气，让你免于像D类那样陷入无尽的抑郁死循环。
+            </div></div></li>`;
+        }
+        
+        // 规则顺应 (C) - 细分其反抗模式
+        dims += `<li style="margin-bottom: 20px;"><strong>规则顺应与反规训特征 (制度抗拒模式)</strong>：`;
+        if(s100.C <= 30) {
+            dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
+            <strong>[评估：激进的制度对抗者]</strong> 您的骨子里流淌着反叛的血液。对于学术界的潜规则（如抢夺一作、数据修饰、迎合热点），您表现出不可调和的零容忍。您不仅拒绝执行，甚至可能在公开场合作出激烈的对抗性反击。<br>
+            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
+                <strong></strong>你是个点火就着的“火药桶”。如果导师敢强行剥夺你的研究成果，或者逼你做违反学术道德底线的事，你绝对会毫不犹豫地跟他拍桌子，哪怕鱼死网破、直接退学也在所不惜。你把尊严和底线看得比博士学位重一万倍。
+            </div>
+            ${boundaryHtml}
+            </div></li>`;
+        } else {
+            dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
+            <strong>[评估：理性的隐性不服从（Quiet Quitting）]</strong> 您深谙对抗的成本，因此选择了更为高明的“消极防御”策略。您在表面上维持基本的体面，但通过“战略性拖延”、“最低限度交付”来抵制不合理要求，事实上已在心理上完成了退役。<br>
+            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
+                <strong></strong>你掌握了职场上最高级的“摸鱼学”。你不想跟导师吵架，但你也绝对不卷。分配给你的边缘任务，你就用最敷衍的态度“糊弄”过去。你每天准点上下班，多一分钟都不待。你在实验室里的肉身只是一具躯壳，你的灵魂早就已经在外面规划转行找工作的路线了。
+            </div></div></li>`;
+        }
+
+        // 抗挫与决策 (R / DG) - E类止损的决绝
+        dims += `<li style="margin-bottom: 20px;"><strong>抗挫韧性与沉没成本控制 (敏捷止损能力)</strong>：`;
+        if(s100.R >= 60) {
+            dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
+            <strong>[评估：冷酷的沉没成本清算者]</strong> 不需要外人同情，当您用理性的大脑计算出当前的课题方向或读博本身是一场“注定亏本的交易”时，您的斩仓动作如同华尔街操盘手般冷酷。两年甚至三年的沉没成本，在您眼里不值一提。<br>
+            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
+                <strong></strong>你的决绝令人害怕。别人退学要哭上三个月，觉得天塌了；你退学，只需要花一个下午算一笔账。发现这事儿没前途，你第二天就能极其平静地递交退学申请，然后头也不回地去互联网大厂、去考公、去创业。这种“拿得起放得下”的狠劲，是干大事的标配。
+            </div>
+            ${sunkCostHtml}
+            </div></li>`;
+        } else {
+            dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
+            <strong>[评估：带有阵痛的觉醒者]</strong> 您已经清晰地看透了体系的荒谬，并且决定离场，但在这个过程中仍会经历短暂的撕扯。您可能需要一个明确的“导火索”（如一次彻底谈崩的组会）来作为推动自己迈出最后一步的催化剂。<br>
+            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
+                <strong></strong>你其实早就想走人了，辞职信（退学申请）都在草稿箱里存了半年。你只是在等一个契机，或者说在等自己攒够最后的失望。只要再发生哪怕一件恶心人的小事，你就会顺理成章地爆发，甩手走人，从此海阔天空。
+            </div></div></li>`;
+        }
+        
+        // 动机纯度 (M) - 决定其离开后的去向
+        dims += `<li style="margin-bottom: 20px;"><strong>动机纯度与去向预测 (退场动机分类)</strong>：`;
+        if(s100.M >= 60) {
+            dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
+            <strong>[评估：逆向献祭的纯粹主义者]</strong> 这是一个极其悲壮的数据组合。您并不讨厌科研，您甚至是深爱着真理的。别人以为您吃不了科研的苦，只有算法知道，您是痛恨这套将科学异化为KPI的体制。您的离场，恰恰是为了保护您内心学术贞操的“逆向献祭”。<br>
+            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
+                <strong></strong>你就像个不愿同流合污的侠客。你退学不是因为你笨，而是因为你觉得这帮人“不配”。你离开象牙塔后，极大概率会去硬核科技企业（如华为、大疆）、顶尖风投或开源社区。在那里，你依然在做研发，只是你换了一个更干净、更凭本事说话的江湖。
+            </div></div></li>`;
+        } else {
+            dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
+            <strong>[评估：祛魅后的极度现实主义]</strong> 在看透了学术圈底层并不高尚的运作逻辑，并认清博士学历变现能力的断崖式下跌后，您果断抛弃了虚无的光环。您的退场纯粹是基于对更高世俗成就与生活质量的现实追求。<br>
+            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
+                <strong></strong>“既然发不出大文章，毕业去个破二本拿五六千的工资，我在这卷个什么劲？”这是你最真实的内心独白。你把账算得门儿清，立刻转向。去考选调生、去金融圈、甚至去搞自媒体搞钱。你彻底脱下了名为“科研”的孔乙己长衫，跑得比谁都快。
+            </div></div></li>`;
+        }
+
+        // 结构化风险预测与干预策略 (给E类的退场战术指南)
+        let crisisContent = '', adviceContent = '';
+        if(s100.C <= 30) { // 极端抵触，容易鱼死网破
+            crisisContent = `
+                <p style="margin-bottom: 8px;"><strong>风险预测：硬着陆与报复性系统倾轧 (Hard Landing Risk)</strong></p>
+                <p>由于您刚烈的底线和极度欠缺的妥协性，在诸如开题、中期或退学谈判等关键节点，您极大概率会与逼迫您迎合规则的权威（导师/学院）爆发正面且惨烈的冲突。您可能会采取“鱼死网破”的极端手段。尽管您在精神上是自由的，但体制的报复性倾轧（如卡住硕士学位、拖延档案转移）将给您的硬着陆带来巨大的行政阻力。</p>
+            `;
+            adviceContent = `
+                <p style="margin-bottom: 8px;"><strong>干预策略：实施“敏捷退场”与马基雅维利式止损 (Agile Exit Strategy)</strong></p>
+                <p>1. <strong>切忌与泥潭里的猪摔跤：</strong> 既然已经决定解雇这个系统，就不要再试图在这个系统里“伸张正义”或“证明自己是对的”。在离场前，收起您的锋芒，演好最后一场戏。用最温和甚至示弱的理由（如身体抱恙、家庭原因）办理退学，最大程度降低行政阻力，拿回该拿的档案或硕士学位。去广阔的真实世界里再发力。</p>
+            `;
+            crisis = mkCrisis('风险预警 (Risk Assessment)', crisisContent);
+            advice = mkRule('干预策略 (Intervention Strategy)', adviceContent);
+            
+        } else if (s100.M >= 60) { // 有学术理想的E类
+            crisisContent = `
+                <p style="margin-bottom: 8px;"><strong>风险预测：理想主义者的“放逐综合征” (Ideological Disillusionment)</strong></p>
+                <p>虽然您主动离开了这个病态的体制，但在夜深人静时，您可能仍会产生一种“被放逐”的遗憾。您热爱真理，却无法在象牙塔内找到容身之所。这种对于“科学共同体”的深度幻灭，可能会让您在步入社会后，对其他行业的组织愿景也产生长期的不信任与虚无感。</p>
+            `;
+            adviceContent = `
+                <p style="margin-bottom: 8px;"><strong>干预策略：重塑战场与生态位迁移 (Ecological Niche Shift)</strong></p>
+                <p>1. <strong>打破知识垄断的刻板印象：</strong> 请立刻更新您的认知：高校和研究所早就不再垄断前沿科学了！去业界最顶尖的R&D部门（如DeepMind、OpenAI、华为2012实验室），去拥抱开源社区。在那里，评价标准不是狗屁不通的影响因子，而是实打实的代码、产品和改变世界的效率。您不是放弃了科研，您只是换了一把更先进的武器。</p>
+            `;
+            crisis = mkCrisis('风险预警 (Risk Assessment)', crisisContent);
+            advice = mkRule('干预策略 (Intervention Strategy)', adviceContent);
+            
+        } else {
+            // 最通透的，彻底挥别学术圈的E类
+            crisisContent = `
+                <p style="margin-bottom: 8px;"><strong>风险预测：极其平静的周二早晨 (The Peaceful Departure)</strong></p>
+                <p>系统预测，您不会有歇斯底里的崩溃，也不会有壮烈的誓师。您的危机根本不叫危机，只是在大脑的计算中台跑完最后一个数据、确认博士学位无法带来您想要的生活（或ROI极低）后，在某个极其平静的周二早晨，您合上电脑，写下退学申请，然后极其自然地走入社会的洪流中。</p>
+            `;
+            adviceContent = `
+                <p style="margin-bottom: 8px;"><strong>干预策略：永远不要怀疑您的感知力 (Validate Your Intuition)</strong></p>
+                <p>1. <strong>庆祝您的觉醒：</strong> 在这个充满了规训、PUA和沉没成本绑架的学术圈里，能清醒地意识到“这不适合我”并果断抽身，是极少数顶级聪明人才能做到的事。不要听信那些“你就是抗压能力弱”的闲言碎语。相信您的直觉，您没病，是环境病了。带着这具没有被彻底异化的躯壳和灵魂，去广阔天地里大展拳脚吧。祝您前程似锦。</p>
+            `;
+            crisis = mkCrisis('风险预警 (Risk Assessment)', crisisContent);
+            advice = mkRule('干预策略 (Intervention Strategy)', adviceContent);
+        }
+    }
+
+    html += `<div class="section-title">🔍 核心溯源诊断</div><div class="report-p">${intro}</div>`;
+    html += `<div class="section-title">📊 六维潜能底层拆解</div><ul class="dim-list">${dims}</ul>`;
+    html += `<div class="section-title">⏳ 破局沙盘推演</div>${crisis}`;
+    html += `<div class="section-title">💡 专属生存法则</div>${advice}`;
+    
+    return html;
+}
+
+/* ================= 绘图与工具 ================= */
+function setupCanvas(id, w, h) {
+    const c = document.getElementById(id);
+    const ctx = c.getContext('2d');
+    const dpr = window.devicePixelRatio || 1;
+    c.style.width = w + 'px'; c.style.height = h + 'px';
+    c.width = w * dpr; c.height = h * dpr;
+    ctx.scale(dpr, dpr);
+    return ctx;
+}
+
+// 绘制半圆压力表
+function drawGauge(score) {
+    const ctx = setupCanvas('gaugeChart', 240, 140);
+    const cx = 120, cy = 120, r = 100;
+    ctx.clearRect(0, 0, 240, 140);
+    
+    // 背景环
+    ctx.beginPath();
+    ctx.arc(cx, cy, r, Math.PI, 2 * Math.PI);
+    ctx.lineWidth = 16;
+    ctx.strokeStyle = '#f0f0f0';
+    ctx.lineCap = 'round';
+    ctx.stroke();
+
+    // 确定颜色梯队
+    let color = '#2ed573'; // 默认高分绿色
+    if (score < 50) color = '#ff4757'; // 低分红色
+    else if (score < 80) color = '#ffa502'; // 中等橙色
+
+    // 数值环
+    const endAngle = Math.PI + (score / 100) * Math.PI;
+    ctx.beginPath();
+    ctx.arc(cx, cy, r, Math.PI, endAngle);
+    ctx.lineWidth = 16;
+    ctx.strokeStyle = color;
+    ctx.lineCap = 'round';
+    ctx.stroke();
+
+    // 绘制中心文字
+    ctx.fillStyle = color;
+    ctx.font = '900 42px -apple-system, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText(score + '%', cx, cy - 15);
+
+    ctx.fillStyle = '#777';
+    ctx.font = '800 13px sans-serif';
+    ctx.fillText('适性指数预估', cx, cy + 12);
+}
+
+// 绘制雷达图
+function drawRadar(s100) {
+    const ctx = setupCanvas('radarChart', 280, 280);
+    const keys = ['M', 'R', 'C', 'Col', 'DG', 'E'];
+    const labels = ['动机', '抗挫', '顺应', '社交', '延滞', '解绑'];
+    const cx=140, cy=140, r=90, sides=6;
+    
+    // 背景网格
+    for(let i=1; i<=4; i++){ 
+        ctx.beginPath(); 
+        for(let j=0; j<sides; j++){ 
+            let a=(Math.PI*2/sides)*j-Math.PI/2; 
+            let rad = (r/4)*i;
+            if(j==0) ctx.moveTo(cx+Math.cos(a)*rad, cy+Math.sin(a)*rad);
+            else ctx.lineTo(cx+Math.cos(a)*rad, cy+Math.sin(a)*rad); 
+        } 
+        ctx.closePath(); ctx.strokeStyle='#e2e8f0'; ctx.stroke(); 
+    }
+    
+    // 数据多边形
+    ctx.beginPath(); 
+    keys.forEach((k,i)=>{ 
+        let ratio = s100[k] / 100;
+        let displayRatio = 0.15 + (ratio * 0.85);
+        let a=(Math.PI*2/sides)*i-Math.PI/2; 
+        let px = cx+Math.cos(a)*r*displayRatio;
+        let py = cy+Math.sin(a)*r*displayRatio;
+        if(i==0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+    });
+    ctx.closePath(); 
+    ctx.fillStyle='rgba(255, 107, 129, 0.25)'; ctx.fill(); 
+    ctx.strokeStyle='#ff6b81'; ctx.lineWidth=2.5; ctx.stroke();
+    
+    // 画布标签
+    ctx.fillStyle='#555'; ctx.font='bold 13px sans-serif'; ctx.textAlign='center'; ctx.textBaseline='middle';
+    labels.forEach((l,i)=>{ 
+        let a=(Math.PI*2/sides)*i-Math.PI/2; 
+        ctx.fillText(l, cx+Math.cos(a)*(r+25), cy+Math.sin(a)*(r+25)); 
+    });
+}
+</script>
+
+<!-- 
+  =======================================================
+  🔒 网页防伪提示锁 (米大师定制版) - 移动端完美适配版
+  使用说明：
+  1. 修改 MAX_USES 为限制的次数（默认6次）。
+  2. 将代码粘贴到网页文件的 </body> 标签之前。
+  =======================================================
+-->
+
+<style>
+    /* 锁屏界面样式 */
+    #gate-modal {
+        position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+        background: #ffffff;
+        z-index: 2147483647;
+        display: flex; flex-direction: column; 
+        /* 【修复 1】移除 justify-content: center; 改为允许垂直滚动 */
+        overflow-y: auto; 
+        padding: 40px 20px; /* 增加上下 padding 防止贴边 */
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+        transition: opacity 0.5s;
+    }
+    
+    .gate-card {
+        background: #fff; width: 100%; max-width: 340px; padding: 40px 30px;
+        border-radius: 24px; 
+        box-shadow: 0 15px 50px rgba(0,0,0,0.08); text-align: center;
+        border: 1px solid #fff5f7; 
+        /* 【修复 2】使用 margin: auto 进行安全的垂直居中。屏幕太小时会自动顶对齐并允许滚动 */
+        margin: auto;
+        position: relative;
+        overflow: hidden;
+        /* 【修复 3】严格控制盒模型，防止 padding 撑破容器 */
+        box-sizing: border-box; 
+    }
+    
+    /* 视图切换容器 */
+    .view-container {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        animation: fadeIn 0.4s ease;
+        width: 100%;
+    }
+    .view-container.active {
+        display: flex;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* 头像样式 */
+    .avatar-wrapper {
+        width: 80px; height: 80px;
+        background: #ffe6eb; 
+        border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        margin: 0 auto 12px;
+        font-size: 42px;
+        border: 3px solid #fff;
+        box-shadow: 0 4px 15px rgba(255, 36, 66, 0.15);
+    }
+
+    .brand-tag {
+        display: inline-block;
+        background: #f8f8f8;
+        color: #999;
+        font-size: 11px;
+        padding: 4px 12px;
+        border-radius: 20px;
+        margin-bottom: 20px;
+        letter-spacing: 0.5px;
+    }
+    
+    .gate-title { font-size: 20px; font-weight: 800; color: #333; margin-bottom: 12px; line-height: 1.4; }
+    
+    .gate-desc { 
+        font-size: 14px; color: #666; margin-bottom: 25px; 
+        line-height: 1.6; 
+    }
+
+    /* 按钮样式 */
+    .action-btn {
+        width: 100%; padding: 15px; border-radius: 50px; 
+        font-size: 15px; font-weight: bold; cursor: pointer; 
+        transition: all 0.2s; margin-bottom: 12px;
+        border: none; outline: none;
+        /* 【修复 4】确保按钮自身尺寸计算包含 padding */
+        box-sizing: border-box;
+        display: flex; align-items: center; justify-content: center; flex-wrap: wrap;
+        line-height: 1.4;
+    }
+    .action-btn:active { transform: scale(0.98); }
+
+    .btn-primary {
+        background: linear-gradient(90deg, #ff2442, #ff5e75);
+        color: white; 
+        box-shadow: 0 4px 15px rgba(255, 36, 66, 0.3);
+    }
+    .btn-secondary {
+        background: #f5f5f5;
+        color: #666;
+    }
+    .btn-secondary:hover { background: #eeeeee; }
+
+    .gate-err { 
+        color: #ff2442; font-size: 13px; margin-top: 5px; height: 18px; 
+        opacity: 0; transition: opacity 0.3s; font-weight: 600; 
+    }
+    
+    .loading-layer {
+        position: absolute; top:0; left:0; right:0; bottom:0; background:rgba(255,255,255,0.98);
+        display: none; flex-direction: column;
+        align-items: center; justify-content: center; z-index: 10;
+    }
+    .spinner {
+        width: 32px; height: 32px; border: 3px solid #ffe6eb;
+        border-top: 3px solid #ff2442; border-radius: 50%;
+        animation: spin 1s linear infinite; margin-bottom: 15px;
+    }
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+</style>
+
+<div id="gate-modal">
+    <div class="gate-card" id="main-card">
+        
+        <!-- ================= 视图1：防伪提问 ================= -->
+        <div class="view-container active" id="view-question">
+            <div class="avatar-wrapper" style="background: #f0f7ff; box-shadow: 0 4px 15px rgba(36, 131, 255, 0.15);">🐱</div>
+            <div class="gate-title">温馨提示</div>
+            <div class="gate-desc" style="color: #333; font-weight: 500;">
+                为了保障您的体验<br>请问您购买本测试的店铺是<br><span style="color:#ff2442; font-weight:bold; font-size:16px;">“心理米大师的店”</span> 吗？
+            </div>
+            
+            <button class="action-btn btn-primary" onclick="switchView('view-cover')">
+                对，确认无误，就是<span style="font-size: 18px; font-weight: 900; color: #ffe895; text-shadow: 0 1px 3px rgba(0,0,0,0.2); margin-left: 4px;">心理米大师</span>
+            </button>
+            <button class="action-btn btn-secondary" onclick="switchView('view-warning')">
+                好像不是，可能是别的店铺
+            </button>
+        </div>
+
+        <!-- ================= 视图2：正版欢迎页 ================= -->
+        <div class="view-container" id="view-cover">
+            <div class="avatar-wrapper">😻</div>
+            <div class="gate-title">米大师的私密测试空间</div>
+            <div class="brand-tag">@心理米大师 · 专注高质量心理测试</div>
+            
+            <div class="gate-desc">
+                Hi 宝子 👋<br>
+                <strong style="color:#ff2442;">请认准心理米大师</strong><br>
+                小店所有测试都是本人亲自制作<br>
+                欢迎宝子们进店选购 ✨
+            </div>
+            
+            <button class="action-btn btn-primary" onclick="unlockPage()">✨ 开启专属测试 ✨</button>
+            <div class="gate-err" id="gate-msg"></div>
+            
+            <!-- 剩余次数提示 -->
+            <div style="margin-top:10px; font-size:11px; color:#bbb;" id="limit-hint"></div>
+        </div>
+
+        <!-- ================= 视图3：盗版提示页 ================= -->
+        <div class="view-container" id="view-warning">
+            <div class="avatar-wrapper" style="background: #fff0f0;">😿</div>
+            <div class="gate-title">好像遇到盗版了...</div>
+            
+            <div class="gate-desc" style="text-align: left;">
+                麻烦宝子仔细确认一下，如果店铺名称确实不叫<strong style="color:#ff2442;">心理米大师</strong>，麻烦您帮我举报一下哦！<br><br>
+                如果可以私信告诉我，那就更好啦，非常感谢你的支持和正义感 ❤️
+            </div>
+            
+            <button class="action-btn btn-secondary" onclick="switchView('view-question')">返回重新选择</button>
+        </div>
+
+        <!-- 动画层 -->
+        <div class="loading-layer" id="load-layer">
+            <div class="spinner"></div>
+            <div style="font-size:13px; color:#333; font-weight:bold;" id="load-text">正在加载...</div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    // ================= 配置区域 =================
+    const MAX_USES = 6;                // 同一台设备限制的次数
+    // ==========================================
+
+    const pageId = window.location.pathname; // 区分不同页面的缓存
+    const usageKey = 'usage_count_' + pageId; // 本地存储Key
+
+    // 1. 检查Session（本次会话是否已解锁）
+    if (sessionStorage.getItem('unlocked_' + pageId)) {
+        document.getElementById('gate-modal').style.display = 'none';
+    }
+
+    // 2. 初始化显示剩余次数
+    function updateLimitUI() {
+        let currentUsage = parseInt(localStorage.getItem(usageKey) || '0');
+        let remaining = Math.max(0, MAX_USES - currentUsage);
+        document.getElementById('limit-hint').innerText = `本设备剩余可用次数：${remaining}次`;
+    }
+    updateLimitUI();
+
+    // 3. 切换视图功能
+    function switchView(viewId) {
+        document.querySelectorAll('.view-container').forEach(el => el.classList.remove('active'));
+        document.getElementById(viewId).classList.add('active');
+    }
+
+    // 4. 解锁页面功能
+    function unlockPage() {
+        const msg = document.getElementById('gate-msg');
+        let usedCount = parseInt(localStorage.getItem(usageKey) || '0');
+        
+        // 检查次数
+        if (usedCount >= MAX_USES) {
+            msg.innerText = `宝子，本设备的测试次数已用完啦 (${MAX_USES}/${MAX_USES})`;
+            msg.style.opacity = 1;
+            shakeCard();
+            return;
+        }
+
+        // --- 验证通过 ---
+        msg.style.opacity = 0;
+        
+        // 1. 扣除次数
+        localStorage.setItem(usageKey, usedCount + 1);
+        
+        // 2. 播放动画
+        document.getElementById('load-layer').style.display = 'flex';
+        const txt = document.getElementById('load-text');
+        
+        setTimeout(() => { txt.innerText = "正在加载专属报告..."; }, 800);
+        setTimeout(() => { 
+            let left = MAX_USES - (usedCount + 1);
+            txt.innerText = `加载成功！(剩余${left}次)`; 
+            txt.style.color = "#ff2442"; 
+        }, 1500);
+        
+        // 3. 解锁页面
+        setTimeout(() => {
+            sessionStorage.setItem('unlocked_' + pageId, 'true');
+            document.getElementById('gate-modal').style.opacity = 0;
+            setTimeout(() => { 
+                document.getElementById('gate-modal').style.display = 'none'; 
+            }, 500);
+        }, 2500);
+    }
+
+    // 震动动画
+    function shakeCard() {
+        const card = document.getElementById('main-card');
+        card.style.animation = 'shake 0.3s';
+        setTimeout(() => { card.style.animation = ''; }, 300);
+    }
+</script>
+</body>
+</html>
