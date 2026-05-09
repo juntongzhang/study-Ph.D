@@ -194,8 +194,8 @@
     <!-- 4. Loading -->
     <div id="page-loading" style="display:none; height:100vh; flex-direction:column; justify-content:center; align-items:center; text-align:center;">
         <div style="width:50px; height:50px; border:5px solid #fff0f5; border-top:5px solid var(--primary-dark); border-radius:50%; animation:spin 1s linear infinite;"></div>
-        <h3 style="margin-top:24px; font-weight:800; font-size: 18px;">正在通过算法白盒推演...</h3>
-        <p style="color:#888; font-size:14px; line-height:1.8; margin-top:10px;">计算抗挫折复原常数...<br>生成五年破局沙盘...</p>
+        <h3 style="margin-top:24px; font-weight:800; font-size: 18px;">正在通过算法推演...</h3>
+        <p style="color:#888; font-size:14px; line-height:1.8; margin-top:10px;">评估各维度特征数据...<br>生成中长期学术生存模型...</p>
     </div>
 
     <!-- 5. 结果页 (重构排版) -->
@@ -227,7 +227,7 @@
             
             <!-- 互动按钮区 -->
             <button class="btn" id="btn-unlock" onclick="toggleReport()" style="margin-bottom: 10px;">
-                <span>🔓 解锁千字深度定制报告</span>
+                <span>🔓 解锁详细学术侧写报告</span>
             </button>
             <button class="btn-outline" onclick="location.reload()">重新测试</button>
 
@@ -481,15 +481,15 @@ function finishTest() {
     let typeData = {};
 
     if (M >= 65 && R >= 60) {
-        typeData = { t: 'A', name: '天选学术圣体', sub: 'The Born Researcher' };
+        typeData = { t: 'A', name: '高度内源驱动型研究者', sub: 'The Intrinsic Researcher' };
     } else if (C >= 65 && Col >= 60 && M <= 60) {
-        typeData = { t: 'B', name: '变现天才/学术商人', sub: 'The Pragmatic Entrepreneur' };
+        typeData = { t: 'B', name: '高度实用主义与资源整合者', sub: 'The Pragmatic Adapter' };
     } else if (C >= 60 && DG >= 60) {
-        typeData = { t: 'C', name: '靠谱专家/建制赢家', sub: 'The Steady Professional' };
+        typeData = { t: 'C', name: '高度尽责的建制中坚', sub: 'The Steady Professional' };
     } else if (E >= 65 && C <= 55) {
-        typeData = { t: 'E', name: '清醒的止损勇者', sub: 'The Brave Awakener' };
+        typeData = { t: 'E', name: '具备绝对边界的系统审视者', sub: 'The Independent Observer' };
     } else {
-        typeData = { t: 'D', name: '学术苦修者', sub: 'The Silent Grinder' };
+        typeData = { t: 'D', name: '处于结构性困境的承压者', sub: 'The Resilient Endurer' };
     }
 
     setTimeout(() => {
@@ -517,22 +517,22 @@ function finishTest() {
     }, 2500);
 }
 
-// 渲染短评与关键词
+// 渲染短评与关键词 (全面应用了朴实深刻的学术表达)
 function renderSummaryUI(typeStr) {
     const kws = {
-        'A': ['知识极客', '精神防弹衣', '长线主义', '内驱力满格'],
-        'B': ['现实主义', '资源整合', 'ROI导向', '向下兼容'],
-        'C': ['定海神针', '建制执行者', '契约精神', '高度服从'],
-        'D': ['学术苦修', '钝感力', '意义危机', '坚韧拉扯'],
-        'E': ['破局者', '拒绝内耗', '止损狂人', '人间清醒']
+        'A': ['纯粹求知', '评价免疫', '长程视野', '内源驱动'],
+        'B': ['务实主义', '资源统筹', '效用导向', '现实适应'],
+        'C': ['中坚力量', '秩序维护者', '契约意识', '规范顺应'],
+        'D': ['承压前行', '意义探寻', '结构性困境', '理想与现实的张力'],
+        'E': ['边界清晰', '自我保全', '理性抽离', '独立反思']
     };
     
     const evals = {
-        'A': '<strong>短评：你是为学术而生的稀有物种。</strong><br>建议：保护好你的深度工作时间，寻找能为你遮风挡雨的庇护型导师，警惕被繁杂的行政杂活吸血。',
-        'B': '<strong>短评：你把读博当成了一场极高ROI的商业游戏。</strong><br>建议：警惕虚荣心反噬，降维变现你的能力，但务必守住学术诚信的绝对底线。',
-        'C': '<strong>短评：你是导师最爱的、能支撑团队运转的靠谱基石。</strong><br>建议：学会战略性拒绝，不要沦为免费劳动力。保留一块属于自己的精神自留地。',
-        'D': '<strong>短评：你在内卷与理想间痛苦拉扯，全靠惯性硬抗。</strong><br>建议：接受平庸，完成大于完美！用客体化视角将科研“NPC化”，首要任务是保障身心健康。',
-        'E': '<strong>短评：你拥有极高的自我意识，绝不向荒谬将就。</strong><br>建议：把退学或转行当成敏捷开发，相信自己的感知力，别在有病的系统里耗死。'
+        'A': '<strong>短评：您对知识本身的纯粹好奇构成了从事研究的坚实基础。</strong><br>建议：在日常中注重维护专注且连续的思考时间。在选择指导者时，宜优先考虑能够为您提供学术自主空间与基础保障的学者，避免过多参与与核心研究无关的常规性事务。',
+        'B': '<strong>短评：您具备高度的现实感，能够敏锐察觉并适应学术体系的评价标准。</strong><br>建议：在合理运用规则以实现职业发展的同时，应审慎评估工具理性可能带来的长远风险，在追求学术成就时始终坚守基本的研究伦理底线。',
+        'C': '<strong>短评：您具有出色的责任感与执行力，是维持研究团队稳定运转的重要依靠。</strong><br>建议：在承担集体任务时，需要学会在适当的时机确立个人的专业边界。合理分配精力，确保留有足够的时间与心智资源用于推进自身的独立研究计划。',
+        'D': '<strong>短评：您在理想追求与现实压力之间承受着较大的心理张力，依靠坚韧的意志力维持前行。</strong><br>建议：尝试适度降低对学术完美的过度期待，将研究工作视为阶段性的探索而非个人价值的唯一标尺。在现阶段，维护身心健康应被置于首要的战略位置。',
+        'E': '<strong>短评：您具备清晰的自我意识与主体性，能够理性且客观地审视外在评价体系的合理性。</strong><br>建议：将当下的困境视为职业探索的重要环节。请相信您对自身状况的真实感知，在必要时主动调整轨道，寻找更契合个人发展理念的环境，同样是一种积极而负责的选择。'
     };
 
     let kwHtml = '';
@@ -542,10 +542,10 @@ function renderSummaryUI(typeStr) {
     document.getElementById('res-short-eval').innerHTML = evals[typeStr];
 }
 
-// 渲染科学计算过程
+// 渲染科学计算过程 (去除花哨的表述，采用更为规范严谨的文案)
 function renderCalculation(s100, finalScore) {
-    let calcStr = `<div style="margin-bottom:10px; color:#fff; font-size:14px;"><strong>⚙️ 适性指数计算引擎</strong></div>`;
-    calcStr += `∑ (核心维数得分 × 环境权重系数)<br><br>`;
+    let calcStr = `<div style="margin-bottom:10px; color:#fff; font-size:14px;"><strong>⚙️ 适性指数计算框架</strong></div>`;
+    calcStr += `综合评估基于核心维度得分与环境权重系数的加权计算<br><br>`;
     calcStr += `<span class="white">抗挫(R)</span> \u00A0${s100.R.toString().padStart(3,' ')} × 25% = ${(s100.R*0.25).toFixed(1)}<br>`;
     calcStr += `<span class="white">顺应(C)</span> \u00A0${s100.C.toString().padStart(3,' ')} × 20% = ${(s100.C*0.20).toFixed(1)}<br>`;
     calcStr += `<span class="white">延滞(DG)</span> ${s100.DG.toString().padStart(3,' ')} × 20% = ${(s100.DG*0.20).toFixed(1)}<br>`;
@@ -553,7 +553,7 @@ function renderCalculation(s100, finalScore) {
     calcStr += `<span class="white">社交(Col)</span> ${s100.Col.toString().padStart(3,' ')} × 10% = ${(s100.Col*0.10).toFixed(1)}<br>`;
     calcStr += `<span class="white">动机(M)</span> \u00A0${s100.M.toString().padStart(3,' ')} × 10% = ${(s100.M*0.10).toFixed(1)}<br>`;
     calcStr += `<div style="margin-top:12px; border-top:1px dashed #666; padding-top:12px; font-size:14px;">`;
-    calcStr += `<span class="white">预估生存率</span> = <span style="color:var(--primary-dark); font-size:18px; font-weight:bold;">${finalScore}%</span></div>`;
+    calcStr += `<span class="white">预估适应指数</span> = <span style="color:var(--primary-dark); font-size:18px; font-weight:bold;">${finalScore}%</span></div>`;
     
     document.getElementById('res-calc').innerHTML = calcStr;
 }
@@ -563,7 +563,7 @@ function toggleReport() {
     const btn = document.getElementById('btn-unlock');
     if(container.style.display === 'block') {
         container.style.display = 'none';
-        btn.innerHTML = '<span>🔓 解锁千字深度定制报告</span>';
+        btn.innerHTML = '<span>🔓 解锁详细学术侧写报告</span>';
     } else {
         container.style.display = 'block';
         btn.innerHTML = '<span>收起报告</span>';
@@ -573,14 +573,14 @@ function toggleReport() {
     }
 }
 
-/* ================= 动态千字报告生成引擎 ================= */
+/* ================= 动态详细报告生成引擎 (去除非学术表述，采用人文社科学者视角重写) ================= */
 function buildDynamicReport(typeStr, s100) {
     let html = `
         <div class="report-header">
-            <strong>【专属学术侧写档案】</strong><br>
-            📍 领域坐标：<span>${userInfo.major}</span><br>
-            ⏳ 生存阶段：<span>${userInfo.status}</span><br>
-            🎯 潜意识动机：<span>${userInfo.motivation}</span>
+            <strong>【专属学术特征侧写】</strong><br>
+            📍 领域属性：<span>${userInfo.major}</span><br>
+            ⏳ 阶段定位：<span>${userInfo.status}</span><br>
+            🎯 核心动机：<span>${userInfo.motivation}</span>
         </div>
     `;
 
@@ -590,8 +590,7 @@ function buildDynamicReport(typeStr, s100) {
     const mkCrisis = (title, text) => `<div class="crisis-box"><h5>💥 ${title}</h5><p style="margin:0;font-size:14px;">${text}</p></div>`;
     const mkRule = (title, text) => `<div class="rule-box"><h5>🛡️ ${title}</h5><p style="margin:0;font-size:14px;">${text}</p></div>`;
 
- if(typeStr === 'A') {
-        // [动态拦截器] 扫描用户的历史轨迹，提取关键行为锚点进行深度学术侧写
+    if(typeStr === 'A') {
         let pureMotivHtml = "";
         let aiEmbraceHtml = "";
         let coldRejectHtml = "";
@@ -602,150 +601,122 @@ function buildDynamicReport(typeStr, s100) {
             let ansVal = userAnswers[i] ? userAnswers[i].val : null;
 
             if (qText.includes("不再与教职") && ansVal === 1) {
-                pureMotivHtml = `<div style="margin-top: 10px; padding: 10px 14px; background: #fafafa; border-left: 3px solid #6c757d; font-size: 13px; color: #495057;"><strong>[关键行为观测点]</strong> 在假设剥离“教职、薪酬”等溢价的极端压力下，您依然坚持深造。心理测量学表明，您的科研行为受“特质性内在动机”驱动，较少受制于外在功利诱导。</div>`;
+                pureMotivHtml = `<div style="margin-top: 10px; padding: 10px 14px; background: #fafafa; border-left: 3px solid #6c757d; font-size: 13px; color: #495057;"><strong>[关键行为观测点]</strong> 在假设剥离职业地位与薪酬回报等外在附加价值的情境下，您依然坚持探索。研究表明，您的行为主要受内在特质性动机驱动，较少受到外在功利目标的左右。这种纯粹性构成了您抵御长期研究枯燥感的重要心理资产。</div>`;
             }
             if (qText.includes("AI工具") && ansVal === 1) {
-                aiEmbraceHtml = `<div style="margin-top: 10px; padding: 10px 14px; background: #f8f9fa; border-left: 3px solid #4a90e2; font-size: 13px; color: #343a40;"><strong>[关键行为观测点]</strong> 面对AI对基础劳作的替代风险，您表现出积极的拥抱。这反映出您对自身核心竞争力的锚定在于“范式创新”，展现了优异的认知弹性。</div>`;
+                aiEmbraceHtml = `<div style="margin-top: 10px; padding: 10px 14px; background: #f8f9fa; border-left: 3px solid #4a90e2; font-size: 13px; color: #343a40;"><strong>[关键行为观测点]</strong> 面对新技术对基础研究工作的潜在替代，您展现出积极的接纳态度。这反映出您将核心竞争力锚定于理论层面的范式创新而非机械的重复劳动，具备优异的认知弹性与对于研究方法的开放包容性。</div>`;
             }
             if (qText.includes("深夜收到拒稿信") && ansVal === 1) {
-                coldRejectHtml = `<div style="margin-top: 10px; padding: 10px 14px; background: #fdfdfd; border-left: 3px solid #343a40; font-size: 13px; color: #495057;"><strong>[关键行为观测点]</strong> 在模拟遭受负面评价时，您的负性情绪唤起极低。这体现了成熟的“客体化”防御机制，能高效将“产物被否定”与“自我价值贬损”进行心理隔离。</div>`;
+                coldRejectHtml = `<div style="margin-top: 10px; padding: 10px 14px; background: #fdfdfd; border-left: 3px solid #343a40; font-size: 13px; color: #495057;"><strong>[关键行为观测点]</strong> 在模拟遭受严厉学术批评的情境中，您的负性情绪唤起水平较低。这体现了成熟的客体化防御机制，您能够高效地将针对研究产出的专业否定与个人的内在自我价值感进行清晰剥离，避免了不必要的心理资源损耗。</div>`;
             }
             if (qText.includes("买房买车") && ansVal === 1) {
-                wealthIgnoreHtml = `<div style="margin-top: 10px; padding: 10px 14px; background: #f4fbf8; border-left: 3px solid #28a745; font-size: 13px; color: #343a40;"><strong>[关键行为观测点]</strong> 在同辈群体财富比较测试中，您的相对剥夺感极低。说明您的“延迟折扣率”显著低于常人，具备出色的远期目标专注力。</div>`;
+                wealthIgnoreHtml = `<div style="margin-top: 10px; padding: 10px 14px; background: #f4fbf8; border-left: 3px solid #28a745; font-size: 13px; color: #343a40;"><strong>[关键行为观测点]</strong> 在同辈群体的物质生活水平比较测试中，您产生的相对剥夺感极低。这表明您的“延迟折扣率”显著低于一般群体，具备出色的远期目标专注力，能够有效抵御短期物质回报带来的心理干扰。</div>`;
             }
         }
 
         intro = `
         <div style="background: #ffffff; border: 1px solid #e9ecef; padding: 24px; border-radius: 12px; margin-bottom: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.02);">
-            <p style="font-size: 18px; margin-bottom: 12px; color: #212529; font-weight: 700; border-bottom: 1px solid #f1f3f5; padding-bottom: 10px;">综合适性评估报告：Type-A 高度内源驱动型研究者</p>
-            <p style="font-size: 15px; line-height: 1.8; margin-bottom: 12px; color: #495057; text-align: justify;">在本次结构化适性检测中，系统对您的决策偏好及行为反应模式进行了多维度量化分析。在当前高度依赖量化指标（如影响因子、项目数）的学术评价体系下，您的特征模型符合<strong>【高度内源驱动型研究者 / The Intrinsic Researcher】</strong>。</p>
-            <p style="font-size: 15px; line-height: 1.8; color: #495057; text-align: justify;">评估结果表明，相较于将博士学位作为职业跳板的常规样本，您的学术行为呈现出高度的内源性闭环特征：对未知领域的探索和逻辑自洽的追求是您的首要奖赏。这种独立于外部评价的动机结构，构成了您抵御职业倦怠与精神内耗的核心机制。</p>
+            <p style="font-size: 18px; margin-bottom: 12px; color: #212529; font-weight: 700; border-bottom: 1px solid #f1f3f5; padding-bottom: 10px;">综合适性评估：高度内源驱动型研究者</p>
+            <p style="font-size: 15px; line-height: 1.8; margin-bottom: 12px; color: #495057; text-align: justify;">在目前的结构化评估模型中，系统对您的决策偏好及行为反应模式进行了多维度分析。在当前高度依赖量化考核体系的学术环境中，您的特征倾向于<strong>【高度内源驱动型研究者】</strong>。与将学位视作单纯职业晋升通道的取向不同，您更多地受到探索未知和完善理论逻辑的内在动力驱使。</p>
+            <p style="font-size: 15px; line-height: 1.8; color: #495057; text-align: justify;">评估结果表明，您的学术活动呈现出显著的内源性闭环特征：对学术问题本身的解答即构成对您的首要奖赏。这种相对独立于外部评价指标的动机结构，能够在较长的时间维度内为您提供稳定的精神支持，是您应对职业倦怠和学术压力的核心机制保障。</p>
         </div>
         `;
         
-        dims += `<li style="margin-bottom: 20px;"><strong>动机纯度与抗挫韧性 (基石特质)</strong>：
+        dims += `<li style="margin-bottom: 20px;"><strong>动机纯度与抗挫韧性 (心理基石)</strong>：
             <div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
-            您的探索欲表现出高度自发性，并在遭遇挫折时具备卓越的心理复原力。您倾向于采用“问题解决导向”应对失败，将失败视作排除无效假设的数据点。<br>
-            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
-                <strong></strong>说白了，你读博不是纯为了混文凭。当你看到一个离谱的实验数据，别人的第一反应是“完了，毕不了业了”，你的第一反应却是“这太有意思了，到底为什么”。并且你的“心智够稳”，就算耗费半年的数据全军覆没，你也不会陷入“我是个废物”的内耗，睡一觉起来又能面无表情地继续排查Bug。这种纯粹和钝感，是别人抢不走的天赋。
-            </div>
+            相较于仅仅为了获得学历证明，您更关注研究问题本身的逻辑机制。当面对预期之外的实验数据或挫折时，您倾向于采用问题解决导向的策略，将其视为排查无效假设的必经环节。即使经历了较长时期的失败，您也较少陷入深度的自我否定，而是能够以较为客观的视角重新审视研究设计。这种纯粹的探究欲和面对挫折的平稳心态，是支撑长程研究的重要基础。<br>
             ${pureMotivHtml}
             ${coldRejectHtml}
             </div></li>`;
         
-        // 规则顺应 (C) - 三档细分
         dims += `<li style="margin-bottom: 20px;"><strong>规则顺应 (制度与环境适应性)</strong>：`;
         if(s100.C >= 65) {
             dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
-            <strong>[评估：成熟的高顺应态]</strong> 您清晰地认知到现行学术评价体系的运作逻辑，并能以较低的心理损耗完成量化考核指标。运用双轨制策略实现了学术理想与生存环境的平衡。<br>
-            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
-                <strong></strong>你非常“懂事且清醒”。你心里清楚学术圈有很多凑指标的无聊要求，但你不会像愤青一样天天抱怨。你会迅速摸清规则底线，用最少的时间炮制出一篇能交差的“水文”，然后心安理得地拿着这层护身符，去折腾自己真正感兴趣的硬核研究。你把体制玩明白了。
-            </div></div></li>`;
+            <strong>[评估特征：高度的制度顺应态]</strong> 您对现行的学术评价体系有着客观的认识，并能够在不引起过多心理反感的情况下，完成必要的考核要求。您懂得在满足制度规定的底线与追求个人学术志趣之间寻找平衡。通过有效处理那些常规性的考核任务，您为自己争取到了更多的时间与资源，去深入挖掘真正具备长远价值的研究议题。
+            </div></li>`;
         } else if(s100.C >= 40) {
             dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
-            <strong>[评估：中度妥协与动态平衡]</strong> 您在实用主义与规范完美主义之间维持着一种动态平衡。对于形式主义考核存在一定抵触，但会在现实压力下做出妥协以保障课题推进。<br>
-            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
-                <strong></strong>你处于一种“虽然不爽，但能凑合”的状态。面对导师派发的流水线任务，你内心觉得这浪费了才华；但在毕业压力下，你还是会捏着鼻子做完。你经常在“坚守学术理想”和“向毕业指标低头”之间反复横跳，偶尔会觉得心里有些拧巴和疲惫。
-            </div></div></li>`;
+            <strong>[评估特征：中度妥协与动态平衡]</strong> 您在面对一些较为机械或缺乏实质创新的考核要求时，内心会有所保留，但在现实的毕业或项目推进压力下，依然会选择适度妥协并予以完成。在坚守个人学术标准与适应现实制度框架之间，您时常需要进行自我调整，这种持续的内心权衡在一定程度上增加了您的认知与精神负担。
+            </div></li>`;
         } else {
             dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
-            <strong>[评估：显著的制度抗拒]</strong> 您在学术规范上表现出强烈的精神洁癖。对缺乏实质创新的拼凑式研究持有明确的抵触态度。这种定力保全了质量，但也极大地增加了边缘化风险。<br>
-            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
-                <strong></strong>你是个眼里揉不得沙子的“学术刺头”。要你为了发文章去迎合热点、或者修改不太漂亮的数据，简直比杀了你还难受。你极度厌恶科研中的套路。这种精神洁癖能保住你文章的质量，但在唯论文数量的现实环境下，你极容易因为“不听话”而面临被孤立甚至延毕的风险。
-            </div></div></li>`;
+            <strong>[评估特征：显著的制度抗拒倾向]</strong> 您对学术工作的严肃性有着较高的要求，难以接受为了迎合短期热点或考核指标而降低研究质量的做法。您坚持个人的学术标准并对此有着极强的信念感。这种坚持虽然有助于产出严谨的研究成果，但在目前普遍强调数量和效率的评价体系中，可能会使您面临较多的阻力，甚至在资源分配中处于相对边缘的位置。
+            </div></li>`;
         }
         
-        // 社交效能 (Col) - 三档细分
         dims += `<li style="margin-bottom: 20px;"><strong>社交效能 (学术共同体互动模式)</strong>：`;
         if(s100.Col >= 65) {
             dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
-            <strong>[评估：高维网络构建者]</strong> 具备出色的学术网络构建能力与课题组长（PI）潜质。能精准识别跨学科的合作契机，以互惠为基础调动外部资源，打破单点技术壁垒。<br>
-            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
-                <strong></strong>你是个自带“社交牛逼症”的科研苗子。你不怕在开会时跟大牛搭话，也懂得拿自己的专长去换取别人的核心技术。如果实验卡在你不擅长的地方，你会马上组局拉外援，而不是自己一个人死磕。你未来绝对有当大老板、统筹庞大课题组的潜力。
-            </div></div></li>`;
+            <strong>[评估特征：开放的学术网络构建者]</strong> 您具备良好的学术交流能力，并能敏锐地发现不同研究领域之间的合作潜能。在遇到自身难以突破的技术或理论瓶颈时，您倾向于通过建立合作关系、寻求外部专业支持来解决问题，而不是将精力过度消耗在低效的独自摸索上。这种开放且具有建设性的合作态度，为您未来参与或组织更复杂的跨学科研究项目奠定了基础。
+            </div></li>`;
         } else if(s100.Col >= 40) {
             dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
-            <strong>[评估：边界清晰的弱联系倾向]</strong> 您的社交效能刚好维持课题运转的最低限度。偏好内部或熟人网络求助，对扩大跨界学术社交圈缺乏主动意愿，但在必要时能够进行沟通。<br>
-            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
-                <strong></strong>你属于“人不犯我我不犯人”的类型。只要不涉及利益冲突，你愿意和同门和平共处。你不太喜欢去混学术圈的虚伪饭局，但如果课题真到了非求人不可的地步，你也能硬着头皮去沟通。你的社交精力刚好够维持基本生活，多一点你都嫌累。
-            </div></div></li>`;
+            <strong>[评估特征：边界清晰的专业互动]</strong> 在学术互动中，您倾向于保持一种较为克制的边界感。您愿意在必要的范围内与他人进行学术层面的交流与合作，但较少主动拓展更为广泛的社会性学术关系网络。对您而言，适度的交往足以维持研究的正常运转，而过多的社交活动则可能被视为对核心研究精力的分散与消耗。
+            </div></li>`;
         } else {
             dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
-            <strong>[评估：高度个体中心化]</strong> 您的工作模式呈现极端个体化特征。偏好独立解决复杂难题，在学术交流上的投入意愿极低。这保障了深度思考空间，但可能产生过高的试错成本。<br>
-            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
-                <strong></strong>你是个纯粹的“独行狼”。求人办事对你来说是一种巨大的精神折磨。遇到跨专业的难题，你宁可自己花三个月时间去硬啃晦涩的专业书，也不愿意花十分钟去请教隔壁组的师兄。这种独立固然让你本领过硬，但也经常会让你在死胡同里白白浪费大量青春。
-            </div></div></li>`;
+            <strong>[评估特征：高度内向独立的工作偏好]</strong> 您更习惯于独立思考和深度工作，对于向他人寻求帮助或参与集体讨论持保留态度。在遇到困难时，您往往选择依靠个人的力量去逐步克服。这种独立性促使您建立起极为扎实的专业基础，但在面对需要多方协同的复杂问题时，可能会因为缺乏及时的外部反馈而显著增加试错的时间成本。
+            </div></li>`;
         }
         
-        // 延迟满足 (DG) - 三档细分
         dims += `<li style="margin-bottom: 20px;"><strong>延迟满足 (远期目标专注度)</strong>：`;
         if(s100.DG >= 65) {
             dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
-            <strong>[评估：低延迟折扣与长线专注]</strong> 您的延迟满足能力极高。能够承受长达数年的无产出期以构建底层理论，对即时正反馈的依赖度极低，为高难度课题提供了坚实的心理基础。<br>
-            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
-                <strong></strong>你就像个在深海里憋气的高手。看着当年不如你的同学现在一个个年薪百万、买房买车，你能做到内心真正毫无波澜。你深信自己正在做的事情（哪怕要五年后才能出结果）有着更高的智力壁垒。这种“耐得住寂寞”的定力，是你最大的王牌。
-            </div>
+            <strong>[评估特征：卓越的长程专注与耐受力]</strong> 您具备出色的长期目标专注力。面对短期内难以看到显著成果的基础性研究，您依然能够保持稳定的投入。同龄人在其他领域取得的即时物质回报，较难动摇您的学术选择。您深刻理解复杂研究工作所需的时间周期，这种对长期价值的笃定，使您能够承受研究初期的平淡与较长阶段的无反馈状态。<br>
             ${wealthIgnoreHtml}
             </div></li>`;
         } else if(s100.DG >= 40) {
             dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
-            <strong>[评估：现实反馈交替依赖]</strong> 您具备长线研究的耐心，但尚未完全免疫世俗压力的干扰。在较长阶段缺乏核心产出时，需要通过阶段性的微小成果来缓解同辈压力与焦虑。<br>
-            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
-                <strong></strong>你大多数时候能稳住心态，但在某个深夜或是课题卡壳时，看着别人光鲜亮丽的生活，你心里也会泛起酸楚，甚至怀疑自己是不是选错了路。你需要每隔一段时间就发个小文章，或者得到导师的表扬，来给自己“回回血”，否则很容易感到力不从心。
-            </div></div></li>`;
+            <strong>[评估特征：长短期反馈的交替需求]</strong> 您能够理解并认同长期研究的内在价值，但同时也会受到外界评价和同辈发展状况的影响。在研究长时间缺乏实质性进展时，您可能会体验到一定程度的焦虑。因此，您倾向于在推进长期课题的过程中，设立一些可实现的短期目标，通过获得阶段性的认可与产出来维持继续前行的动力。
+            </div></li>`;
         } else {
             dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
-            <strong>[评估：高阶段性反馈依赖]</strong> 您的大脑认知模式对阶段性成果的反馈频率有极高要求。长期缺乏产出易导致严重的认知负荷过载和沉没成本焦虑。<br>
-            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
-                <strong></strong>虽然你有天赋，但你极其缺乏耐心。课题如果大半年看不到明显的进展，你就会心慌意乱，觉得每天都在亏本。你迫切需要短平快的成果来证明自己的价值，一旦实验长期停滞，那种“同龄人都在赚钱，只有我在倒贴青春”的焦虑感会迅速将你吞噬。
-            </div></div></li>`;
+            <strong>[评估特征：对即刻反馈的高度依赖]</strong> 您对研究工作的进展速度和反馈频率有着较高的期待。如果在一项研究中长时间未能获得可见的成果，您容易产生较为强烈的挫败感，并可能开始怀疑前期投入的合理性。这种对阶段性反馈的迫切需求，可能会使您在面对需要长期深耕、难以迅速产出成果的课题时感到难以适应。
+            </div></li>`;
         }
 
-        // 结构化风险预测与干预策略 (针对低分区进行预警)
         let crisisContent = '', adviceContent = '';
         if(s100.C < 40) {
             crisisContent = `
-                <p style="margin-bottom: 8px;"><strong>风险预测：评价体系内的深度冲突 (Systematic Conflict)</strong></p>
-                <p>模型推演显示，您在博士阶段中后期，极大概率会因“拒接流水线课题”或“拒绝修饰边缘数据”与导师或现行考核体系爆发严重冲突。被迫参与低原创性的研究将引发您强烈的认知失调（Cognitive Dissonance），严重时可能转化为对抗情绪或提早退出的冲动。</p>
+                <p style="margin-bottom: 8px;"><strong>风险预测：评价体系内的深层张力 (Systematic Tension)</strong></p>
+                <p>模型分析显示，您对于学术纯粹性的坚持，可能会与强调量化产出的现有考核体系产生明显的张力。当面临要求参与低原创性或单纯为了满足指标而进行的研究项目时，您可能会体验到较强的认知失调。长期的理念冲突如果不加疏导，可能转化为显性的对抗情绪，进而影响您在当前学术机构中的生存与发展空间。</p>
             `;
             adviceContent = `
-                <p style="margin-bottom: 8px;"><strong>干预策略：建立双轨制范式 (Dual-Track Paradigm)</strong></p>
-                <p>1. <strong>量化指标的工具化：</strong> 请在心理上将完成基础考核的论文视为“维持科研生存权的必要房租”，而非个人学术名誉的终点。捏着鼻子快速交租，是对自己未来的保护。</p>
-                <p>2. <strong>核心课题的隔离保护：</strong> 建立“双轨制”，用最低的精力应付完指标后，将剩下精力加密投入到真正热爱的长线探索中。避免将学术规范的不合理转化为内耗式的自我折磨。</p>
+                <p style="margin-bottom: 8px;"><strong>建议策略：确立双轨制的研究范式 (Dual-Track Approach)</strong></p>
+                <p>1. <strong>制度指标的工具化认知：</strong> 建议您在心理上对现有的考核标准进行重新定位，将其视为获取后续深入研究资源的必要条件，而非衡量您学术价值的唯一标尺。以专业且克制的态度完成基本考核，是对自身长期学术生涯的务实保护。</p>
+                <p>2. <strong>核心学术志趣的隔离保护：</strong> 建立并维护您的核心研究计划。在应对完必要的考核后，将保留的精力投入到您真正认为具有理论意义或长远价值的探索中，避免将对外部制度的不满转化为对学术本身的厌倦。</p>
             `;
-            crisis = mkCrisis('风险预警 (Risk Assessment)', crisisContent);
-            advice = mkRule('干预策略 (Intervention Strategy)', adviceContent);
+            crisis = mkCrisis('结构性困境预测', crisisContent);
+            advice = mkRule('发展建议', adviceContent);
             
         } else if (s100.Col < 40) {
             crisisContent = `
-                <p style="margin-bottom: 8px;"><strong>风险预测：跨界壁垒与合作孤立 (Collaboration Isolation)</strong></p>
-                <p>在多学科交叉的复杂课题中，过度依赖个体闭门攻坚将导致研发周期严重滞后。缺乏有效的共同体支持，不仅极大增加试错成本，还极易在遇到技术盲区时陷入大半年的停滞，最终在首发权竞争中遭受同行团队的降维打击。</p>
+                <p style="margin-bottom: 8px;"><strong>风险预测：知识生产的孤立化困境 (Collaboration Isolation)</strong></p>
+                <p>在当前科学研究日益呈现复杂化与交叉化趋势的背景下，过度依赖个人的闭门探索可能会限制您研究视野的拓展，并极大地增加解决特定技术难题的时间成本。缺乏有效的同行交流与外部反馈，可能导致您在某些并不擅长的研究节点上陷入长期的停滞，从而在整体研究进度上处于劣势。</p>
             `;
             adviceContent = `
-                <p style="margin-bottom: 8px;"><strong>干预策略：构建功能型契约网络 (Functional Networking)</strong></p>
-                <p>1. <strong>选择行政保护型导师：</strong> 在课题组选择上，优先寻找具备强资源整合与对外社交能力的导师，让他去充当外交官和掮客，弥补你对外沟通的短板。</p>
-                <p>2. <strong>建立纯契约型合作关系：</strong> 放弃对“学术社交=虚伪人情”的刻板印象。不需要交心，只需将合作简化为明确的要素互换（例如：我出算法换你的数据，共同一作）。以冷酷的契约形式，将社交损耗降到最低。</p>
+                <p style="margin-bottom: 8px;"><strong>建议策略：构建基于专业互补的契约网络 (Functional Collaboration)</strong></p>
+                <p>1. <strong>选择能够提供支持性环境的指导者：</strong> 在面临团队选择时，宜优先考虑那些在资源统筹和外部交流方面具备优势的学者，以期在一定程度上弥补您个人在拓展学术网络方面的意愿不足。</p>
+                <p>2. <strong>建立明确的专业合作关系：</strong> 尝试将学术合作视为推进科研项目的常规手段。合作并不必然要求深度的情感认同，而是侧重于知识与技能的互补。通过明确各自的贡献与期望，建立起清晰、理性的专业协作机制，有助于降低沟通成本并提升研究效率。</p>
             `;
-            crisis = mkCrisis('风险预警 (Risk Assessment)', crisisContent);
-            advice = mkRule('干预策略 (Intervention Strategy)', adviceContent);
+            crisis = mkCrisis('结构性困境预测', crisisContent);
+            advice = mkRule('发展建议', adviceContent);
             
         } else {
-            // 没有明显短板的精英A类
             crisisContent = `
-                <p style="margin-bottom: 8px;"><strong>风险预测：体系适应后的意义消解 (Meaning Crisis)</strong></p>
-                <p>鉴于您出色的综合能力，您将在短时间内掌握评价体系的玩法并成为高产出学者。但随之而来的是深度的“意义危机”。洞悉圈子内功利性的运作逻辑和包装套路后，您将难以在同侪中找到深度的智力共鸣，从而产生“高处不胜寒”的学术虚无感。</p>
+                <p style="margin-bottom: 8px;"><strong>风险预测：目标达成后的意义迷失 (Crisis of Meaning)</strong></p>
+                <p>鉴于您出色的综合素质，您极有可能在较短时间内掌握并适应当前的学术评价体系。然而，随着对其中工具理性甚至部分功利性运作逻辑的深入了解，您可能会感到一种深层的意义失落。当发现周遭部分研究活动更多受规则驱动而非源于对真理的追求时，您可能会面临如何在现实环境中继续维持初心与内在动力的困惑。</p>
             `;
             adviceContent = `
-                <p style="margin-bottom: 8px;"><strong>干预策略：锚定高维标杆与时间保护 (High-Dimensional Anchoring)</strong></p>
-                <p>1. <strong>重构本源评价标准：</strong> 随着地位提升，主动剥离对量化指标的依赖。将基准线转移至本源科学问题或历史层面的实质贡献，去和科学史上的先哲对话，避免被平庸的圈子同化。</p>
-                <p>2. <strong>警惕行政事务的注意力剥夺：</strong> 严格防范荣誉伴随而来的各种行政、无效评审对精力的挤占。捍卫一线深度科研（Deep Work）的绝对时间，永远不要脱离一线亲自处理数据的手感。</p>
+                <p style="margin-bottom: 8px;"><strong>建议策略：重构价值标尺与维护深度思考空间 (Value Anchoring)</strong></p>
+                <p>1. <strong>确立更为宏观的学术视野：</strong> 随着专业能力的提升，建议逐步摆脱对短期量化指标的依赖。尝试将个人的学术追求置于更宽广的学科发展脉络甚至历史视野中进行考量，以此作为衡量自身工作的根本标尺，避免在日常的指标考核中迷失方向。</p>
+                <p>2. <strong>警惕行政事务对专业精力的侵占：</strong> 在获得一定学术地位后，务必防范随之而来的各项非核心事务对研究精力的过度占用。坚持保留充足且连续的时间用于一线的深度思考与文献研读，确保自身不脱离产生创新思想的学术现场。</p>
             `;
-            crisis = mkCrisis('风险预警 (Risk Assessment)', crisisContent);
-            advice = mkRule('干预策略 (Intervention Strategy)', adviceContent);
+            crisis = mkCrisis('结构性困境预测', crisisContent);
+            advice = mkRule('发展建议', adviceContent);
         }
     }
     else if(typeStr === 'B') {
-        // [动态拦截器] 扫描用户的历史轨迹，提取高度工具理性与马基雅维利主义的观测点
         let toolRationalityHtml = "";
         let socialCapitalHtml = "";
         let upwardMgmtHtml = "";
@@ -756,167 +727,133 @@ function buildDynamicReport(typeStr, s100) {
             let ansVal = userAnswers[i] ? userAnswers[i].val : null;
 
             if (qText.includes("现行的学术评价体系") && ansVal >= 0.5) {
-                toolRationalityHtml = `<div style="margin-top: 10px; padding: 10px 14px; background: #fafafa; border-left: 3px solid #6c757d; font-size: 13px; color: #495057;"><strong>[关键行为观测点]</strong> 在面对常被诟病的“唯论文/唯帽子”评价体系时，您表现出了极强的“制度内化（Institutional Internalization）”。系统判定您已剥离了学术浪漫主义，具备极其冷峻的“工具理性”，将科研视为一场规则清晰的生存博弈。</div>`;
+                toolRationalityHtml = `<div style="margin-top: 10px; padding: 10px 14px; background: #fafafa; border-left: 3px solid #6c757d; font-size: 13px; color: #495057;"><strong>[关键行为观测点]</strong> 面对普遍存在争议的量化评价体系，您表现出了极强的制度适应性与内化能力。这表明您具备突出的工具理性特征，倾向于将研究环境视为存在既定规则的客观场域，并致力于在其中寻找最优的发展策略。</div>`;
             }
             if (qText.includes("晚宴现场") && ansVal === 1) {
-                socialCapitalHtml = `<div style="margin-top: 10px; padding: 10px 14px; background: #f8f9fa; border-left: 3px solid #4a90e2; font-size: 13px; color: #343a40;"><strong>[关键行为观测点]</strong> 在模拟非正式学术社交场景中，您的行为呈现出极强的“目标导向”。这在组织行为学中体现为高阶的“社会资本运作（Social Capital Operation）”能力，您能够精准识别场域内的核心节点（大牛），并进行高效的利益置换。</div>`;
+                socialCapitalHtml = `<div style="margin-top: 10px; padding: 10px 14px; background: #f8f9fa; border-left: 3px solid #4a90e2; font-size: 13px; color: #343a40;"><strong>[关键行为观测点]</strong> 在非正式的学术交流场景中，您的行为呈现出高度的目标导向。这在社会学视角下体现为出色的社会资本运作能力，您能够敏锐地识别学术网络中的关键节点，并积极促成可能对未来发展有所助益的专业联系。</div>`;
             }
             if (qText.includes("行政杂活") && ansVal === 1) {
-                upwardMgmtHtml = `<div style="margin-top: 10px; padding: 10px 14px; background: #fdfdfd; border-left: 3px solid #343a40; font-size: 13px; color: #495057;"><strong>[关键行为观测点]</strong> 面对挤占科研时间的无偿杂务，您的决策并非基于公平性抱怨，而是迅速计算其潜在的“资源杠杆率”。这种典型的“向上管理（Upward Management）”特质，是您获取稀缺科研资源、打通行政壁垒的核心手腕。</div>`;
+                upwardMgmtHtml = `<div style="margin-top: 10px; padding: 10px 14px; background: #fdfdfd; border-left: 3px solid #343a40; font-size: 13px; color: #495057;"><strong>[关键行为观测点]</strong> 在面对那些占用研究时间的常规行政事务时，您的考量更多基于其潜在的资源获取效用。这种倾向体现了您在科层制环境中具备较强的向上管理意识，能够通过承担额外职责来增进组织内部的信任与资源支持。</div>`;
             }
             if (qText.includes("0.055") && ansVal >= 0.5) {
-                grayAreaHtml = `<div style="margin-top: 10px; padding: 10px 14px; background: #fff5f5; border-left: 3px solid #fa5252; font-size: 13px; color: #c92a2a;"><strong>[关键行为观测点]</strong> 在面临学术规范与核心利益冲突的极限施压下，您的决策表现出较高的“马基雅维利主义（Machiavellianism）”倾向。您极度注重结果导向（ROI），倾向于在规则边缘进行风险套利。这赋予了您高生存率，但也预示着潜在的合规性危机。</div>`;
+                grayAreaHtml = `<div style="margin-top: 10px; padding: 10px 14px; background: #fff5f5; border-left: 3px solid #fa5252; font-size: 13px; color: #c92a2a;"><strong>[关键行为观测点]</strong> 在面临学术规范与直接利益冲突的压力情境下，您的决策表现出较高的结果导向特征。您倾向于优先考虑任务的达成率，这虽然赋予了您在竞争中的灵活性，但也预示着在复杂伦理情境下可能存在的合规性风险。</div>`;
             }
         }
 
         intro = `
         <div style="background: #ffffff; border: 1px solid #e9ecef; padding: 24px; border-radius: 12px; margin-bottom: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.02);">
-            <p style="font-size: 18px; margin-bottom: 12px; color: #212529; font-weight: 700; border-bottom: 1px solid #f1f3f5; padding-bottom: 10px;">综合适性评估报告：Type-B 高度实用主义与资源整合者</p>
-            <p style="font-size: 15px; line-height: 1.8; margin-bottom: 12px; color: #495057; text-align: justify;">在本次结构化适性检测中，系统对您的决策博弈模式进行了量化分析。在当前高度内卷、资源集中度极高的学术修罗场中，您呈现出极具破坏力的竞争优势与生存智慧。系统判定您的特征模型符合<strong>【高度实用主义与资源整合者 / The Pragmatic Entrepreneur】</strong>。</p>
-            <p style="font-size: 15px; line-height: 1.8; color: #495057; text-align: justify;">评估结果表明，您已完全将博士生涯“项目管理化”。相较于深陷学术执念的传统学者，您摒弃了天真学者的道德洁癖。您的底层行为逻辑是极其冷酷的“投入产出比（ROI）”计算。体制内的规训、枯燥的实验、八股文式的论文，在您眼中并非折磨，而是获取顶级圈层入场券、实现阶层跨越与资源变现的标准化对价。这套被常人视为绞肉机的体制，反而是您进行制度套利的最佳演练场。</p>
+            <p style="font-size: 18px; margin-bottom: 12px; color: #212529; font-weight: 700; border-bottom: 1px solid #f1f3f5; padding-bottom: 10px;">综合适性评估：高度实用主义与资源整合者</p>
+            <p style="font-size: 15px; line-height: 1.8; margin-bottom: 12px; color: #495057; text-align: justify;">在本次评估模型中，系统对您的行为取向和决策模式进行了综合分析。在当前资源相对稀缺且竞争激烈的学术生态中，您展现出了极具现实意义的生存智慧与适应能力。系统判定您的特征倾向于<strong>【高度实用主义与资源整合者】</strong>。</p>
+            <p style="font-size: 15px; line-height: 1.8; color: #495057; text-align: justify;">评估结果表明，您能够将复杂的博士研究过程进行有效的结构化拆解与项目化管理。相较于执着于纯粹学术理想的研究者，您的行为逻辑体现出高度的效用导向（Utility-oriented）。您倾向于将现有的学术规范、考核指标以及论文发表流程，客观看待为获得职业准入资格与实现专业发展的必要途径。这种清醒的认知有助于您在复杂的制度环境中保持高效，并最大化地整合可用的学术资源。</p>
         </div>
         `;
         
-        // 规则顺应 (C) & 动机重构 - 三档细分
-        dims += `<li style="margin-bottom: 20px;"><strong>规则顺应与动机重构 (制度套利能力)</strong>：`;
+        dims += `<li style="margin-bottom: 20px;"><strong>规则顺应与目标驱动 (制度适应能力)</strong>：`;
         if(s100.C >= 65) {
             dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
-            <strong>[评估：极致的制度套利者]</strong> 您的内源性动机（为知识而知识）占比极低，取而代之的是纯粹的外部成就动机。您将学术评价体系视为一套可攻克的商业逻辑，能够毫无心理阻力地迎合期刊偏好、制造学术热点，以最高效的方式斩获考核指标。<br>
-            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
-                <strong></strong>你本质上就是一个披着科研外衣的“高级包工头”。你对“为科学献身”这种宏大叙事完全免疫。你极其清醒：导师需要数据交差，期刊需要热点引流，你需要文凭和Title变现。既然大家都是做生意，那就各取所需。你不仅不会因为做“水文”而感到屈辱，反而会因为自己高超的“学术包装技术”感到自豪。
-            </div>
+            <strong>[评估特征：极强的规则适应与执行效能]</strong> 您展现出极强的制度适应能力。对于现行的考核要求，您能够摒弃情感上的抵触，以高度理性的态度去分析并满足其标准。您将学术产出视为一项系统工程，能够有效地整合现有资源，迎合学科发展趋势或期刊偏好，以最符合规范的方式达成既定目标。<br>
             ${toolRationalityHtml}
             </div></li>`;
         } else if(s100.C >= 40) {
             dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
-            <strong>[评估：务实的合规执行人]</strong> 您接受了学术圈作为名利场的客观现实，愿意服从游戏规则。虽偶尔会对繁琐的形式主义感到疲惫，但利益权衡后，总能确保核心指标（发文、毕业）的按期交付。<br>
-            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
-                <strong></strong>你是个清醒的打工人。你心里知道很多课题毫无意义，甚至觉得导师的做法有些压榨，但你的算盘打得很精——“只要能让我按时拿到双证，让我干嘛我就干嘛”。你把读博当成了一场有期限的服役，目标是平平稳稳地熬到出狱，拿到那张通往更高薪水的门票。
-            </div></div></li>`;
+            <strong>[评估特征：务实的合规执行导向]</strong> 您能够客观地接纳当前学术环境的运作方式，并愿意在既定规则下开展工作。虽然在某些时候会对过于繁冗的程序性要求感到困扰，但在充分权衡利弊后，您始终能够确保核心任务（如论文发表、学位获取）的如期推进。
+            </div></li>`;
         } else {
             dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
-            <strong>[评估：摩擦型功利主义者]</strong> 这是一个具有矛盾性的模型。您极度渴望学术带来的现实收益（头衔、教职），但在行为执行上又排斥或无法适应现行的套路与评价标准，导致严重的知行不一。<br>
-            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
-                <strong></strong>你处于一种“既要又要，但玩不转”的拧巴状态。你极度渴望发高分文章去变现，但你又拉不下脸去迎合热点、去讨好导师、去钻营人情。你看不上那些靠包装发顶刊的人，但自己又拿不出硬核成果。这种“功利心极强却又放不下身段”的摩擦，是你目前痛苦的根源。
-            </div></div></li>`;
+            <strong>[评估特征：目标与执行的内在摩擦]</strong> 您在动机层面对获取学术成就及其带来的现实利益有着明确的需求，但在具体的执行层面，却对现行的研究范式或评价标准持有一定程度的排斥。这种期望与行为倾向之间的矛盾，可能导致您在推进研究计划时遭遇较多的心理阻力。
+            </div></li>`;
         }
         
-        // 社交效能 (Col) - B类的核心武器
         dims += `<li style="margin-bottom: 20px;"><strong>社交效能 (学术共同体利益整合)</strong>：`;
         if(s100.Col >= 65) {
             dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
-            <strong>[评估：卓越的跨界资源掮客]</strong> 您深谙学术圈本质是“资源与信息的互换场”。您具备顶尖的情绪劳动（Emotional Labor）能力与向上管理手腕。学术会议对别人是耗能，对您则是捕获内部信息、建立强弱联系的交易集市。<br>
-            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
-                <strong></strong>你是混圈子的绝对天才。光靠埋头苦干是没用的，你深知这一点。你会精准定位能决定你前途的大牛，用巧妙的赞美提供情绪价值；你会主动承担行政杂活来向导师表忠心，以换取下一次的一作挂名。别人觉得你“圆滑功利”，但在你看来，人情世故是你撬动顶级实验室资源的最高级杠杆。
-            </div>
+            <strong>[评估特征：出色的学术网络统筹能力]</strong> 您深刻理解学术共同体中信息交流与资源互助的重要性。在互动中，您具备明确的目标感，能够准确识别能够提供支持的关键合作者，并通过妥善的沟通建立起有效的合作网络，从而为跨越学科壁垒、推进复杂课题获取必要的外部支持。<br>
             ${socialCapitalHtml}
             ${upwardMgmtHtml}
             </div></li>`;
         } else if(s100.Col >= 40) {
             dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
-            <strong>[评估：圈层边界明确的交易者]</strong> 您的社交呈现出强烈的“目的导向”与“即用即弃”特征。您深知资源互换的重要性，但缺乏长期维护学缘网络的意愿，倾向于在关键节点进行冰冷的功能性交易。<br>
-            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
-                <strong></strong>你是一个极其冷酷的现实主义者。你不需要在实验室交朋友，师兄师姐对你来说只是借仪器的NPC。你的人际交往完全基于“他现在对我有没有用，我能拿什么跟他换”。这种没有废话的沟通效率极高，但也容易让人觉得你过河拆桥，难以建立长线的政治盟友。
-            </div></div></li>`;
+            <strong>[评估特征：基于功能需求的克制交往]</strong> 您的学术社交活动呈现出明确的实用性与边界感。您认同在特定研究环节进行资源互换的必要性，但缺乏投入大量精力维护长期或广泛学术人际网络的意愿。您的沟通往往直击重点，以解决眼下的具体研究难题为核心。
+            </div></li>`;
         } else {
             dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
-            <strong>[评估：孤岛型资源掠夺者]</strong> 作为实用主义者，您却存在极高的社交阻抗。倾向于在不依赖他人的情况下榨取课题组现有资源。沟通手段生硬，容易因利益分配（如抢占仪器、署名权争夺）引发剧烈的人际冲突。<br>
-            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
-                <strong></strong>你想要利益，但你极其排斥付出“社交成本”。你总是想在实验室里占尽便宜（抢好做的课题、抢机器），却不愿意给别人提供任何便利。这种只进不出的“铁公鸡”做派，很容易让你在团队中遭到孤立，一旦你遇到技术盲区，将没有任何人愿意向你伸出援手。
-            </div></div></li>`;
+            <strong>[评估特征：孤立的资源获取模式]</strong> 尽管您在整体规划上倾向于实用主义，但在社交层面却存在明显的排斥心理。您更希望在尽可能不依赖他人协作的情况下完成研究任务，这种工作模式在需要共享资源或协作攻关的现代研究环境中，可能导致您面临孤立无援的困境。
+            </div></li>`;
         }
         
-        // 延迟满足 (DG) - 预测变现焦虑
         dims += `<li style="margin-bottom: 20px;"><strong>延迟满足 (投资回报期耐受度)</strong>：`;
         if(s100.DG >= 65) {
             dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
-            <strong>[评估：宏观周期的战略投资人]</strong> 您具备企业家般的长远目光。虽以变现为最终目的，但能克制短期的物质诱惑，清晰地认知到博士学位（顶级IP）和学术光环在远期的巨大复利效应。<br>
-            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
-                <strong></strong>你是个极其沉得住气的猎手。看着本科同学去互联网大厂拿高薪，你一点也不急。你很清楚，他们卖的是短期劳动力，而你正在熬的是一个具备垄断性质的“高阶门票”。你愿意忍受眼前的清贫，因为你的目光早就锁定在了几年后以“某某学者/大厂高管”身份入局的降维变现上。
-            </div></div></li>`;
+            <strong>[评估特征：具备长远视角的战略定力]</strong> 您对学术职业生涯的发展轨迹有着宏观且长远的理解。尽管最终目标指向现实回报，但您具备克制短期物质诱惑的能力。您清晰地认知到，高阶学术资格和研究声誉的积累需要经历较长的潜伏期，这种认知赋予了您抵御眼前压力的强大定力。
+            </div></li>`;
         } else if(s100.DG >= 40) {
             dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
-            <strong>[评估：阶段性对冲策略者]</strong> 您在长期投资与短期变现之间寻求平衡。在科研长线推进的同时，高度关注阶段性成果（如专利、小论文、奖学金）的落地，以此作为缓解财务与同辈压力的对冲机制。<br>
-            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
-                <strong></strong>你是个极其精算的操盘手。你不仅要最后的博士文凭，还要把过程中的羊毛薅干。只要是有奖金的竞赛、能拿国奖的加分项，你一个都不会放过。这种“苍蝇再小也是肉”的对冲策略，确保了你在读博期间不仅没有经济危机，甚至过得比同龄人还滋润。
-            </div></div></li>`;
+            <strong>[评估特征：寻求长短期收益的策略平衡]</strong> 您在追求长期学术目标与缓解现实焦虑之间寻找折中方案。在推进主要研究课题的同时，您会策略性地关注一些能够在短期内产生可见成果的任务（如申请奖助学金、参与边缘性项目），以此作为平衡长期研究压力的心理与物质缓冲。
+            </div></li>`;
         } else {
             dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
-            <strong>[评估：高频焦虑的短线投机客]</strong> 您对投入产出比的计算过于高频且短视。长期的科研冷板凳极易触发您的“沉没成本焦虑（Sunk Cost Anxiety）”，在面临同辈财富积累对比时，会产生严重的相对剥夺感。<br>
-            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
-                <strong></strong>你太想赢，也太着急了。长达几个月没有实质性油水进账，就会让你极度没有安全感。一看到别人买房买车，你觉得读博简直是血亏。这种急躁极易导致你捡了芝麻丢西瓜——为了赚兼职的几千块钱，荒废了主业课题，最终面临延期毕业的巨大风险。
-            </div></div></li>`;
+            <strong>[评估特征：对长期投入的较高焦虑感]</strong> 您对于投入与产出的转化周期有着较为严苛的期待。长期未能获得显性学术成果，极易引发您对研究方向甚至自我价值的深层焦虑。在面临与同辈发展状况的比较时，这种由于回报迟缓带来的挫折感可能会进一步被放大。
+            </div></li>`;
         }
 
-        // 自我解绑 (E) - 决定了其是否会被反噬
-        dims += `<li style="margin-bottom: 20px;"><strong>自我解绑 (虚荣剥离与风险控制)</strong>：`;
+        dims += `<li style="margin-bottom: 20px;"><strong>自我解绑 (评价独立与情绪控制)</strong>：`;
         if(s100.E >= 65) {
             dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
-            <strong>[评估：绝对的身份剥离与冷血风控]</strong> 您展现出了真正的操盘手素养。外界对您的任何学术批评、甚至是同行倾轧，都无法伤及自我价值内核。因为您从未将“学者”视为神圣身份，而仅仅是一件可脱卸的职业装束。<br>
-            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
-                <strong></strong>你是真的人间清醒，不仅对别人狠，对自己也狠。导师哪怕当众把你骂得狗血淋头，你心里也会毫无波澜，甚至还能顺手倒杯茶。因为在你眼里，挨骂不过是获取学位的沉没成本之一。只要最终利益不受损，你的自尊心可以被无限期折叠，百毒不侵。
-            </div></div></li>`;
+            <strong>[评估特征：稳定的角色认知与情绪抽离]</strong> 您在面对研究工作时展现出了高度的专业态度与情绪控制力。您能够将学者的身份视为一项客观的社会职业，这使得即使在面临严厉的同行评审或激烈的专业批评时，您也能够保持内心的平静，专注于问题的修正而非陷入个人的情绪波动。
+            </div></li>`;
         } else if(s100.E >= 40) {
             dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
-            <strong>[评估：间歇性虚荣补偿]</strong> 您的主体行为受理性支配，但潜意识仍需学术光环的包裹。在顺境时能保持精明，但在面临负面评价或同门对比处于下风时，会产生短期的虚荣心反噬与自我防御行为。<br>
-            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
-                <strong></strong>你表面上说着“一切为了变现”，但心里其实挺在乎面子的。你不仅想要毕业，还想毕业得漂漂亮亮，成为别人眼里的“学术大佬”。如果同门发了比你影响因子高得多的文章，你心里依然会冒出一股酸水，并试图在其他方面（比如找个更好的工作）狠狠压过对方。
-            </div></div></li>`;
+            <strong>[评估特征：存在波动的自我认同机制]</strong> 在研究进展顺利时，您能够保持理性和客观；但在遭遇重大负面评价或在同辈竞争中暂居下风时，您的自我认同感会受到一定程度的冲击。这表明您在内心深处，依然对学术成就所赋予的身份认同抱有一定的期待与依赖。
+            </div></li>`;
         } else {
             dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
-            <strong>[评估：虚荣裹挟的脆弱防线]</strong> 这是一个危险的悖论组合。您表现得功利且游刃有余，但内心极度渴望学术光环带来的特权感。极度害怕在公开场合遭遇学术挫败，自我认同高度绑定于外在评价。<br>
-            <div style="margin-top: 8px; padding: 12px; background: #fff5f5; border-radius: 6px; color: #c92a2a; font-size: 14px;">
-                <strong></strong>你是个穿着防弹衣却把心脏漏在外面的矛盾体。你嘴上说着学术只是生意，但实际上极度迷恋“顶刊作者”带来的虚荣与优越感。一旦你的核心实验在组会上被大牛当众判定为毫无价值，你脆弱的伪装会瞬间坍塌，陷入深度的羞耻和疯狂的内耗。
-            </div>
+            <strong>[评估特征：对外在学术评价的深度依赖]</strong> 您的特征组合显示出一种潜在的矛盾：尽管在行为策略上偏向务实，但您的自我价值感却高度绑定于学术成就和外界认可。对学术光环的渴望使您在面临公开的专业挫折时，极易产生强烈的心理防御反应与深度的自我怀疑。<br>
             ${grayAreaHtml}
             </div></li>`;
         }
 
-        // 结构化风险预测与干预策略 (极其冷血的商业化建议)
         let crisisContent = '', adviceContent = '';
-        if(s100.E < 50 && s100.C >= 60) { // 高顺应+低解绑 = 极度看重面子且目标导向 -> 造假重灾区
+        if(s100.E < 50 && s100.C >= 60) {
             crisisContent = `
-                <p style="margin-bottom: 8px;"><strong>系统性风险预测：虚荣包裹下的合规性危机 (Compliance Crisis)</strong></p>
-                <p>模型推演显示，您未来面临的最大毁灭性风险绝非“毕不了业”，而是<strong>学术声誉破产（翻车）</strong>。为了迎合导师期望、抢占顶刊首发权、或维持自身高光人设，当实验数据长期不理想时，极度结果导向的您存在极高概率跨越红线，在数据修饰、异常值排查等灰色地带进行危险的杠杆套利。</p>
+                <p style="margin-bottom: 8px;"><strong>风险预测：目标压力下的研究规范危机 (Research Integrity Risk)</strong></p>
+                <p>模型推演提示，由于您对达成预期目标有着强烈的执着，且对学术成就的外部评价较为敏感，当核心研究长期未能取得理想数据时，极度结果导向的思维模式可能会促使您在研究规范的灰色地带进行不当的妥协（如过度修饰数据）。这种潜在的风险一旦爆发，将对您的职业信誉造成难以修复的损害。</p>
             `;
             adviceContent = `
-                <p style="margin-bottom: 8px;"><strong>干预策略建议：建立冷酷的商业信誉风控底线 (Risk Management)</strong></p>
-                <p>1. <strong>剥离青年学者人设滤镜：</strong> 请停止毫无意义的自我感动！在您的商业模型里，一切都可以运作，唯独“学术造假”是无法挽回的信用死刑。一旦被戳穿，您前期投资的所有青春（博士IP）将瞬间清零。请将“不伪造”作为您商业运作中不可逾越的绝对风控红线。</p>
-                <p>2. <strong>容错率分摊管理：</strong> 学会坦然发布一定比例的平庸结果或阴性数据。不要试图在单一项目上追求完美的ROI。运用组合投资思维，用多线并行的小课题来分散核心课题失败的风险，而非通过篡改数据来掩饰亏损。</p>
+                <p style="margin-bottom: 8px;"><strong>建议策略：坚守规范底线与风险分散管理 (Risk Management)</strong></p>
+                <p>1. <strong>确立不可逾越的专业底线：</strong> 在充分运用现行规则的同时，建议您始终将学术诚信视为职业生涯中不可妥协的基石。任何长远的发展都建立在真实可靠的研究基础之上，切勿因短期的指标压力而损害长远的学术信誉。</p>
+                <p>2. <strong>接纳不确定性与分散研究风险：</strong> 学会客观接纳研究过程中的阴性结果或不如预期的数据。为了降低因单一课题失败带来的压力，建议采用多线并行的策略，通过合理搭配风险程度不同的研究项目，来确保整体研究产出的稳定性。</p>
             `;
-            crisis = mkCrisis('风险预警 (Risk Assessment)', crisisContent);
-            advice = mkRule('干预策略 (Intervention Strategy)', adviceContent);
+            crisis = mkCrisis('结构性困境预测', crisisContent);
+            advice = mkRule('发展建议', adviceContent);
             
-        } else if (s100.DG < 50) { // 极低延迟满足 = 短视，荒废主业去赚钱
+        } else if (s100.DG < 50) {
             crisisContent = `
-                <p style="margin-bottom: 8px;"><strong>系统性风险预测：同辈压力诱发的核心资产流失 (Core Asset Divestiture)</strong></p>
-                <p>在长达数年的课题停滞期内，您的心态极易因外界的财富信息（如本科同行的年终奖、房价）而崩溃。这种急于短线变现的焦虑，会驱使您疯狂接揽低端私活、横向外包或投入自媒体等副业。最终导致核心精力被严重挤占，主线任务停滞，面临因小失大甚至被清退的危机。</p>
+                <p style="margin-bottom: 8px;"><strong>风险预测：短期焦虑导致的精力分散 (Distraction from Core Tasks)</strong></p>
+                <p>在较长周期的研究停滞阶段，您可能容易受到外界发展信息的干扰。出于对未能即时获得回报的焦虑，您可能倾向于将过多的精力投入到与核心研究无关的兼职或短期项目中。这种对短期收益的过度追逐，可能会严重挤占用于完成博士学业的核心时间，增加学业延期的风险。</p>
             `;
             adviceContent = `
-                <p style="margin-bottom: 8px;"><strong>干预策略建议：锚定高维变现与战略性聚焦 (Strategic Focus)</strong></p>
-                <p>1. <strong>认知对齐：博士文凭是期权而非时薪：</strong> 请立刻停止用小时工的思维来衡量您当前的贫穷！您现在忍受的每一天，都在为未来进行“阶层降维打击”积累势能。在拿到双证之前，任何消耗精力的几万元副业收入，都是极其短视的抛售行为。</p>
-                <p>2. <strong>合法外包低附加值劳动：</strong> 极致发挥您的项目管理天赋。将排版、基础数据清洗、初级实验操作等无需重度思考的体力活，通过人情置换或合理经费外包出去。将您的精力死死钉在“核心逻辑设计”与“进度把控”上。</p>
+                <p style="margin-bottom: 8px;"><strong>建议策略：重构时间价值认知与保持战略聚焦 (Strategic Focus)</strong></p>
+                <p>1. <strong>着眼于长远的人力资本投资：</strong> 建议您尝试调整对当前状态的评估框架。研究阶段的资源投入，本质上是对个人长期人力资本和专业能力的深度投资。避免单纯用短期的经济回报标准来衡量当下的研究生活，以更加平稳的心态应对阶段性的挑战。</p>
+                <p>2. <strong>优化精力分配机制：</strong> 充分发挥您的统筹规划能力。在符合规定的前提下，尝试通过合理的合作与分工，减少自身在非核心基础工作上的时间消耗。确保将最优质的认知资源集中投入到研究方案的规划与核心难点的攻关上。</p>
             `;
-            crisis = mkCrisis('风险预警 (Risk Assessment)', crisisContent);
-            advice = mkRule('干预策略 (Intervention Strategy)', adviceContent);
+            crisis = mkCrisis('结构性困境预测', crisisContent);
+            advice = mkRule('发展建议', adviceContent);
             
         } else {
-            // 没有明显短板的精英B类 (真正的学术界六边形商人)
             crisisContent = `
-                <p style="margin-bottom: 8px;"><strong>系统性风险预测：路径依赖与学术天花板的封锁 (Ceiling Effect)</strong></p>
-                <p>凭借卓越的资源运作与规则迎合能力，您将毫不费力地拿到各种青年头衔。但当您试图跻身真正的战略决策层（如顶尖大牛、院士级别）时，您会绝望地发现：纯粹的套路拼凑和资源交换已经失效。缺乏底层的、震撼性的原创性理论成果，将成为锁死您向上跃迁的坚硬天花板。</p>
+                <p style="margin-bottom: 8px;"><strong>风险预测：过度依赖既有范式的创新瓶颈 (Ceiling of Originality)</strong></p>
+                <p>凭借出色的适应能力与执行效率，您能够在现有的研究框架内顺利推进工作并获得认可。然而，当您的职业生涯发展到需要提出具有颠覆性或高度原创性理论的阶段时，单纯依赖对既有规则的熟悉和对常规方法的应用可能已显不足。缺乏对基础理论的深度叩问，可能成为制约您向更高层次学术前沿迈进的瓶颈。</p>
             `;
             adviceContent = `
-                <p style="margin-bottom: 8px;"><strong>干预策略建议：跨界资本转换与生态位跃迁 (Capital Conversion & Niche Shift)</strong></p>
-                <p>1. <strong>学术资本的政商化跨界：</strong> 既然您的核心天赋是管理与运作，请尽早放弃成为“诺奖级科学家”的执念。在拿到足够的学术头衔作为信用背书后，果断将主战场向科研管理（行政升迁）、科技创业孵化或硬科技风投转移，实现学术资本向商业/政治资本的跨界套现。</p>
-                <p>2. <strong>招募“A类”作为技术护城河：</strong> 当您成为独立PI（课题组长）后，请用优渥的条件和充足的行政保护，去定向招募那些“只懂技术不懂人情”的科研疯子（Type-A类）。让他们负责底层的硬核产出，您负责高维的资源获取与利益分配。这才是顶级的学术合伙人商业模式。</p>
+                <p style="margin-bottom: 8px;"><strong>建议策略：拓展认知维度与推动跨界融合 (Cognitive Expansion)</strong></p>
+                <p>1. <strong>审慎评估长远职业路径：</strong> 在获得坚实的学术基础与专业资质后，您可以更加开放地评估未来的发展方向。鉴于您在资源统筹和项目管理方面的优势，向科研管理、技术转化或跨学科智库等领域发展，或许能够为您提供更广阔的施展空间。</p>
+                <p>2. <strong>构建具有异质性的研究团队：</strong> 在未来组建自身的研究团队时，建议有意识地吸纳那些对纯粹理论探究充满热情的成员（如A类特征研究者）。通过整合不同思维维度的优势，构建既能产出深度理论成果，又能高效适应外部环境的复合型研究力量。</p>
             `;
-            crisis = mkCrisis('风险预警 (Risk Assessment)', crisisContent);
-            advice = mkRule('干预策略 (Intervention Strategy)', adviceContent);
+            crisis = mkCrisis('结构性困境预测', crisisContent);
+            advice = mkRule('发展建议', adviceContent);
         }
     }
     else if(typeStr === 'C') {
-        // [动态拦截器] 扫描用户的历史轨迹，提取高尽责性、规则顺应与权威依恋的观测点
         let conscientiousnessHtml = "";
         let ocbHtml = "";
         let cognitiveEnduranceHtml = "";
@@ -926,161 +863,126 @@ function buildDynamicReport(typeStr, s100) {
             let qText = currentQList[i].t;
             let ansVal = userAnswers[i] ? userAnswers[i].val : null;
 
-            // 拦截题目：毫无新意但极易发高分的流水线课题？(选了: 欣然接受并高效完成)
             if (qText.includes("毫无新意") && ansVal === 1) {
-                conscientiousnessHtml = `<div style="margin-top: 10px; padding: 10px 14px; background: #fafafa; border-left: 3px solid #6c757d; font-size: 13px; color: #495057;"><strong>[关键行为观测点]</strong> 面对低原创性但高确定性的任务，您表现出了极强的执行意愿。在心理学上，这反映了您极高的“特质尽责性（Trait Conscientiousness）”。您能够将个人喜好后置，优先保障组织目标的达成，是学术工业化生产中最稀缺的稳定节点。</div>`;
+                conscientiousnessHtml = `<div style="margin-top: 10px; padding: 10px 14px; background: #fafafa; border-left: 3px solid #6c757d; font-size: 13px; color: #495057;"><strong>[关键行为观测点]</strong> 面对常规且创新度相对有限的任务安排，您依然表现出了极强的执行意愿。在心理学研究范畴内，这反映了您极高的“特质尽责性（Trait Conscientiousness）”。您能够妥善处理个人偏好与组织任务的优先级，是保障研究计划稳定实施的重要基础。</div>`;
             }
-            // 拦截题目：师弟师妹犯严重错误？(选了: 耐心指出并带对方修复 / 调动资源补救)
             if (qText.includes("师弟师妹犯严重错误") && ansVal >= 0.5) {
-                ocbHtml = `<div style="margin-top: 10px; padding: 10px 14px; background: #f8f9fa; border-left: 3px solid #4a90e2; font-size: 13px; color: #343a40;"><strong>[关键行为观测点]</strong> 在面对同级或下级造成的过失时，您优先采取了建设性的补救与指导行为。这在组织行为学中属于典型的“组织公民行为（Organizational Citizenship Behavior, OCB）”，表明您具备成为课题组“隐形管理者（团队粘合剂）”的核心素质。</div>`;
+                ocbHtml = `<div style="margin-top: 10px; padding: 10px 14px; background: #f8f9fa; border-left: 3px solid #4a90e2; font-size: 13px; color: #343a40;"><strong>[关键行为观测点]</strong> 在面对团队成员造成的过失时，您优先采取了具有建设性的指导与补救措施。这体现了典型的“组织公民行为（Organizational Citizenship Behavior）”，表明您在维护团队协作氛围与促进内部知识传承方面，具备突出的隐性领导素质。</div>`;
             }
-            // 拦截题目：撰写几百篇文献的宏大综述？(选了: 视为战略投资/按部就班)
             if (qText.includes("几百篇文献的宏大综述") && ansVal >= 0.5) {
-                cognitiveEnduranceHtml = `<div style="margin-top: 10px; padding: 10px 14px; background: #f4fbf8; border-left: 3px solid #28a745; font-size: 13px; color: #343a40;"><strong>[关键行为观测点]</strong> 面对极其枯燥且短期无直接收益的庞大基础工作，您依然能维持稳定的心理预期。系统判定您的“认知耐受力（Cognitive Endurance）”极强，能够以工程化的思维拆解长期任务，有效抵御学术长草期的精神内耗。</div>`;
+                cognitiveEnduranceHtml = `<div style="margin-top: 10px; padding: 10px 14px; background: #f4fbf8; border-left: 3px solid #28a745; font-size: 13px; color: #343a40;"><strong>[关键行为观测点]</strong> 面对工作量庞大且短期内难以带来直接评价收益的基础性工作，您依然能维持稳定的心理预期并有序推进。这表明您拥有较强的认知耐受力，能够以系统化的视角解构长期任务，有效应对研究过程中的冗长与平淡。</div>`;
             }
-            // 拦截题目：权威当众质疑？(如果选了: 感到丢脸/公开处刑)
             if (qText.includes("知名学者当众尖锐质疑") && ansVal <= -0.49) {
-                authorityDependenceHtml = `<div style="margin-top: 10px; padding: 10px 14px; background: #fff5f5; border-left: 3px solid #fa5252; font-size: 13px; color: #c92a2a;"><strong>[关键行为观测点]</strong> 在模拟遭遇权威负面评价时，您的防卫机制被强烈激活，产生了显著的羞耻感。这提示您的自我价值感存在较深的“权威依恋（Authority Dependence）”。将专业探讨等同于人格审判，是您未来在独立科研道路上的核心心理隐患。</div>`;
+                authorityDependenceHtml = `<div style="margin-top: 10px; padding: 10px 14px; background: #fff5f5; border-left: 3px solid #fa5252; font-size: 13px; color: #c92a2a;"><strong>[关键行为观测点]</strong> 在遭遇来自学术权威的严厉负面反馈时，您产生了较为显著的防卫心理与情绪波动。这提示您在自我价值的确认过程中，存在一定程度的“权威依恋（Authority Dependence）”倾向，将学术探讨中的观点交锋与个人的整体评价产生了过度关联。</div>`;
             }
         }
 
         intro = `
         <div style="background: #ffffff; border: 1px solid #e9ecef; padding: 24px; border-radius: 12px; margin-bottom: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.02);">
-            <p style="font-size: 18px; margin-bottom: 12px; color: #212529; font-weight: 700; border-bottom: 1px solid #f1f3f5; padding-bottom: 10px;">综合适性评估报告：Type-C 高度尽责的建制中坚</p>
-            <p style="font-size: 15px; line-height: 1.8; margin-bottom: 12px; color: #495057; text-align: justify;">在本次结构化适性检测中，系统对您的行为模式与抗压机制进行了深度扫描。在当前学术界这部精密咬合、高速运转的庞大机器中，您展现出了令人惊叹的稳定性与承载力。系统判定您的特征模型符合<strong>【高度尽责的建制中坚 / The Steady Professional】</strong>。</p>
-            <p style="font-size: 15px; line-height: 1.8; color: #495057; text-align: justify;">评估结果表明，您展现出的是一种稳如泰山的钝感与踏实。您不像A类（孤傲天才）那样眼高手低、缺乏妥协；也不像B类（学术商人）那样唯利是图、缺乏底线。您极高的规则顺应性、卓越的延迟满足能力以及强大的契约精神，完美契合了现行科研体制对“成熟工作者”的苛刻想象。您未必是金字塔尖最孤高刺眼的反光，但绝对是支撑整座塔身不致崩塌的承重墙。您是所有大牛导师做梦都想招收的“定海神针”。</p>
+            <p style="font-size: 18px; margin-bottom: 12px; color: #212529; font-weight: 700; border-bottom: 1px solid #f1f3f5; padding-bottom: 10px;">综合适性评估：高度尽责的建制中坚</p>
+            <p style="font-size: 15px; line-height: 1.8; margin-bottom: 12px; color: #495057; text-align: justify;">通过对您行为反应模式的全面扫描，系统识别出您在抗压机制与规则适应方面的独特表现。在当前结构严密、任务繁重的现代研究体系中，您展现出了极佳的稳定性与责任感。系统评估您的特征模型符合<strong>【高度尽责的建制中坚】</strong>。</p>
+            <p style="font-size: 15px; line-height: 1.8; color: #495057; text-align: justify;">评估结果表明，您具备深厚且踏实的执行特质。您能够在既定的研究框架内，以高度的规范性和契约意识履行职责。您极高的规则顺应能力、在枯燥工作中的专注度，以及对团队秩序的维护，使其能够有效应对科研体系对“成熟专业人员”的各项要求。您或许并非时刻追求颠覆性的创新，但您所提供的高质量基础性工作，是支撑整个研究组织稳定向前推进不可或缺的重要保障。</p>
         </div>
         `;
         
-        // 规则顺应与执行力 (C) - 三档细分
         dims += `<li style="margin-bottom: 20px;"><strong>规则顺应与执行力 (组织纪律性)</strong>：`;
         if(s100.C >= 65) {
             dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
-            <strong>[评估：完美的建制执行者]</strong> 您将现行的学术评价体系完全内化为职场规范。面对毫无新意的课题或繁琐的指标，您能屏蔽负面情绪，以极高的颗粒度将其拆解并执行到位。您的执行力不依赖于灵感，而是建立在严密的职业素养之上。<br>
-            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
-                <strong></strong>你是真正的“靠谱成年人”。只要导师交代的任务，不管多无聊多繁琐，交到你手里就等于“已完成”。你不带情绪地干活，像一台精密的推土机一样推进进度。在别人还在抱怨体制不公、课题无聊的时候，你已经默默把数据跑完、把论文投出去了。
-            </div>
+            <strong>[评估特征：稳定的规范执行导向]</strong> 您高度认同并内化了现行的学术规范与工作流程。即使面对缺乏新意或相对机械的研究任务，您也能有效地管理个人情绪，以严谨的态度将其细化并落实。您的执行力建立在深厚的专业素养与高度的责任感之上，保障了研究计划的如期推进。<br>
             ${conscientiousnessHtml}
             </div></li>`;
         } else if(s100.C >= 40) {
             dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
-            <strong>[评估：理性妥协的工作者]</strong> 您对学术圈的八股文和行政规训存在一定抵触，但具备强大的现实检验能力。在权衡毕业指标与个人好恶后，您总能选择压抑个性，确保底线任务的完成。<br>
-            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
-                <strong></strong>你虽然心里会吐槽“这玩意儿有什么意义”，但吐槽归吐槽，该干的活儿你一点没落下。你把科研当成一份签了合同的工作，哪怕不喜欢老板的朝令夕改，也会为了拿到最后的工资（毕业证）而捏着鼻子妥协。你是个合格的“科研打工人”。
-            </div></div></li>`;
+            <strong>[评估特征：基于现实考量的适度妥协]</strong> 您对于部分刻板的程序性要求存在一定的个人看法，但在深入评估研究任务的整体目标后，您通常能够选择暂时搁置争议，优先确保基础性考核或研究底线任务的顺利完成。
+            </div></li>`;
         } else {
             dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
-            <strong>[评估：高内耗的顺应者]</strong> 您的潜意识试图顺应规则，但在执行过程中面临极高的心理摩擦力。每完成一项违背初心的流水线任务，都会剧烈消耗您的心理资源，容易陷入长期的疲惫与拖延。<br>
-            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
-                <strong></strong>你活得很累。你想做个听话的好学生，但每一次迎合导师去改那些水文章，你的良心都在隐隐作痛。这种“又想乖乖毕业，又觉得自己在制造学术垃圾”的矛盾，让你的精力全耗在了自我说服上，导致行动极其迟缓，每天去实验室都像去上坟。
-            </div></div></li>`;
+            <strong>[评估特征：伴随心理摩擦的被动顺应]</strong> 尽管您的行为表面上顺应了规则，但在内心深处却承受着较高的认知摩擦。每一次完成违背自身研究兴趣的常规性任务，都会消耗您较多的心理资源，如果缺乏适当的调节，可能导致渐进式的职业倦怠。
+            </div></li>`;
         }
         
-        // 社交效能 (Col) - C类的宿命分水岭
-        dims += `<li style="margin-bottom: 20px;"><strong>社交效能 (团队生态占位)</strong>：`;
+        dims += `<li style="margin-bottom: 20px;"><strong>社交效能 (团队生态角色)</strong>：`;
         if(s100.Col >= 65) {
             dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
-            <strong>[评估：卓越的团队生态枢纽]</strong> 高服从性与高情商的完美叠加。您不仅能管理好自己的课题，还能极其妥帖地处理上下级关系、跨组协调以及师门内的技术传承。您极大概率会成长为课题组不可或缺的“二把手”或“大管家”。<br>
-            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
-                <strong></strong>你是整个实验室的“知心大哥/大姐”和“技术大拿”。导师不在的时候，实验室全靠你撑着。师弟师妹做不出实验找你，同门要借试剂找你，导师要报账也找你。你人缘极好，大家都信任你，但你也是全组活得最累、被白嫖劳动力最多的人。
-            </div>
+            <strong>[评估特征：不可或缺的团队支持核心]</strong> 您将极强的责任感与良好的沟通协调能力融为一体。您不仅专注于个人的研究进度，更在维护团队内部的人际关系、协助指导初级研究者以及保障实验室日常运转方面发挥了关键作用。这种特质使您极易成为研究团队中实质上的中枢纽带。<br>
             ${ocbHtml}
             </div></li>`;
         } else if(s100.Col >= 40) {
             dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
-            <strong>[评估：温和的边界防守者]</strong> 您在团队中维持着一种温和但有距离感的存在。不主动揽权，也不刻意孤立。能维持实验室的表面和谐，但在涉及到深度的利益分配或资源争夺时，往往处于被动退让的状态。<br>
-            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
-                <strong></strong>你是个老好人。别人跟你借东西你不好意思拒绝，导师给你加塞杂活你也不敢反抗。你在实验室的存在感不强，永远在默默干活。虽然大家觉得你脾气好，但在分一作或者抢评优名额的时候，你总是那个被牺牲、被要求“发扬风格”的倒霉蛋。
-            </div></div></li>`;
+            <strong>[评估特征：温和且具防御性的人际边界]</strong> 在团队环境中，您倾向于保持一种友好但适度疏离的互动模式。您能够配合完成集体任务，维护基础的工作和谐，但在涉及核心资源的竞争或深度的利益分配时，您往往选择采取退让或被动的态度以避免冲突。
+            </div></li>`;
         } else {
             dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
-            <strong>[评估：边缘化的沉默承压者]</strong> 您具备实干能力，但极度缺乏社交防御机制。在组织生态中，容易被判定为“高价值但无威胁”的目标，从而被系统性地分配大量无价值的底层劳作，沦为团队的隐形耗材。<br>
-            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
-                <strong></strong>你是实验室底层的“透明砖块”。你不善言辞，不会邀功。很多属于你的功劳被善于汇报的同门抢走，很多烂摊子却悄悄推到了你的桌面上。你以为只要闷头苦干总有一天会被看到，但现实是，会哭的孩子有奶吃，而你只会得到更多的活儿。
-            </div></div></li>`;
+            <strong>[评估特征：过度内向导致的角色边缘化]</strong> 您具备扎实的工作能力，但由于缺乏有效的人际展示与自我主张的意愿，您的实质贡献往往难以被管理层充分认知。这导致您可能被分配大量隐性的、边缘化的基础工作，从而压缩了用于提升自身学术竞争力的核心时间。
+            </div></li>`;
         }
         
-        // 延迟满足 (DG) - C类的底层动力
         dims += `<li style="margin-bottom: 20px;"><strong>延迟满足与认知耐受力 (长周期抗压)</strong>：`;
         if(s100.DG >= 65) {
             dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
-            <strong>[评估：工程化的高阶耐受力]</strong> 面对发不了高分文章的基础数据收集或长达数月的综述整理，您的心态出奇平稳。您不因同龄人的暴富而失衡，坚信滴水穿石的长线投资，具备极佳的情绪稳定性。<br>
-            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
-                <strong></strong>你有一颗极其大心脏。课题再枯燥、周期再长，你都能像老黄牛一样一步一个脚印地犁过去。你不眼红别人去大厂赚快钱，你只相信种瓜得瓜种豆得豆。这种踏实到甚至有些笨拙的定力，在这个浮躁的时代简直是稀缺资产。
-            </div>
+            <strong>[评估特征：极佳的长期研究心理承载力]</strong> 面对需要耗费大量时间进行基础数据积累或文献梳理的研究任务，您展现出了超出常人的心态平稳度。您坚信持续积累的价值，不受短期功利主义倾向的干扰，这种沉稳与定力为您完成系统性、长期性的学术工作提供了坚实保障。<br>
             ${cognitiveEnduranceHtml}
             </div></li>`;
         } else {
             dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
-            <strong>[评估：意志力损耗的疲劳态]</strong> 您的隐忍主要依靠道德感和责任心在强撑，而非真正的认知接纳。在长期的无反馈状态下，您的“自我控制资源（Self-Control Resources）”正在被严重透支，存在突然崩溃的风险。<br>
-            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
-                <strong></strong>你一直在用“坚持一下就好了”来给自己洗脑。但看着同龄人结婚生子买房，你内心的防线正在被一点点瓦解。你表面上还在老老实实做实验，但心里那根弦绷得太紧了。如果不给你一点阶段性的奖励，你随时可能会在某一个普通的早晨突然宣布退学。
-            </div></div></li>`;
+            <strong>[评估特征：依赖意志力维持的阶段性疲劳]</strong> 您的坚持更多地源于责任感的驱使，而非对枯燥过程本身的内在接纳。在长时期缺乏外界正面反馈的情况下，您的自我调节能力正面临挑战，如果这种状态持续，可能面临难以维持后续研究动力的风险。
+            </div></li>`;
         }
 
-        // 自我解绑 (E) - C类普遍的弱点 (好学生综合症)
-        dims += `<li style="margin-bottom: 20px;"><strong>自我解绑 (权威评估独立性)</strong>：`;
+        dims += `<li style="margin-bottom: 20px;"><strong>自我解绑 (评价独立性与边界确立)</strong>：`;
         if(s100.E >= 60) {
             dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
-            <strong>[评估：健康的职业化边界]</strong> 难能可贵的是，您在保持高尽责性的同时，没有沦为权威的附庸。您将导师视为职场上级，工作尽心尽力，但绝不将个人尊严与导师的脸色挂钩，成功实现了情绪切割。<br>
-            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
-                <strong></strong>你是个清醒的“好员工”。你干活极其认真，对得起导师发的补贴；但只要出了实验室的门，导师的批评、课题的挫折就再也伤不到你分毫。你把生活和科研分得很开，绝不为了一份文凭去当牛做马出卖尊严。
-            </div></div></li>`;
+            <strong>[评估特征：健康的职业化心理边界]</strong> 难能可贵的是，您在保持高度尽责性的同时，并未将个人的尊严过度附着于外界的专业评价之上。您能够将研究指导关系视为一种专业的合作与培养机制，在尽力完成工作任务的同时，成功地维护了独立且完整的自我价值认知。
+            </div></li>`;
         } else {
             dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
-            <strong>[评估：高风险的权威依恋与讨好倾向]</strong> 这是C类最致命的隐患。您高度认同体制，导致您将导师的评价等同于绝对真理。一旦遭遇不公指责或边缘化，您会产生极强的被遗弃感和自我怀疑，极易沦为PUA的受害者。<br>
-            <div style="margin-top: 8px; padding: 12px; background: #fff5f5; border-radius: 6px; color: #c92a2a; font-size: 14px;">
-                <strong></strong>你患有重度的“好学生综合症”。你极其害怕让导师失望，导师的一句重话能让你内耗失眠整整三天。你习惯从权威那里获取价值感，这种讨好型人格让你在遇到毒性导师时毫无还手之力，会被压榨到骨头渣都不剩，还在反思是不是自己不够努力。
-            </div>
+            <strong>[评估特征：对权威评价的高度依赖倾向]</strong> 这可能是您面临的一个显著隐患。由于对现行体制和学术权威的高度认同，您倾向于将指导者的意见视为衡量自身价值的决定性标准。在面临严厉批评或感到不被重视时，您容易产生深度的自我怀疑，难以在专业领域内确立平等且独立的主体意识。<br>
             ${authorityDependenceHtml}
             </div></li>`;
         }
 
-        // 结构化风险预测与干预策略 (针对C类的特有危机)
         let crisisContent = '', adviceContent = '';
-        if(s100.E < 50 || s100.Col >= 65) { // 极易被吸血的“老实人”
+        if(s100.E < 50 || s100.Col >= 65) {
             crisisContent = `
-                <p style="margin-bottom: 8px;"><strong>系统性风险预测：无底线过度剥削 (Exploitative Overload)</strong></p>
-                <p>模型推演显示，您面临的最大毁灭性风险是“被系统性吸血”。因为您太靠谱、太懂事且不懂拒绝，所有的杂活（贴发票、带新生、写本子、帮大牛干私活）最终都会如潮水般堆到您桌面上。最讽刺的是，当刺头（A类）和滑头（B类）拿着闪亮的成果顺利毕业时，您这块最坚实的基石，却极可能因为被杂事耗干精力而惨遭延毕。</p>
+                <p style="margin-bottom: 8px;"><strong>风险预测：边界缺失导致的角色超载 (Role Overload)</strong></p>
+                <p>模型推演显示，由于您具备出色的可靠性与配合度，且往往难以直接拒绝他人的请求，您容易面临被各种非核心事务（如过多地承担实验室管理、无偿协助他人课题）过度占据精力的风险。长此以往，在资源有限的情况下，您自身的独立研究计划可能因时间被挤压而遭受延误，反而对个人的长远学术发展造成不利影响。</p>
             `;
             adviceContent = `
-                <p style="margin-bottom: 8px;"><strong>干预策略建议：建立冷酷的边界防御与“战略性装死” (Boundary Management)</strong></p>
-                <p>1. <strong>戒断“讨好型人格”：</strong> 停止用牺牲自己利益的方式去维系实验室表面的和谐！在职场（哪怕是学术圈），过度的善良就是原罪。必须深刻认识到：只有写在您名字一作位置的论文，才是您唯一的护身符；导师对您“干活踏实”的口头表扬，在毕业找工作时一文不值。</p>
-                <p>2. <strong>执行“战略性无能”：</strong> 学会隐瞒您的部分实力。对于非核心的杂务，勇敢地展现出“我尽力了但我真的不会”的姿态。把您的聪明才智和极高的执行力，像守财奴一样严格保留给能决定您前途的核心关键人与核心课题。</p>
+                <p style="margin-bottom: 8px;"><strong>建议策略：确立专业边界与资源防御意识 (Boundary Management)</strong></p>
+                <p>1. <strong>重塑人际互动的专业导向：</strong> 建议您在维持良好合作关系的同时，学会在必要时表达个人的专业诉求。请认识到，在学术评价体系中，明确的第一作者贡献是衡量研究能力的核心指标，过度承担无明确署名回报的支持性工作需有意识地加以限制。</p>
+                <p>2. <strong>适度的能力隐藏与任务婉拒：</strong> 在团队中，并非所有的请求都需要被完美响应。对于偏离您核心研究目标且价值较低的分配任务，尝试运用专业且委婉的方式予以拒绝或降低响应优先级，将最为宝贵的时间与智力资源，投入到能够实质性提升个人学术履历的核心研究中。</p>
             `;
-            crisis = mkCrisis('风险预警 (Risk Assessment)', crisisContent);
-            advice = mkRule('干预策略 (Intervention Strategy)', adviceContent);
+            crisis = mkCrisis('结构性困境预测', crisisContent);
+            advice = mkRule('发展建议', adviceContent);
             
-        } else if (s100.M >= 60 && s100.C >= 60) { // 有理想但又太顺从的C类
+        } else if (s100.M >= 60 && s100.C >= 60) {
             crisisContent = `
-                <p style="margin-bottom: 8px;"><strong>系统性风险预测：午夜梦回的深度虚无感 (Existential Void)</strong></p>
-                <p>在迎合规则的间隙，您的心底依然保留着一丝对纯粹科学的向往。当您为了交差，批量生产出成百上千张毫无营养的学术八股文图表时，在一个个深夜，您会突然质问自己：“我耗费一生中最黄金的岁月，就是为了给这台破机器当一颗拧螺丝的打工人吗？”这种意义危机会以钝痛的方式，长期折磨您的精神世界。</p>
+                <p style="margin-bottom: 8px;"><strong>风险预测：深层意义诉求与现实执行的矛盾 (Existential Void)</strong></p>
+                <p>在适应和执行现行规则的过程中，您内心可能依然保留着对探索纯粹科学问题的向往。当长期被迫从事旨在迎合考核指标而非具有实质创新意义的研究时，您可能会经历持续的意义拷问，感受到自身投入的时间与理想追求之间的错位，这种内心的矛盾如果得不到缓解，将演变为深层次的职业倦怠。</p>
             `;
             adviceContent = `
-                <p style="margin-bottom: 8px;"><strong>干预策略建议：开辟精神“自留地”与火种保护 (Sanctuary Cultivation)</strong></p>
-                <p>1. <strong>课题打工化：</strong> 彻底接受目前的流水线课题只是一份“正职交差”。不要试图在垃圾堆里雕花，用最标准、最工业化的流程把它做完投出去，不要投入多余的情感。</p>
-                <p>2. <strong>经营“学术自留地”：</strong> 务必在暗处保留一个极小的、完全属于您自己的“自留地”项目（可以是一个有趣的偏门理论验证，或者一门硬核代码技术）。不需要告诉导师，也不指望它短期能发文章。这块自留地是用来安放您最初热爱的锚点，防止您的灵魂在工业化科研中彻底干涸。</p>
+                <p style="margin-bottom: 8px;"><strong>建议策略：学术空间的区分管理与志趣保留 (Sanctuary Cultivation)</strong></p>
+                <p>1. <strong>建立研究任务的分级机制：</strong> 尝试以更加客观的态度对待仅仅为了满足阶段性考核而分配的常规课题，采用规范、高效的流程将其推进至符合要求的状态即可，避免在其中投入不必要的情感与完美主义期待。</p>
+                <p>2. <strong>维系个人的核心研究关切：</strong> 在常规工作之外，有意识地保留一个小规模但纯粹出于个人学术兴趣的探索项目。这一项目不必急于产出可见的成果，其核心功能在于为您提供一个自由思考的空间，维系您对研究工作最原始的好奇与热情。</p>
             `;
-            crisis = mkCrisis('风险预警 (Risk Assessment)', crisisContent);
-            advice = mkRule('干预策略 (Intervention Strategy)', adviceContent);
+            crisis = mkCrisis('结构性困境预测', crisisContent);
+            advice = mkRule('发展建议', adviceContent);
             
         } else {
-            // 最稳妥但平庸的C类
             crisisContent = `
-                <p style="margin-bottom: 8px;"><strong>系统性风险预测：长期温水煮青蛙的平庸化 (Boiled Frog Syndrome)</strong></p>
-                <p>凭借踏实肯干，您大概率能平安落地拿到学位，甚至去到一个二本高校或研究所谋得稳定教职。但长期的服从与按部就班，会逐渐抹杀您提出尖锐科学问题的能力。当您真正独立带组时，您会发现自己除了“模仿”和“优化”，已经失去了开创全新研究领域的勇气和直觉，彻底沦为学术界的平庸中产。</p>
+                <p style="margin-bottom: 8px;"><strong>风险预测：长期顺应导致的原创力抑制 (Inhibition of Originality)</strong></p>
+                <p>凭借扎实的执行力，您能够稳健地完成各个阶段的任务并获得相应的资质。然而，长期习惯于在既定框架内进行验证性工作，可能会在潜移默化中削弱您提出具有突破性研究假设的直觉与勇气。当未来要求您独立开辟新的研究领域时，可能会面临较为明显的范式转换困难。</p>
             `;
             adviceContent = `
-                <p style="margin-bottom: 8px;"><strong>干预策略建议：强制跨界激活与反脆弱训练 (Anti-fragility Activation)</strong></p>
-                <p>1. <strong>主动摄入混乱度：</strong> 您现在的生活太有秩序了。建议强制自己每月参加一次与本专业完全无关的跨界讲座，或者强迫自己去阅读非共识的边缘文献。通过外部刺激打破思维的过度收敛状态。</p>
-                <p>2. <strong>练习“微小反叛”：</strong> 尝试在下一次组会上，用坚实的数据去温和但坚定地反驳导师的一次错误判断。逐步通过这种微小的、可控的冲突，建立起“我不仅可以执行，我更可以挑战权威”的学术自信。</p>
+                <p style="margin-bottom: 8px;"><strong>建议策略：主动引入异质性思考与开展适度辩论 (Anti-fragility Activation)</strong></p>
+                <p>1. <strong>定期打破思维的过度收敛：</strong> 鉴于您当前的工作模式可能过于规范与有序，建议您定期关注与自身研究领域存在显著差异的学科进展。通过阅读跨学科的前沿文献或参与非共识性的学术讨论，主动为自己的思维体系引入有益的复杂性与新视角。</p>
+                <p>2. <strong>在专业讨论中尝试独立主张：</strong> 尝试在团队研讨或与指导者的交流中，基于扎实的数据或理论推导，以专业、理性的方式提出不同于常规视角的见解。逐步通过这种建设性的专业讨论，增强自身在学术对话中的主体意识与理论自信。</p>
             `;
-            crisis = mkCrisis('风险预警 (Risk Assessment)', crisisContent);
-            advice = mkRule('干预策略 (Intervention Strategy)', adviceContent);
+            crisis = mkCrisis('结构性困境预测', crisisContent);
+            advice = mkRule('发展建议', adviceContent);
         }
     }
-   else if(typeStr === 'D') {
-        // [动态拦截器] 扫描用户的历史轨迹，提取自我耗损、躯体化预警与习得性无助的观测点
+    else if(typeStr === 'D') {
         let somaticHtml = "";
         let egoDepletionHtml = "";
         let ruminationHtml = "";
@@ -1090,144 +992,115 @@ function buildDynamicReport(typeStr, s100) {
             let qText = currentQList[i].t;
             let ansVal = userAnswers[i] ? userAnswers[i].val : null;
 
-            // 拦截题目：身体发出明确警告信号？(选了: 只要没进ICU吃药顶住 / 关键时刻透支)
             if (qText.includes("身体因长期压力发出") && ansVal >= 0.5) {
-                somaticHtml = `<div style="margin-top: 10px; padding: 10px 14px; background: #fff5f5; border-left: 3px solid #fa5252; font-size: 13px; color: #c92a2a;"><strong>[关键行为观测点]</strong> 在面对极端的生理性警告时，您依然选择药物压制与带病坚持。系统在此触发最高级别预警：这在临床心理学上属于危险的“病理性坚持（Pathological Persistence）”，您极易将精神层面的高度内耗转化为严重的“躯体化症状（Somatization）”。</div>`;
+                somaticHtml = `<div style="margin-top: 10px; padding: 10px 14px; background: #fff5f5; border-left: 3px solid #fa5252; font-size: 13px; color: #c92a2a;"><strong>[关键行为观测点]</strong> 在面对由于过度劳累引发的身体预警信号时，您依然选择借助外部方式抑制症状以维持高强度工作。在心理健康评估中，这种倾向属于需高度关注的风险因素，提示您可能正在将精神层面的深层压力转化为实质性的躯体症状（Somatization）。</div>`;
             }
-            // 拦截题目：长草期走向工位的心态？(选了: 与精神内耗作斗争 / 像去上坟)
             if (qText.includes("长草期") && ansVal <= -0.49) {
-                egoDepletionHtml = `<div style="margin-top: 10px; padding: 10px 14px; background: #fafafa; border-left: 3px solid #6c757d; font-size: 13px; color: #495057;"><strong>[关键行为观测点]</strong> 面对长期缺乏正反馈的科研日常，您感到强烈的窒息感与抗拒。这表明您处于严重的“自我控制资源耗竭（Ego Depletion）”状态。维持您继续前行的已非内驱力，而是高压规训下的行为惯性。</div>`;
+                egoDepletionHtml = `<div style="margin-top: 10px; padding: 10px 14px; background: #fafafa; border-left: 3px solid #6c757d; font-size: 13px; color: #495057;"><strong>[关键行为观测点]</strong> 面对研究过程中长时期的无显著反馈状态，您体验到了强烈的心理阻抗。这表明您目前的“自我控制资源（Ego Depletion）”处于较为枯竭的状态。维系您继续从事研究行为的动力，已由内在的热情逐渐转变为对环境要求的被动顺应。</div>`;
             }
-            // 拦截题目：回首半年失败实验？(选了: 反复懊悔 / 形成心理创伤)
             if (qText.includes("半年却无可挽回走向失败") && ansVal <= -0.49) {
-                ruminationHtml = `<div style="margin-top: 10px; padding: 10px 14px; background: #fdfdfd; border-left: 3px solid #343a40; font-size: 13px; color: #495057;"><strong>[关键行为观测点]</strong> 在处理重大科研挫折时，您倾向于长期的事后反刍（Rumination）。您难以将“课题的失败”客体化，而是将其内化为“决策无能”的证据，这种无法及时止损的心理创伤将持续消耗您的认知带宽。</div>`;
+                ruminationHtml = `<div style="margin-top: 10px; padding: 10px 14px; background: #fdfdfd; border-left: 3px solid #343a40; font-size: 13px; color: #495057;"><strong>[关键行为观测点]</strong> 在处理重大研究挫折时，您容易陷入较长时间的负面反思（Rumination）。由于难以迅速将研究本身的失败从对个人能力的评价中剥离，这种持续的心理痛感显著占用了您的认知带宽，阻碍了研究路径的及时调整。</div>`;
             }
-            // 拦截题目：同门发了顶刊？(选了: 强烈自我怀疑 / 极度自卑)
             if (qText.includes("同门在你细分领域发表") && ansVal <= -0.49) {
-                imposterHtml = `<div style="margin-top: 10px; padding: 10px 14px; background: #f8f9fa; border-left: 3px solid #4a90e2; font-size: 13px; color: #343a40;"><strong>[关键行为观测点]</strong> 面对近距离的同辈高水平产出，您产生了强烈的自我怀疑甚至回避行为。这高度符合“冒名顶替综合征（Imposter Syndrome）”的临床特征，您潜意识里常觉得自己是个不合格的科研骗子，时刻面临被系统淘汰的恐惧。</div>`;
+                imposterHtml = `<div style="margin-top: 10px; padding: 10px 14px; background: #f8f9fa; border-left: 3px solid #4a90e2; font-size: 13px; color: #343a40;"><strong>[关键行为观测点]</strong> 在面对同级研究者取得突出成果时，您产生了显著的自我怀疑与退缩倾向。这一反应模式符合“冒名顶替综合征（Imposter Syndrome）”的特征描述，反映出您在内心深处对自身学术胜任力缺乏稳定的认同，时刻担忧自身能力的不足被外界察觉。</div>`;
             }
         }
 
         intro = `
         <div style="background: #ffffff; border: 1px solid #e9ecef; padding: 24px; border-radius: 12px; margin-bottom: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.02);">
-            <p style="font-size: 18px; margin-bottom: 12px; color: #212529; font-weight: 700; border-bottom: 1px solid #f1f3f5; padding-bottom: 10px;">综合适性评估报告：Type-D 高度内耗的学术苦修者</p>
-            <p style="font-size: 15px; line-height: 1.8; margin-bottom: 12px; color: #495057; text-align: justify;">在本次结构化适性检测中，系统对您的抗压冗余度与心理防御机制进行了深层扫描。在这个反馈周期极长、评价标准单一且极度冷酷的学术机器中，您的运行参数呈现出极度危险的高阻尼特征。系统判定您的特征模型符合<strong>【高度内耗的学术苦修者 / The Silent Grinder】</strong>。</p>
-            <p style="font-size: 15px; line-height: 1.8; color: #495057; text-align: justify;">评估结果表明，科研对您而言不再是攀登真理的高峰，而更像是一场西西弗斯式的苦役。您既没有A类那种从底层逻辑中获得多巴胺的天赋，也不屑或无法掌握B类那种长袖善舞的变现套路，甚至缺乏C类那种游刃有余的钝感力。现行体系高强度的倾轧与遥遥无期的反馈周期，正以惊人的速度侵蚀您最初的科研信念。您是这套庞大机器里，齿轮咬合最吃力、磨损最严重，却最不忍心单方面斩仓离场的那颗螺丝钉。</p>
+            <p style="font-size: 18px; margin-bottom: 12px; color: #212529; font-weight: 700; border-bottom: 1px solid #f1f3f5; padding-bottom: 10px;">综合适性评估：处于结构性困境的承压者</p>
+            <p style="font-size: 15px; line-height: 1.8; margin-bottom: 12px; color: #495057; text-align: justify;">在对您各项维度的综合分析中，系统着重评估了您的心理承载水平与应对压力的机制。在当前反馈周期漫长、评价标准相对单一且竞争激烈的学术环境中，您展现出了较重的内耗特征与应对阻力。系统判定您的特征倾向于<strong>【处于结构性困境的承压者】</strong>。</p>
+            <p style="font-size: 15px; line-height: 1.8; color: #495057; text-align: justify;">评估结果显示，您在面对学术工作时体验到了深刻的心理拉扯。您可能既缺乏在纯粹探索中获取积极体验（内在奖赏）的特质，也难以完全认同并将现行的学术评价规则内化为个人的行动指南。现行体系的高强度压力与研究工作本身的不确定性，正持续消耗着您最初对学术生活的预期。支撑您继续在这一轨道上前行的，更多是对既往投入的不舍与一种坚忍的惯性，而非源自深层的价值认同。</p>
         </div>
         `;
         
-        // 抗挫韧性与自我解绑 (R & E) - D类的核心痛点
-        dims += `<li style="margin-bottom: 20px;"><strong>抗挫韧性与心理复原 (核心承压面)</strong>：`;
+        dims += `<li style="margin-bottom: 20px;"><strong>抗挫韧性与心理复原 (核心承压状态)</strong>：`;
         if(s100.R >= 65 && s100.E >= 60) {
             dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
-            <strong>[评估：悲壮的耐受堡垒]</strong> 尽管感受到巨大的痛苦，但您依然维持着惊人的心理韧性。您能够将课题的反复横跳和导师的打压视作“苦行僧式的修行”，强行在废墟中重建心理防线。这种韧性虽然有效，但伴随着极高的长期健康透支风险。<br>
-            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
-                <strong></strong>你是个极其“命硬”的人。不管论文被拒多少次、实验死机多少回，你虽然心里在滴血，但第二天依然能像丧尸一样爬起来继续干。你不觉得自己在做学术，你觉得自己在“渡劫”。只要没把你彻底打死，你总能靠着一口仙气硬扛到毕业。
-            </div>
+            <strong>[评估特征：极高负荷下的意志力支撑]</strong> 尽管在研究过程中体验到明显的压力与痛苦，您依然表现出了超常的坚韧。您倾向于将课题中的反复与外部的苛责视为一种必须承受的考验，依靠强大的意志力不断重塑应对机制。这种应对方式虽然能在短期内维持研究运转，但长期来看，存在着透支身心健康的潜在风险。<br>
             ${somaticHtml}
             </div></li>`;
         } else if(s100.R >= 40) {
             dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
-            <strong>[评估：临界态的意志力透支]</strong> 您的心理防御机制正在超负荷运转。面对科研失败，您难以做到快速剥离，而是陷入一定程度的自我怀疑。维持您每天走向实验室的动力，已非热爱，而是对沉没成本的极度恐惧与行为惯性。<br>
-            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
-                <strong></strong>你活在一个“想放弃又不甘心”的死循环里。每天睁开眼想到要去实验室，你都会做长达十分钟的心理建设。你不是在主动做研究，而是被无形的长鞭抽打着往前走。你全靠肌肉记忆在维持着学者的体面，实际上内里早已疲惫不堪。
-            </div>
+            <strong>[评估特征：处于临界状态的自我调节]</strong> 您当前的心理防御机制处于较高负荷的运行状态。在遭遇研究失败时，您往往难以实现情绪的快速剥离，而是容易产生一定程度的自我怀疑。维持您日常科研行为的动力，在很大程度上是对沉没成本的考量以及对未能完成学业的顾虑。<br>
             ${egoDepletionHtml}
             </div></li>`;
         } else {
             dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
-            <strong>[评估：深度防线崩溃与习得性无助]</strong> 算法发出严重警告：您在遭遇连串挫折后，已出现高度的“习得性无助（Learned Helplessness）”。您将科研的失败完全内化为对自我人格与智力的全盘否定，极易在批评面前陷入彻底的瘫痪与死机状态。<br>
-            <div style="margin-top: 8px; padding: 12px; background: #fff5f5; border-radius: 6px; color: #c92a2a; font-size: 14px;">
-                <strong></strong>你已经被这个系统彻底打碎了。哪怕是一个小小的代码报错，都能让你瞬间崩溃落泪，觉得“我真是一个彻头彻尾的废物”。你极其害怕跟导师汇报，害怕见同门。你像一只受惊的鸵鸟，只能把头埋在沙子里假装工作，但实际上课题进度已经完全停滞。
-            </div>
+            <strong>[评估特征：防线脆弱与习得性无助倾向]</strong> 数据模型提示需要引起高度关注的状况：在经历了一系列挫折后，您可能出现了一定程度的“习得性无助（Learned Helplessness）”。您倾向于将具体研究中遇到的困难归咎于自身固有能力的欠缺，这种认知模式可能导致您在面对新的挑战或负面评价时，产生退缩甚至是研究停滞的情况。<br>
             ${ruminationHtml}
             ${imposterHtml}
             </div></li>`;
         }
         
-        // 延迟满足 (DG) - D类的生死锚点
-        dims += `<li style="margin-bottom: 20px;"><strong>延迟满足与沉没成本控制 (决策陷阱)</strong>：`;
+        dims += `<li style="margin-bottom: 20px;"><strong>延迟满足与成本考量 (决策纠结)</strong>：`;
         if(s100.DG >= 65) {
             dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
-            <strong>[评估：极端的沉没成本耐受]</strong> 您展现出了一种绝不割肉的“赌徒式坚持”。无论前期投入的时间和精力沉没得多深，您都坚信只有拿到最终的学位才能回本。这种惊人的忍耐力是您唯一的护城河。<br>
-            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
-                <strong></strong>如果说别人靠脑子毕业，那你绝对是靠“命”毕业。你对自己的要求已经降到了极低，同龄人买大别墅你也不关心了。你脑子里只有一件事：“我就是熬，熬到导师退休、熬到审稿人瞎眼，我也必须要把这破证熬出来。”
-            </div></div></li>`;
+            <strong>[评估特征：对前期投入的执着坚守]</strong> 您表现出了一种对过往投入的极度看重。无论前期在时间、精力上的消耗有多大，您都坚持认为只有达成最终的学位目标，才算是对这些投入的合理交代。这种惊人的忍耐力成为您目前在困境中坚持的核心支撑。
+            </div></li>`;
         } else if(s100.DG >= 40) {
             dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
-            <strong>[评估：摇摆的价值感与戒断反应]</strong> 您在苦修的道路上经常发生价值动摇。在长达几个月毫无产出时，外界的同辈压力会犹如利刃般刺破您的防御，让您在“坚持下去的微弱希望”与“即刻退学的冲动”间剧烈撕扯。<br>
-            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
-                <strong></strong>你每个月都有至少三天想把电脑砸了直接退学拉倒。看着自己干瘪的银行卡和遥遥无期的实验，你会陷入极度的自我怀疑。但在向朋友大倒苦水、甚至查了一晚上大厂的招聘要求后，第二天早上你又会叹口气，乖乖背上书包滚去实验室。
-            </div></div></li>`;
+            <strong>[评估特征：价值认同的周期性摇摆]</strong> 您在坚持研究的道路上时常经历内心信念的动摇。在长达数月未能取得实质进展时，外界同辈群体的发展状况会显著加剧您的焦虑感，使您在“继续坚持的微弱期望”与“重新评估职业选择”之间产生反复的心理权衡。
+            </div></li>`;
         } else {
             dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
-            <strong>[评估：意义感丧失与即刻逃离倾向]</strong> 您对长远回报的信念已经彻底破产。您无法用“未来的博士光环”来欺骗自己忍受眼前的折磨。由于缺乏短期的情绪价值或物质回馈，您已处于随时准备切断一切关联的临界点。<br>
-            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
-                <strong></strong>这个大饼你是一口也吃不下去了。你现在看到“科研”、“论文”这几个字就生理性反胃。你清醒地意识到，即便拿到学位，也改变不了你对这种生活方式的极度厌恶。你已经在偷偷修改简历，甚至做好了随时跟导师翻桌子走人的准备。
-            </div></div></li>`;
+            <strong>[评估特征：预期解构与迫切的轨道调整需求]</strong> 您对于学术职业带来长远回报的信念已经出现了根本性的动摇。由于当前的经历难以提供足够的内在成就感或现实的阶段性回馈，您已处于随时准备重新思考并调整职业发展规划的关键临界点。
+            </div></li>`;
         }
         
-        // 社交效能 (Col) - 孤独感加剧内耗
-        dims += `<li style="margin-bottom: 20px;"><strong>社交效能 (系统性支持的缺失)</strong>：`;
+        dims += `<li style="margin-bottom: 20px;"><strong>社交效能 (系统性支持状况)</strong>：`;
         if(s100.Col >= 50) {
             dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
-            <strong>[评估：隐忍的弱关联求助者]</strong> 在陷入泥沼时，您尚存一丝理智去寻求外界的帮助。尽管社交让您感到疲惫，但您愿意为了课题的推进，以极其谦卑甚至委曲求全的姿态去向同门或外援求助。<br>
-            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
-                <strong></strong>为了活下去，你放下了所有的自尊。当实验卡死时，哪怕对方脾气再差、平时再不待见你，你也能厚着脸皮去请教。你把这种卑微当成是科研的必修课，虽然心里苦涩，但好歹这能帮你从死胡同里爬出来一点点。
-            </div></div></li>`;
+            <strong>[评估特征：维持基础连接的求助行为]</strong> 在研究遭遇困境时，您尚能保持一定的理性去寻求外界的指导。尽管社交互动可能会给您带来一定的心理负担，但出于推进课题的需要，您仍愿意以较为谦和的姿态向同门或相关专家请教，试图寻找突破瓶颈的可能。
+            </div></li>`;
         } else {
             dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
-            <strong>[评估：绝望的闭环孤立]</strong> 极度的挫败感使您在社交层面全面退缩。您害怕被拒绝，更害怕在求助时暴露自己的无能。您切断了与学术共同体的信息交互，将自己锁死在一个毫无新鲜活水注入的信息茧房中。<br>
-            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
-                <strong></strong>你活成了一座孤岛。课题卡在了一个极其愚蠢的Bug上大半年，只要懂行的人看一眼就能解决，但你宁可自己一个人在黑夜里瞎撞，也绝不开口求人。你害怕别人看不起你，这种病态的自尊心和封闭，让你把大量的时间白白献祭给了毫无意义的死磕。
-            </div></div></li>`;
+            <strong>[评估特征：防卫性的人际交往退缩]</strong> 累积的挫败感使得您在学术交流层面出现了明显的退缩倾向。出于对被拒绝或暴露研究短板的担忧，您可能减少了与学术共同体的信息交互。这种自我封闭倾向，反而容易使您受困于信息盲区，难以获得及时有效的专业帮助。
+            </div></li>`;
         }
 
-        // 结构化风险预测与干预策略 (极其严肃的心理干预与止损建议)
         let crisisContent = '', adviceContent = '';
-        if(s100.R < 40 && s100.E < 40) { // 最危险的全面崩溃期
+        if(s100.R < 40 && s100.E < 40) {
             crisisContent = `
-                <p style="margin-bottom: 8px;"><strong>最高级别危机预警：全防线崩塌与病理性创伤 (Psychological Collapse)</strong></p>
-                <p>这是整个量表中最危险的指标组合。当您赖以生存的核心论文遭遇惨烈退稿，或导师在公开场合对您进行严重的否定时，长期高压下的您极大概率会将其放大为您整个人生的全面溃败。您可能在极短时间内出现严重的躯体化症状（如重度失眠、心悸、脱发），陷入数周无法踏入实验室的“死机状态”，甚至引发重度抑郁倾向。</p>
+                <p style="margin-bottom: 8px;"><strong>风险提示：深度的心理倦怠与自我否定风险 (Psychological Exhaustion)</strong></p>
+                <p>在此项指标组合下，提示您需高度关注自身的心理健康状况。当您投入巨大心血的研究成果遭遇重大退回，或在相对公开的场合面临不符合预期的负面评价时，长期积累的压力可能被瞬间触发。这种压力如果无法得到有效疏解，极易转化为深度的睡眠障碍等躯体不适，甚至引发对自身整体价值的系统性怀疑，导致较长时期的研究行为停滞。</p>
             `;
             adviceContent = `
-                <p style="margin-bottom: 8px;"><strong>临床级干预策略：绝对的客体化剥离与“完成大于完美” (De-sacralization)</strong></p>
-                <p>1. <strong>强行实施科研“NPC化”：</strong> 您必须立刻、马上把科研彻底“去神圣化”！把导师当成发放任务的无感情NPC，把写论文当成流水线打螺丝。数据跑不出是系统的Bug，不是您的错。严禁将“课题不行”等同于“我不行”，您只是在打一份极其难玩的破游戏，游戏打输了拔电源就是了，绝不波及现实中的人格尊严。</p>
-                <p>2. <strong>放弃执念，接受极致的平庸：</strong> 立刻停止做“传世之作”的任何幻想！把所有的标准降到学校允许的最低基准线去凑指标。在您现在的状态下，Done is perfectly better than perfect（做完远比做好重要）。允许自己产出一篇平庸甚至垃圾的论文，是您活着走出泥潭的第一步。</p>
+                <p style="margin-bottom: 8px;"><strong>建议策略：建立认知隔离与阶段性预期管理 (Cognitive Reappraisal)</strong></p>
+                <p>1. <strong>重塑评价边界，将研究“客体化”：</strong> 建议您有意识地进行心理干预，将个人的核心自尊从具体的学术评价中剥离出来。请认识到，实验的不达预期或论文的拒稿，主要反映了研究设计本身的局限或审稿标准的差异，绝不等同于对您个人智力或人格尊严的否定。学术只是一种职业形态，而非衡量人生价值的终极标尺。</p>
+                <p>2. <strong>调整基准，拥抱“完成优于完美”的理念：</strong> 尝试摒弃在现阶段追求极高学术水准的不切实际幻想。将您的目标调整至满足机构规定的最低要求，运用规范的方法完成研究流程。在当前的高压状态下，允许产出符合基础标准但不那么完美的成果，是缓解焦虑、逐步走出困境的务实选择。</p>
             `;
-            crisis = mkCrisis('风险预警 (Risk Assessment)', crisisContent);
-            advice = mkRule('干预策略 (Intervention Strategy)', adviceContent);
+            crisis = mkCrisis('结构性困境预测', crisisContent);
+            advice = mkRule('发展建议', adviceContent);
             
-        } else if (s100.Col < 40 && s100.DG >= 60) { // 又孤僻又能熬 = 淹没在死胡同
+        } else if (s100.Col < 40 && s100.DG >= 60) {
             crisisContent = `
-                <p style="margin-bottom: 8px;"><strong>系统性风险预测：在死胡同里的慢性溺亡 (Chronic Drowning)</strong></p>
-                <p>您极强的忍耐力（高DG）与极度封闭的社交状态（低Col）构成了致命的毒药组合。当研究方向发生根本性错误时，缺乏外部交流导致您无法获得纠偏信息，而惊人的忍耐力又让您能够在错误的死胡同里狂奔大半年而不肯放弃。最终您将花费几年时间，极其努力地证明一条毫无价值的死路。</p>
+                <p style="margin-bottom: 8px;"><strong>风险提示：缺乏外部校验的低效执着 (Ineffective Persistence)</strong></p>
+                <p>您极强的忍耐力与相对封闭的沟通习惯组合，可能成为研究推进的阻碍。当研究方案在底层逻辑上存在偏差时，由于缺乏与同行的及时交流，您无法获得必要的纠偏信息；而坚韧的性格又促使您在这一方向上持续投入大量时间。这种缺乏外部视角校验的执着，极易导致您耗费数月乃至更长的时间，去证实一条本可提前排雷的无效路径。</p>
             `;
             adviceContent = `
-                <p style="margin-bottom: 8px;"><strong>干预策略建议：强制性熔断与外包求助机制 (Forced Circuit Breaker)</strong></p>
-                <p>1. <strong>设立冷酷的“时间熔断机制”：</strong> 为所有遇到的卡脖子技术难题设定死线（例如：两周）。一旦两周内凭借一己之力无法突破，必须强制停止死磕。不要感动自己！这不叫坚持，这叫愚蠢的磨洋工。</p>
-                <p>2. <strong>克服社交耻辱，启动“付费/置换求援”：</strong> 把求助看作是科研项目管理中正常的“外包”环节。不需要交朋友，请直接运用利益交换、请教代劳、甚至合理运用经费寻求技术咨询。用外部视角强行砸碎您的信息茧房。</p>
+                <p style="margin-bottom: 8px;"><strong>建议策略：引入强制反馈机制与突破交流障碍 (Forced Feedback Loop)</strong></p>
+                <p>1. <strong>设立明确的时间评估节点：</strong> 建议为遇到的核心技术瓶颈设定严格的攻关期限（例如两周）。如果在此期间内依靠个人力量无法取得突破，必须强制停止当前的尝试，转向其他路径或向外寻求资源，避免陷入毫无意义的自我消耗。</p>
+                <p>2. <strong>将寻求专业指导常规化：</strong> 尝试克服因担忧暴露不足而产生的社交心理障碍。请将向他人请教或寻求合作视为现代研究管理的标准化流程。合理运用各种资源，引入外部专家的审视视角，打破限制自身思考的信息壁垒。</p>
             `;
-            crisis = mkCrisis('风险预警 (Risk Assessment)', crisisContent);
-            advice = mkRule('干预策略 (Intervention Strategy)', adviceContent);
+            crisis = mkCrisis('结构性困境预测', crisisContent);
+            advice = mkRule('发展建议', adviceContent);
             
         } else {
-            // 被沉没成本死死拖住的常规D类
             crisisContent = `
-                <p style="margin-bottom: 8px;"><strong>系统性风险预测：沉没成本绑架下的青春献祭 (Sunk Cost Fallacy)</strong></p>
-                <p>您清醒地知道这套体系病了，也知道自己并不适合学术，但您就是下不了桌。前两年耗费的心血、同侪的目光、家人的期许，化作“沉没成本”的巨大锁链死死勒住您的脖子。您将处于持续数年的低效内耗中，每天靠着负罪感工作，错失了转向业界或寻找其他可能性的最佳黄金期。</p>
+                <p style="margin-bottom: 8px;"><strong>风险提示：决策滞后带来的机会成本放大 (Escalation of Commitment)</strong></p>
+                <p>您对当前的学术环境及其与自身预期的错位有着清晰的认知，但迟迟未能采取实质性的调整行动。既往投入的时间与精力构成了强大的心理阻力。如果您继续处于这种高内耗的犹豫状态中，可能会在不情愿的情境下错失转换职业轨道或探索其他人生可能性的有利时机。</p>
             `;
             adviceContent = `
-                <p style="margin-bottom: 8px;"><strong>干预策略建议：敏捷止损理论与重塑感知力 (Agile Exit Strategy)</strong></p>
-                <p>1. <strong>把退学/转行视为“敏捷开发”的试错迭代：</strong> 必须从脑海中彻底根除“退学=人生污点”这种剧毒观念！在风投界，迅速斩断注定亏本的项目是最高级的金融智慧。去业界、去创业、去考公，任何一个能让您感受到生命脉动的选择，都比在一摊烂泥里耗死要有价值一万倍。</p>
-                <p>2. <strong>永远不要怀疑您的感知力：</strong> 当您每天去实验室都像上坟，当您的身体已经发出脱发、失眠的惨烈警告时，请相信您的直觉——您没有错，是这个有毒的环境病了。带着您这具尚未被彻底异化的灵魂，冷血斩仓，去寻找真正配得上您才华与心性的战场吧。</p>
+                <p style="margin-bottom: 8px;"><strong>建议策略：理性评估机会成本与重视个体感知 (Rational Re-evaluation)</strong></p>
+                <p>1. <strong>转换对职业选择调整的认知视角：</strong> 尝试摒弃将放弃某项研究或转行视为“能力不足的失败表现”这一传统观念。在现代职业规划中，基于客观形势及时调整不合适的发展路径，是具备高级决策能力的体现。去向业界或其他更匹配自身特质的领域，同样是实现个人价值的积极方式。</p>
+                <p>2. <strong>信任您对自身处境的真实体验：</strong> 当长期的研究工作持续给您带来深度的疲惫与难以排解的痛苦时，请严肃对待自身心理与生理的反馈信号。如果确信当前环境不利于自身的健康发展，请在审慎评估后勇敢做出改变。选择一条能够激发内心认同的发展道路，是为您个人未来负责的明智之举。</p>
             `;
-            crisis = mkCrisis('风险预警 (Risk Assessment)', crisisContent);
-            advice = mkRule('干预策略 (Intervention Strategy)', adviceContent);
+            crisis = mkCrisis('结构性困境预测', crisisContent);
+            advice = mkRule('发展建议', adviceContent);
         }
     }
     else if(typeStr === 'E') {
-        // [动态拦截器] 扫描用户的历史轨迹，提取认知去耦合、边界防御与沉没成本免疫的观测点
         let decouplingHtml = "";
         let boundaryHtml = "";
         let zeroJealousyHtml = "";
@@ -1237,148 +1110,119 @@ function buildDynamicReport(typeStr, s100) {
             let qText = currentQList[i].t;
             let ansVal = userAnswers[i] ? userAnswers[i].val : null;
 
-            // 拦截题目：导师严厉批评底层逻辑不成立？(选了: 迅速客体化/毫无波澜)
             if (qText.includes("导师严厉批评") && ansVal === 1) {
-                decouplingHtml = `<div style="margin-top: 10px; padding: 10px 14px; background: #fafafa; border-left: 3px solid #6c757d; font-size: 13px; color: #495057;"><strong>[关键行为观测点]</strong> 在模拟遭遇上位者（导师）严重否定时，您瞬间启用了高阶的“认知去耦合（Cognitive Decoupling）”机制。您能够将“逻辑的漏洞”与“自我价值”完全剥离，阻止了情绪脑的代入。这种免于精神内耗的能力是极其罕见的防御天赋。</div>`;
+                decouplingHtml = `<div style="margin-top: 10px; padding: 10px 14px; background: #fafafa; border-left: 3px solid #6c757d; font-size: 13px; color: #495057;"><strong>[关键行为观测点]</strong> 在模拟遭遇上位学术权威严重否定时，您能够迅速启用高阶的“认知去耦合（Cognitive Decoupling）”机制。您有效地将“研究逻辑中的瑕疵”与对自身整体价值的评判相剥离，成功阻止了非理性情绪的蔓延，这种免于无端精神内耗的能力是非常突出的素质。</div>`;
             }
-            // 拦截题目：承担行政杂活？(选了: 生硬拒绝/花钱找人)
             if (qText.includes("行政杂活") && ansVal <= -0.49) {
-                boundaryHtml = `<div style="margin-top: 10px; padding: 10px 14px; background: #f8f9fa; border-left: 3px solid #4a90e2; font-size: 13px; color: #343a40;"><strong>[关键行为观测点]</strong> 面对挤占科研时间的越界杂务，您的“组织公民行为（OCB）”意愿呈现绝对负值。您展现出了极度强硬的“职场边界防御（Boundary Defense）”，拒绝被情感绑架或隐性剥削，表现出高度的自我保全意识。</div>`;
+                boundaryHtml = `<div style="margin-top: 10px; padding: 10px 14px; background: #f8f9fa; border-left: 3px solid #4a90e2; font-size: 13px; color: #343a40;"><strong>[关键行为观测点]</strong> 面对可能挤占核心研究精力的越界性辅助事务，您的顺从意愿极低。您展现出了极为明确的“职场边界防御（Boundary Defense）”意识，具备拒绝隐性剥削与不合理工作负荷的决断力，体现了强烈的自我主张。</div>`;
             }
-            // 拦截题目：同门发了远超你的顶刊？(选了: 纯粹为领域突破高兴)
             if (qText.includes("同门在你细分领域发表") && ansVal === 1) {
-                zeroJealousyHtml = `<div style="margin-top: 10px; padding: 10px 14px; background: #fdfdfd; border-left: 3px solid #343a40; font-size: 13px; color: #495057;"><strong>[关键行为观测点]</strong> 面对近距离的同辈压制性产出，您的“相对剥夺感（Relative Deprivation）”趋近于零。这表明您的学术评价坐标系是绝对内向锚定的，免于被学术圈内剧烈的“同侪竞争（Peer Competition）”引发焦虑反噬。</div>`;
+                zeroJealousyHtml = `<div style="margin-top: 10px; padding: 10px 14px; background: #fdfdfd; border-left: 3px solid #343a40; font-size: 13px; color: #495057;"><strong>[关键行为观测点]</strong> 在面对相近领域内同辈研究者取得显著进展时，您的“相对剥夺感（Relative Deprivation）”趋近于零。这表明您构建了稳定的内向型学术评价坐标系，能够有效抵御学术场域中因激烈同侪竞争而引发的焦虑情绪传导。</div>`;
             }
-            // 拦截题目：回首半年失败实验？(选了: 客观阴性数据/毫无精神内耗)
             if (qText.includes("半年却无可挽回走向失败") && ansVal === 1) {
-                sunkCostHtml = `<div style="margin-top: 10px; padding: 10px 14px; background: #f4fbf8; border-left: 3px solid #28a745; font-size: 13px; color: #343a40;"><strong>[关键行为观测点]</strong> 在处理重大时间损失时，您展现出临床级别的“沉没成本豁免（Sunk Cost Immunity）”。您不因过去投入的心血而产生非理性的执念，能够像冷血的交易员一样迅速清算亏损并翻篇。这是高级决策者才具备的止损特质。</div>`;
+                sunkCostHtml = `<div style="margin-top: 10px; padding: 10px 14px; background: #f4fbf8; border-left: 3px solid #28a745; font-size: 13px; color: #343a40;"><strong>[关键行为观测点]</strong> 在处理重大研究时间的损失时，您展现出极高水平的理性判断，较少受到“沉没成本谬误”的影响。您不会因既往的大量心血投入而产生非理性的执念，能够以客观的视角迅速确认损失并调整未来的预期，这是成熟决策者所具备的特质。</div>`;
             }
         }
 
         intro = `
         <div style="background: #ffffff; border: 1px solid #e9ecef; padding: 24px; border-radius: 12px; margin-bottom: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.02);">
-            <p style="font-size: 18px; margin-bottom: 12px; color: #212529; font-weight: 700; border-bottom: 1px solid #f1f3f5; padding-bottom: 10px;">综合适性评估报告：Type-E 具备绝对边界的系统破局者</p>
-            <p style="font-size: 15px; line-height: 1.8; margin-bottom: 12px; color: #495057; text-align: justify;">在本次结构化适性检测中，系统对您的自我认知维度与组织规训抗压能力进行了逆向扫描。在当前高度依赖服从性测试和规训化的学术体制中，您呈现出了极度“反直觉”的高阶独立状态。系统判定您的特征模型符合<strong>【具备绝对边界的系统破局者 / The Brave Awakener】</strong>。</p>
-            <p style="font-size: 15px; line-height: 1.8; color: #495057; text-align: justify;">评估结果表明，您拥有整个量表中最坚硬的自我价值内核。传统的评价体系会将退学或转行视为“被淘汰的失败者”，但算法捕捉到了您行为底层的傲慢与清醒：<strong>您不是被系统淘汰了，而是您在对系统进行ROI（投入产出比）评估后，单方面解雇了这个荒谬的系统。</strong> 面临无意义的流水线实验和学术八股文，您表现出居高临下的冷眼旁观。这种基于高度自我觉醒的“止损能力”，是比盲目坚持更为稀缺的生存智慧。</p>
+            <p style="font-size: 18px; margin-bottom: 12px; color: #212529; font-weight: 700; border-bottom: 1px solid #f1f3f5; padding-bottom: 10px;">综合适性评估：具备绝对边界的系统审视者</p>
+            <p style="font-size: 15px; line-height: 1.8; margin-bottom: 12px; color: #495057; text-align: justify;">在对您各项维度的深入分析中，系统着重考察了您的自我认知独立性与面对体制压力的反应机制。在当前强调整体规范与顺从度的学术制度环境中，您展现出了一种高度基于自我反思的独立特质。系统判定您的特征倾向于<strong>【具备绝对边界的系统审视者】</strong>。</p>
+            <p style="font-size: 15px; line-height: 1.8; color: #495057; text-align: justify;">评估结果揭示，您拥有极其稳固且独立的自我价值认同体系。传统的学术视角可能倾向于要求研究者无条件地适应既有规则，但您展现出了一种难得的批判性审视能力：您并非被动地接受环境的筛选，而是主动地运用自身的价值标准对学术体系的投入产出合理性进行评估。面对可能缺乏实质意义的繁复流程，您能够保持清醒的距离感。这种基于深度自我认知的分析与抉择能力，赋予了您在复杂环境中的高度自主性。</p>
         </div>
         `;
         
-        // 自我解绑 (E) - E类的绝对统治区
-        dims += `<li style="margin-bottom: 20px;"><strong>自我解绑与边界防御 (核心护城河)</strong>：`;
+        dims += `<li style="margin-bottom: 20px;"><strong>自我解绑与心理边界 (核心认知优势)</strong>：`;
         if(s100.E >= 80) {
             dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
-            <strong>[评估：绝对的认知去耦合]</strong> 您穿戴着最高级别的精神防弹衣。无论外界（导师、审稿人、同门）给予何种尖锐的否定或倾轧，都无法穿透您的客体化防线。您将“科研受挫”等同于“游戏通关失败”，能够瞬间切断情绪联结，对PUA完全免疫。<br>
-            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
-                <strong></strong>你是真正意义上的“人间清醒”。导师如果试图对你发火或画大饼，在你眼里就像是一个低级NPC在念设定好的台词。你内心毫无波澜，甚至有点想笑。你极其清楚自己的斤两，也绝不允许任何人用几篇论文的拒稿信来定义你作为一个人的价值。
-            </div>
+            <strong>[评估特征：坚实的自我与客体化能力]</strong> 您在心理层面构建了极为明确的专业边界。无论面对来自指导者的严苛批评、同行的非理性倾轧，还是评价指标的否定，您都能够迅速将这些外部压力客体化处理。您清晰地知晓自身的优长与局限，绝不轻易允许外部的学术考核结果侵蚀或定义您内在的人格价值。<br>
             ${decouplingHtml}
             ${zeroJealousyHtml}
             </div></li>`;
         } else {
             dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
-            <strong>[评估：强效的自我保全机制]</strong> 虽然偶尔会受到外界负面评价的扰动，但您的自愈与切割速度极快。在经历短暂的挫败感后，您总能迅速意识到这套评价体系的局限性，并及时将自我认同感抽离出学术评价的泥潭。<br>
-            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
-                <strong></strong>你虽然也会因为被批或者实验失败而难过一小会儿，但你的“回血”速度惊人。睡一觉之后，你就会想通：“这破课题做不出就做不出呗，大不了我不干了，老子/老娘去干别的照样能活”。这种“大不了就掀桌子”的底气，让你免于像D类那样陷入无尽的抑郁死循环。
-            </div></div></li>`;
+            <strong>[评估特征：高效的心理修复与自我确认]</strong> 尽管在面临部分严厉的负面评价时，您偶尔也会受到短暂的情绪干扰，但您的自我修复与认知调整机制异常敏锐。在经历初步的挫败体验后，您总能迅速恢复理性，重新审视当前评价体系的局限性，并及时将自我认同的重心从不利的环境中抽离出来。
+            </div></li>`;
         }
         
-        // 规则顺应 (C) - 细分其反抗模式
-        dims += `<li style="margin-bottom: 20px;"><strong>规则顺应与反规训特征 (制度抗拒模式)</strong>：`;
+        dims += `<li style="margin-bottom: 20px;"><strong>规则顺应与批判反思 (制度互动模式)</strong>：`;
         if(s100.C <= 30) {
             dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
-            <strong>[评估：激进的制度对抗者]</strong> 您的骨子里流淌着反叛的血液。对于学术界的潜规则（如抢夺一作、数据修饰、迎合热点），您表现出不可调和的零容忍。您不仅拒绝执行，甚至可能在公开场合作出激烈的对抗性反击。<br>
-            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
-                <strong></strong>你是个点火就着的“火药桶”。如果导师敢强行剥夺你的研究成果，或者逼你做违反学术道德底线的事，你绝对会毫不犹豫地跟他拍桌子，哪怕鱼死网破、直接退学也在所不惜。你把尊严和底线看得比博士学位重一万倍。
-            </div>
+            <strong>[评估特征：强烈的原则坚守与对抗倾向]</strong> 您对学术规范和科研伦理有着极其严格的要求与不妥协的态度。对于学术界内存在的一些潜规则（如不合理的署名要求、对数据的刻意迎合等），您持有明确的排斥立场。在原则问题受到挑战时，您可能倾向于采取公开且坚决的表达方式，以捍卫内心的价值底线。<br>
             ${boundaryHtml}
             </div></li>`;
         } else {
             dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
-            <strong>[评估：理性的隐性不服从（Quiet Quitting）]</strong> 您深谙对抗的成本，因此选择了更为高明的“消极防御”策略。您在表面上维持基本的体面，但通过“战略性拖延”、“最低限度交付”来抵制不合理要求，事实上已在心理上完成了退役。<br>
-            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
-                <strong></strong>你掌握了职场上最高级的“摸鱼学”。你不想跟导师吵架，但你也绝对不卷。分配给你的边缘任务，你就用最敷衍的态度“糊弄”过去。你每天准点上下班，多一分钟都不待。你在实验室里的肉身只是一具躯壳，你的灵魂早就已经在外面规划转行找工作的路线了。
-            </div></div></li>`;
+            <strong>[评估特征：基于理性考量的适度疏离]</strong> 您能够洞察硬性对抗可能带来的现实成本，因此在处理与现行评价体系的冲突时，采取了更为隐蔽且理性的防御策略。您在形式上维持着工作所需的基本配合，但在心理认同和核心精力的投入上，已经与不合理的规训拉开了明显的距离，着手专注于真正有益于自身长远发展的规划。
+            </div></li>`;
         }
 
-        // 抗挫与决策 (R / DG) - E类止损的决绝
-        dims += `<li style="margin-bottom: 20px;"><strong>抗挫韧性与沉没成本控制 (敏捷止损能力)</strong>：`;
+        dims += `<li style="margin-bottom: 20px;"><strong>抗挫韧性与决策能力 (转换轨道的决断力)</strong>：`;
         if(s100.R >= 60) {
             dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
-            <strong>[评估：冷酷的沉没成本清算者]</strong> 不需要外人同情，当您用理性的大脑计算出当前的课题方向或读博本身是一场“注定亏本的交易”时，您的斩仓动作如同华尔街操盘手般冷酷。两年甚至三年的沉没成本，在您眼里不值一提。<br>
-            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
-                <strong></strong>你的决绝令人害怕。别人退学要哭上三个月，觉得天塌了；你退学，只需要花一个下午算一笔账。发现这事儿没前途，你第二天就能极其平静地递交退学申请，然后头也不回地去互联网大厂、去考公、去创业。这种“拿得起放得下”的狠劲，是干大事的标配。
-            </div>
+            <strong>[评估特征：卓越的沉没成本清算能力]</strong> 当您通过理性的综合评估，判断当前的学术发展路径无法满足您的长远预期或有悖于您的核心价值时，您能够果断且平静地做出终止继续投入的决定。数年的前期沉淀与时间投入无法对您构成非理性的束缚，您展现出了在复杂局面中迅速止损并重新启航的高效决策能力。<br>
             ${sunkCostHtml}
             </div></li>`;
         } else {
             dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
-            <strong>[评估：带有阵痛的觉醒者]</strong> 您已经清晰地看透了体系的荒谬，并且决定离场，但在这个过程中仍会经历短暂的撕扯。您可能需要一个明确的“导火索”（如一次彻底谈崩的组会）来作为推动自己迈出最后一步的催化剂。<br>
-            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
-                <strong></strong>你其实早就想走人了，辞职信（退学申请）都在草稿箱里存了半年。你只是在等一个契机，或者说在等自己攒够最后的失望。只要再发生哪怕一件恶心人的小事，你就会顺理成章地爆发，甩手走人，从此海阔天空。
-            </div></div></li>`;
+            <strong>[评估特征：处于抉择前夜的理性权衡]</strong> 您已经清晰地认识到了当前学术体系内部的诸多局限，并在心理上逐渐确立了转换发展方向的意向。在这一过渡阶段，您正在对放弃现状所需承担的现实代价进行审慎的权衡。一旦出现某种触发性事件，您有望顺理成章地迈出调整职业规划的实质性一步。
+            </div></li>`;
         }
         
-        // 动机纯度 (M) - 决定其离开后的去向
-        dims += `<li style="margin-bottom: 20px;"><strong>动机纯度与去向预测 (退场动机分类)</strong>：`;
+        dims += `<li style="margin-bottom: 20px;"><strong>动机纯度与去向预测 (发展目标转移)</strong>：`;
         if(s100.M >= 60) {
             dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
-            <strong>[评估：逆向献祭的纯粹主义者]</strong> 这是一个极其悲壮的数据组合。您并不讨厌科研，您甚至是深爱着真理的。别人以为您吃不了科研的苦，只有算法知道，您是痛恨这套将科学异化为KPI的体制。您的离场，恰恰是为了保护您内心学术贞操的“逆向献祭”。<br>
-            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
-                <strong></strong>你就像个不愿同流合污的侠客。你退学不是因为你笨，而是因为你觉得这帮人“不配”。你离开象牙塔后，极大概率会去硬核科技企业（如华为、大疆）、顶尖风投或开源社区。在那里，你依然在做研发，只是你换了一个更干净、更凭本事说话的江湖。
-            </div></div></li>`;
+            <strong>[评估特征：对纯粹理念的坚守与转换]</strong> 您的退出动机具有深层的理念因素。您内心深处依然珍视严谨的科学探索，促使您考虑离开的原因，并非对研究工作本身的厌倦，而是对现行将知识探索过度量化与指标化的管理模式感到失望。在未来，您极有可能在注重实际创新与技术突破的顶尖研发机构或开放知识社区中，寻找到更为契合您理念的施展空间。
+            </div></li>`;
         } else {
             dims += `<div style="margin-top: 6px; color: #444; line-height: 1.7; font-size: 14.5px;">
-            <strong>[评估：祛魅后的极度现实主义]</strong> 在看透了学术圈底层并不高尚的运作逻辑，并认清博士学历变现能力的断崖式下跌后，您果断抛弃了虚无的光环。您的退场纯粹是基于对更高世俗成就与生活质量的现实追求。<br>
-            <div style="margin-top: 8px; padding: 12px; background: #f1f3f5; border-radius: 6px; color: #343a40; font-size: 14px;">
-                <strong></strong>“既然发不出大文章，毕业去个破二本拿五六千的工资，我在这卷个什么劲？”这是你最真实的内心独白。你把账算得门儿清，立刻转向。去考选调生、去金融圈、甚至去搞自媒体搞钱。你彻底脱下了名为“科研”的孔乙己长衫，跑得比谁都快。
-            </div></div></li>`;
+            <strong>[评估特征：去魅后的务实职业重构]</strong> 在深入了解学术场域的实际运作规律，并客观评估了博士学历在当前社会环境下的预期收益后，您理性地摒弃了对学术光环的过度迷恋。您的转变策略完全建立在对自身更高生活质量和更优世俗成就的务实追求之上，展现出快速调整目标并拥抱多元职业选择的灵活性。
+            </div></li>`;
         }
 
-        // 结构化风险预测与干预策略 (给E类的退场战术指南)
         let crisisContent = '', adviceContent = '';
-        if(s100.C <= 30) { // 极端抵触，容易鱼死网破
+        if(s100.C <= 30) {
             crisisContent = `
-                <p style="margin-bottom: 8px;"><strong>风险预测：硬着陆与报复性系统倾轧 (Hard Landing Risk)</strong></p>
-                <p>由于您刚烈的底线和极度欠缺的妥协性，在诸如开题、中期或退学谈判等关键节点，您极大概率会与逼迫您迎合规则的权威（导师/学院）爆发正面且惨烈的冲突。您可能会采取“鱼死网破”的极端手段。尽管您在精神上是自由的，但体制的报复性倾轧（如卡住硕士学位、拖延档案转移）将给您的硬着陆带来巨大的行政阻力。</p>
+                <p style="margin-bottom: 8px;"><strong>风险提示：制度摩擦导致的高昂转换成本 (Frictional Transition Risk)</strong></p>
+                <p>鉴于您在原则问题上展现出的强硬立场及较低的妥协意愿，在诸如中期考核、学位论文答辩或办理退出手续等具有较强行政属性的环节中，您可能会与要求顺从规则的管理方发生较为直接的冲突。这种理念上的不可调和，可能在客观上增加您在转换发展轨道过程中的行政阻力与时间成本。</p>
             `;
             adviceContent = `
-                <p style="margin-bottom: 8px;"><strong>干预策略：实施“敏捷退场”与马基雅维利式止损 (Agile Exit Strategy)</strong></p>
-                <p>1. <strong>切忌与泥潭里的猪摔跤：</strong> 既然已经决定解雇这个系统，就不要再试图在这个系统里“伸张正义”或“证明自己是对的”。在离场前，收起您的锋芒，演好最后一场戏。用最温和甚至示弱的理由（如身体抱恙、家庭原因）办理退学，最大程度降低行政阻力，拿回该拿的档案或硕士学位。去广阔的真实世界里再发力。</p>
+                <p style="margin-bottom: 8px;"><strong>建议策略：采取务实的退出策略与减少不必要摩擦 (Pragmatic Disengagement)</strong></p>
+                <p>1. <strong>区分原则坚持与技术性妥协：</strong> 如果您已经做出了脱离当前体系的明确决定，建议在离场程序的办理过程中，适度采取更为温和与务实的沟通方式。避免在非核心环节上陷入无谓的观念争论，以最大程度保障个人应得的合法权益（如档案顺利转移或获取已达成的阶段性学位）为首要目标，将精力和锋芒留给未来的新领域。</p>
             `;
-            crisis = mkCrisis('风险预警 (Risk Assessment)', crisisContent);
-            advice = mkRule('干预策略 (Intervention Strategy)', adviceContent);
+            crisis = mkCrisis('结构性困境预测', crisisContent);
+            advice = mkRule('发展建议', adviceContent);
             
-        } else if (s100.M >= 60) { // 有学术理想的E类
+        } else if (s100.M >= 60) {
             crisisContent = `
-                <p style="margin-bottom: 8px;"><strong>风险预测：理想主义者的“放逐综合征” (Ideological Disillusionment)</strong></p>
-                <p>虽然您主动离开了这个病态的体制，但在夜深人静时，您可能仍会产生一种“被放逐”的遗憾。您热爱真理，却无法在象牙塔内找到容身之所。这种对于“科学共同体”的深度幻灭，可能会让您在步入社会后，对其他行业的组织愿景也产生长期的不信任与虚无感。</p>
+                <p style="margin-bottom: 8px;"><strong>风险提示：基于理想受挫的群体疏离感 (Ideological Disillusionment)</strong></p>
+                <p>尽管您是出于理性的判断主动选择离开或重新定位，但由于您内心仍对探求真理抱有热忱，在脱离传统的学术体系后，可能会在较长一段时期内体验到一种类似于“失去精神家园”的失落感。这种由学术理想破灭带来的心理冲击，可能会使您在步入社会其他行业初期，面对新的组织规约时，更容易产生不信任感与价值虚无感。</p>
             `;
             adviceContent = `
-                <p style="margin-bottom: 8px;"><strong>干预策略：重塑战场与生态位迁移 (Ecological Niche Shift)</strong></p>
-                <p>1. <strong>打破知识垄断的刻板印象：</strong> 请立刻更新您的认知：高校和研究所早就不再垄断前沿科学了！去业界最顶尖的R&D部门（如DeepMind、OpenAI、华为2012实验室），去拥抱开源社区。在那里，评价标准不是狗屁不通的影响因子，而是实打实的代码、产品和改变世界的效率。您不是放弃了科研，您只是换了一把更先进的武器。</p>
+                <p style="margin-bottom: 8px;"><strong>建议策略：重新定义专业场域与拓展价值实现途径 (Re-contextualizing Expertise)</strong></p>
+                <p>1. <strong>打破知识生产的特定场域迷思：</strong> 建议您及时更新认知框架，充分认识到在现代社会，高水平的研究与创新活动早已不再局限于传统的高校或研究机构。在优秀的科技企业研发部门、专业智库以及众多开源技术社区中，同样汇聚了大量关注实际问题解决与技术边界拓展的专业人士。将您的才华投入到这些以实际效用为核心的广阔领域，同样是实现学术理想的有效途径。</p>
             `;
-            crisis = mkCrisis('风险预警 (Risk Assessment)', crisisContent);
-            advice = mkRule('干预策略 (Intervention Strategy)', adviceContent);
+            crisis = mkCrisis('结构性困境预测', crisisContent);
+            advice = mkRule('发展建议', adviceContent);
             
         } else {
-            // 最通透的，彻底挥别学术圈的E类
             crisisContent = `
-                <p style="margin-bottom: 8px;"><strong>风险预测：极其平静的周二早晨 (The Peaceful Departure)</strong></p>
-                <p>系统预测，您不会有歇斯底里的崩溃，也不会有壮烈的誓师。您的危机根本不叫危机，只是在大脑的计算中台跑完最后一个数据、确认博士学位无法带来您想要的生活（或ROI极低）后，在某个极其平静的周二早晨，您合上电脑，写下退学申请，然后极其自然地走入社会的洪流中。</p>
+                <p style="margin-bottom: 8px;"><strong>风险提示：平静转换期中的平稳过渡 (The Stable Transition)</strong></p>
+                <p>基于对您各项指标的综合评估，系统预测您在面临职业轨道的转换时，将不会经历剧烈的心理危机或情绪波折。您的决策过程更多是一次基于充分信息收集和理性计算后的自然过渡。在确认当前的学术路径无法最优化地实现个人预期目标后，您能够以极其平静和理性的态度完成角色的转换，顺利融入更广阔的社会发展进程中。</p>
             `;
             adviceContent = `
-                <p style="margin-bottom: 8px;"><strong>干预策略：永远不要怀疑您的感知力 (Validate Your Intuition)</strong></p>
-                <p>1. <strong>庆祝您的觉醒：</strong> 在这个充满了规训、PUA和沉没成本绑架的学术圈里，能清醒地意识到“这不适合我”并果断抽身，是极少数顶级聪明人才能做到的事。不要听信那些“你就是抗压能力弱”的闲言碎语。相信您的直觉，您没病，是环境病了。带着这具没有被彻底异化的躯壳和灵魂，去广阔天地里大展拳脚吧。祝您前程似锦。</p>
+                <p style="margin-bottom: 8px;"><strong>建议策略：信任自我感知与积极拥抱多元可能 (Validating Self-Perception)</strong></p>
+                <p>1. <strong>肯定理性判断的价值：</strong> 在一个普遍强调坚持与忍耐的环境中，能够清醒地基于自身的真实感受与客观条件进行评估，并在必要时果断做出改变，是一种体现了高度智慧与执行力的高级决策能力。请充分信任您对自身处境的敏锐感知，摒弃外界可能的负面标签。带着这份独立思考与果断决策的能力，去探索更符合您特质的多元化发展道路。</p>
             `;
-            crisis = mkCrisis('风险预警 (Risk Assessment)', crisisContent);
-            advice = mkRule('干预策略 (Intervention Strategy)', adviceContent);
+            crisis = mkCrisis('结构性困境预测', crisisContent);
+            advice = mkRule('发展建议', adviceContent);
         }
     }
 
-    html += `<div class="section-title">🔍 核心溯源诊断</div><div class="report-p">${intro}</div>`;
-    html += `<div class="section-title">📊 六维潜能底层拆解</div><ul class="dim-list">${dims}</ul>`;
-    html += `<div class="section-title">⏳ 破局沙盘推演</div>${crisis}`;
-    html += `<div class="section-title">💡 专属生存法则</div>${advice}`;
+    html += `<div class="section-title">🔍 核心特征分析</div><div class="report-p">${intro}</div>`;
+    html += `<div class="section-title">📊 多维潜能剖析</div><ul class="dim-list">${dims}</ul>`;
+    html += `<div class="section-title">⏳ 发展路径预判</div>${crisis}`;
+    html += `<div class="section-title">💡 专业发展建议</div>${advice}`;
     
     return html;
 }
@@ -1664,7 +1508,7 @@ function drawRadar(s100) {
 
 <script>
     // ================= 配置区域 =================
-    const MAX_USES = 6;                // 同一台设备限制的次数
+    const MAX_USES = 10;                // 同一台设备限制的次数
     // ==========================================
 
     const pageId = window.location.pathname; // 区分不同页面的缓存
